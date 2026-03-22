@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — JMEDIA Productions</title>
+<meta name="description" content="JMEDIA Productions — built in 2021 specifically for hospitality brands. We close the gap between what your property delivers and how it presents online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg-alt:#f5f5f7;--bg-deep:#1d1d1f;--bg-card:#fff;--bg-card2:#f5f5f7;--text:#1d1d1f;--text-2:#424245;--text-3:#6e6e73;--text-inv:#f5f5f7;--text-inv2:rgba(255,255,255,.72);--coral:#E8625A;--coral-dk:#c94e47;--coral-bg:rgba(232,98,90,.08);--coral-brd:rgba(232,98,90,.25);--line:rgba(0,0,0,.08);--line-inv:rgba(255,255,255,.10);--nav-bg:rgba(255,255,255,.82);--sh-sm:0 2px 12px rgba(0,0,0,.06);--sh-md:0 8px 40px rgba(0,0,0,.10);--Fd:'Bebas Neue',sans-serif;--Fs:'Cormorant Garamond',serif;--Fb:'DM Sans',sans-serif;--max:1200px;--pad:80px;}
+@media(prefers-color-scheme:dark){:root{--bg:#000;--bg-alt:#111;--bg-deep:#000;--bg-card:#1c1c1e;--bg-card2:#2c2c2e;--text:#f5f5f7;--text-2:#aeaeb2;--text-3:#6e6e73;--line:rgba(255,255,255,.10);--nav-bg:rgba(0,0,0,.72);--sh-sm:0 2px 12px rgba(0,0,0,.3);--sh-md:0 8px 40px rgba(0,0,0,.5);}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);color:var(--text);font-family:var(--Fb);font-weight:300;overflow-x:hidden;line-height:1.6;}
+a{text-decoration:none;color:inherit;}ul,ol{list-style:none;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+.skip{position:absolute;top:-100%;left:1rem;background:var(--coral);color:#fff;padding:12px 20px;font-weight:500;z-index:9999;border-radius:0 0 4px 4px;transition:top .2s;}.skip:focus{top:0;}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}body.mouse :focus-visible{outline:none;}
+
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.nlogo{font-family:var(--Fd);font-size:18px;letter-spacing:5px;color:var(--text);}.nlogo .dot{color:var(--coral);}
+.nlinks{display:flex;gap:32px;position:absolute;left:50%;transform:translateX(-50%);}
+.nlinks a{font-size:12px;letter-spacing:.5px;color:var(--text-3);transition:color .2s;}.nlinks a:hover,.nlinks a.cur{color:var(--text);}
+.ncta{font-size:12px;font-weight:500;padding:8px 18px;background:var(--coral);color:#fff;border-radius:980px;transition:background .2s;}.ncta:hover{background:var(--coral-dk);}
+
+.sec{padding:100px var(--pad);}.sec-alt{background:var(--bg-alt);}.sec-deep{background:var(--bg-deep);}
+.inner{max-width:var(--max);margin:0 auto;}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:12px;}
+.hl{font-family:var(--Fd);font-size:clamp(40px,5vw,76px);letter-spacing:1px;line-height:.95;color:var(--text);}.hl em{font-family:var(--Fs);font-style:italic;color:var(--coral);font-size:.92em;}
+.hl-xl{font-family:var(--Fd);font-size:clamp(56px,8vw,120px);letter-spacing:1px;line-height:.9;}.hl-xl em{font-family:var(--Fs);font-style:italic;color:var(--coral);font-size:.88em;}
+.bod{font-size:15px;line-height:1.8;color:var(--text-2);margin-bottom:16px;}.bod:last-child{margin-bottom:0;}.bod strong{color:var(--text);font-weight:400;}
+.btn-pill{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:13px 28px;border-radius:980px;background:var(--coral);color:#fff;transition:background .2s;border:none;cursor:pointer;font-family:var(--Fb);}.btn-pill:hover{background:var(--coral-dk);}
+.btn-ghost{display:inline-flex;align-items:center;font-size:14px;font-weight:500;padding:12px 28px;border-radius:980px;background:transparent;color:var(--text);border:1.5px solid var(--line);transition:border-color .2s;}.btn-ghost:hover{border-color:var(--text-3);}
+.btn-lnk{display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--coral);transition:gap .2s;}.btn-lnk:hover{gap:9px;}.btn-lnk::after{content:'→';}
+
+/* PAGE HERO */
+.pg-hero{padding:140px var(--pad) 100px;background:var(--bg-deep);position:relative;overflow:hidden;}
+.pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 65% at 30% 70%,rgba(232,98,90,.08),transparent 55%);pointer-events:none;}
+.pg-inner{max-width:var(--max);margin:0 auto;}
+.pg-hero-sub{font-size:17px;line-height:1.75;color:rgba(255,255,255,.58);margin-top:28px;max-width:520px;}.pg-hero-sub strong{color:#fff;font-weight:400;}
+
+/* THESIS SECTION */
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.thesis-pull{font-family:var(--Fs);font-size:clamp(20px,2.5vw,30px);font-style:italic;line-height:1.5;color:var(--text);margin-bottom:24px;}
+.thesis-pull em{color:var(--coral);font-style:normal;}
+
+/* ORIGIN SECTION */
+.origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.origin-visual{aspect-ratio:4/5;background:var(--bg-deep);border-radius:20px;position:relative;overflow:hidden;}
+.origin-visual-bg{position:absolute;inset:0;background:linear-gradient(145deg,#1c1208,#0f0d08,#1a1510);}
+.origin-visual-caption{position:absolute;bottom:24px;left:24px;right:24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.cred-list{display:flex;flex-direction:column;gap:8px;margin-top:32px;}
+.cred-item{display:flex;align-items:flex-start;gap:14px;background:var(--bg-card2);border-radius:12px;padding:14px 18px;}
+.cred-dot{width:7px;height:7px;border-radius:50%;background:var(--coral);flex-shrink:0;margin-top:5px;}
+.cred-text{font-size:13px;color:var(--text-2);line-height:1.5;}.cred-text strong{color:var(--text);font-weight:500;}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.sbox{background:var(--bg-card);border:1px solid var(--line);padding:44px 36px;}
+.sn{font-family:var(--Fd);font-size:80px;line-height:1;color:var(--coral);letter-spacing:-2px;margin-bottom:8px;}
+.sl{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-3);}
+
+/* DIFF SECTION */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;}
+.diff-card{background:var(--bg-card);border:1px solid var(--line);border-radius:20px;padding:40px 32px;box-shadow:var(--sh-sm);transition:transform .25s,box-shadow .25s;}.diff-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md);}
+.diff-num{font-family:var(--Fd);font-size:56px;color:var(--coral);opacity:.18;line-height:1;margin-bottom:20px;transition:opacity .3s;}.diff-card:hover .diff-num{opacity:.4;}
+.diff-title{font-family:var(--Fd);font-size:24px;letter-spacing:.5px;margin-bottom:12px;color:var(--text);}
+.diff-body{font-size:14px;line-height:1.7;color:var(--text-3);}
+
+/* CREDENTIALS SECTION */
+.cred-logos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:56px;}
+.clog{background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:32px 20px;text-align:center;box-shadow:var(--sh-sm);}
+.clog-name{font-family:var(--Fd);font-size:18px;letter-spacing:3px;color:var(--text-3);margin-bottom:6px;}
+.clog-sub{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);opacity:.6;}
+.quote-block{background:var(--bg-alt);border-radius:20px;padding:56px 64px;position:relative;overflow:hidden;}
+.quote-block::before{content:'\201C';position:absolute;font-family:var(--Fs);font-size:200px;color:rgba(232,98,90,.06);top:-20px;left:28px;line-height:1;}
+.quote-text{font-family:var(--Fs);font-size:clamp(20px,2.2vw,28px);font-style:italic;line-height:1.5;color:var(--text);margin-bottom:28px;position:relative;z-index:1;}
+.quote-attr{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);position:relative;z-index:1;}
+
+/* CTA */
+.cta-blk{padding:140px var(--pad);text-align:center;background:var(--bg-alt);position:relative;overflow:hidden;}
+.cta-blk::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(232,98,90,.08),transparent);pointer-events:none;}
+.cta-ey{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:16px;}
+.cta-h{font-family:var(--Fd);font-size:clamp(52px,7vw,110px);line-height:.92;letter-spacing:1px;color:var(--text);margin-bottom:20px;position:relative;z-index:1;}.cta-h em{font-family:var(--Fs);font-style:italic;color:var(--coral);}
+.cta-sub{font-size:17px;line-height:1.65;color:var(--text-2);max-width:520px;margin:0 auto;position:relative;z-index:1;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px;position:relative;z-index:1;}
+
+footer{background:var(--bg);border-top:1px solid var(--line);padding:72px var(--pad) 48px;}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
+.flogo{font-family:var(--Fd);font-size:20px;letter-spacing:5px;display:block;margin-bottom:14px;color:var(--text);}.flogo .dot{color:var(--coral);}
+.ftagl{font-size:13px;line-height:1.75;color:var(--text-3);max-width:260px;}
+.fch{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:18px;}
+.fl li{margin-bottom:12px;}.fl a{font-size:13px;color:var(--text-3);transition:color .2s;}.fl a:hover{color:var(--text);}
+.fbot{border-top:1px solid var(--line);padding-top:24px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text-3);flex-wrap:wrap;gap:12px;}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.rv.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}
+
+@media(max-width:960px){:root{--pad:24px;}#nav{padding:0 20px;}.nlinks{display:none;}.thesis-grid,.origin-grid,.stats-grid,.diff-grid,.cred-logos,.fg{grid-template-columns:1fr;}.stats-grid{grid-template-columns:1fr 1fr;}.quote-block{padding:36px 28px;}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<nav id="nav" aria-label="Main navigation">
+  <a href="index.html" class="nlogo">J<span class="dot" aria-hidden="true">·</span>MEDIA</a>
+  <div class="nlinks"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html" class="cur">About</a><a href="contact.html">Contact</a></div>
+  <a href="contact.html" class="ncta">Book a Free Audit</a>
+</nav>
+<main id="main">
+
+<!-- PAGE HERO -->
+<header class="pg-hero" aria-labelledby="ph1">
+  <div class="pg-inner">
+    <span class="eyebrow" style="color:rgba(232,98,90,.9);">About JMEDIA</span>
+    <h1 class="hl-xl rv" id="ph1" style="color:#fff;">We Don&rsquo;t Just<br>Shoot Hotels.<br>We <em>Position</em> Them.</h1>
+    <p class="pg-hero-sub rv d1">Founded in 2021 specifically for hospitality. Not a generalist studio that happens to take hotel clients &mdash; a <strong>production partner built around how hotels actually operate and how guests actually decide.</strong></p>
+  </div>
+</header>
+
+<!-- THESIS -->
+<section class="sec sec-alt" aria-labelledby="thesis-h">
+  <div class="inner">
+    <div class="thesis-grid">
+      <div class="rv">
+        <span class="eyebrow">The Problem We Solve</span>
+        <h2 class="hl" id="thesis-h">The Gap Between<br>Experience<br>and <em>Evidence.</em></h2>
+      </div>
+      <div class="rv d1">
+        <p class="thesis-pull">&ldquo;Most properties are better than their content suggests. That gap is costing them rooms, margin, and market position every single night.&rdquo;</p>
+        <p class="bod">Hotels invest in design, service, F&amp;B, and amenities &mdash; then hand their visual story to whoever was cheapest. The result is content that looks like content. Forgettable. Formulaic. Indistinguishable from the comp set.</p>
+        <p class="bod"><strong>JMEDIA exists to close that gap.</strong> We build content that earns the booking before the guest ever contacts the front desk &mdash; content that makes the choice feel obvious, not deliberate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGIN -->
+<section class="sec" aria-labelledby="origin-h">
+  <div class="inner">
+    <div class="origin-grid">
+      <div class="rv">
+        <div class="origin-visual">
+          <div class="origin-visual-bg"></div>
+          <div class="origin-visual-caption">On set &middot; Production work</div>
+        </div>
+      </div>
+      <div class="rv d1">
+        <span class="eyebrow">Founded 2021</span>
+        <h2 class="hl" id="origin-h">Built on Set.<br>Focused on <em>Hospitality.</em></h2>
+        <p class="bod" style="margin-top:20px;">JMEDIA was founded on a simple observation: the hospitality industry consistently undersells itself because production vendors don&rsquo;t understand what hotels actually sell. <strong>They sell a feeling. They sell a decision.</strong> Most video content never captures either.</p>
+        <p class="bod">Our background isn&rsquo;t corporate video or wedding films &mdash; it&rsquo;s high-pressure on-set production where every frame is deliberate and every dollar is accountable. That discipline is what we bring to every hotel engagement.</p>
+        <p class="bod">We&rsquo;re selective. We take on projects where we can genuinely move the needle.</p>
+        <ul class="cred-list" role="list">
+          <li class="cred-item"><div class="cred-dot" aria-hidden="true"></div><div class="cred-text"><strong>Universal Orlando</strong> &mdash; Production team, on-set operations</div></li>
+          <li class="cred-item"><div class="cred-dot" aria-hidden="true"></div><div class="cred-text"><strong>Halloween Horror Nights</strong> &mdash; Camera department, flagship event</div></li>
+          <li class="cred-item"><div class="cred-dot" aria-hidden="true"></div><div class="cred-text"><strong>Epic Universe</strong> &mdash; Pre-opening production coverage</div></li>
+          <li class="cred-item"><div class="cred-dot" aria-hidden="true"></div><div class="cred-text"><strong>Hospitality vertical</strong> &mdash; Hotels, resorts, experience-driven brands</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="sec sec-alt" aria-labelledby="stats-h">
+  <div class="inner">
+    <h2 class="sr" id="stats-h">By the numbers</h2>
+    <div class="stats-grid" role="list">
+      <div class="sbox rv" role="listitem"><div class="sn" aria-label="15 plus">15+</div><div class="sl">Years Experience</div></div>
+      <div class="sbox rv d1" role="listitem"><div class="sn" aria-label="20 plus">20+</div><div class="sl">Repeat Clients</div></div>
+      <div class="sbox rv d2" role="listitem"><div class="sn" aria-label="100 plus">100+</div><div class="sl">Projects Delivered</div></div>
+      <div class="sbox rv d3" role="listitem"><div class="sn" aria-label="100 plus">100+</div><div class="sl">Happy Clients</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES US DIFFERENT -->
+<section class="sec" aria-labelledby="diff-h">
+  <div class="inner">
+    <span class="eyebrow rv">The JMEDIA Difference</span>
+    <h2 class="hl rv d1" id="diff-h">Why GMs and Marketing<br>Directors Call Us <em>Back.</em></h2>
+    <div class="diff-grid">
+      <div class="diff-card rv">
+        <div class="diff-num" aria-hidden="true">01</div>
+        <h3 class="diff-title">Hospitality Is Our Vertical</h3>
+        <p class="diff-body">We don&rsquo;t serve 12 different industries. We understand OTA dynamics, ADR positioning, direct booking funnels, and what it means to sell a stay before the guest arrives. That context changes everything about how we approach a brief.</p>
+      </div>
+      <div class="diff-card rv d1">
+        <div class="diff-num" aria-hidden="true">02</div>
+        <h3 class="diff-title">Strategy Before Camera</h3>
+        <p class="diff-body">Most vendors show up and shoot. We show up with a creative brief, a competitive audit, and a clear narrative. Production day executes a strategy that already exists. That&rsquo;s why the results land differently.</p>
+      </div>
+      <div class="diff-card rv d2">
+        <div class="diff-num" aria-hidden="true">03</div>
+        <h3 class="diff-title">Production Discipline That Transfers</h3>
+        <p class="diff-body">High-stakes productions where quality isn&rsquo;t optional and on-set discipline is non-negotiable. That standard travels with us to every hotel engagement &mdash; regardless of scope or budget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="sec sec-alt" aria-labelledby="cred-h">
+  <div class="inner">
+    <span class="eyebrow rv">Our Credibility</span>
+    <h2 class="hl rv d1" id="cred-h">Proven on<br><em>Demanding Productions.</em></h2>
+    <div class="cred-logos rv d2" style="margin-top:48px;">
+      <div class="clog"><div class="clog-name">Universal</div><div class="clog-sub">Orlando Resort</div></div>
+      <div class="clog"><div class="clog-name">HHN</div><div class="clog-sub">Horror Nights</div></div>
+      <div class="clog"><div class="clog-name">Epic</div><div class="clog-sub">Epic Universe</div></div>
+      <div class="clog"><div class="clog-name">SuitePad</div><div class="clog-sub">Hospitality Tech</div></div>
+    </div>
+    <blockquote class="quote-block rv d3">
+      <p class="quote-text">&ldquo;Working with a team that brings real on-set production discipline to a boutique hotel project is a completely different experience. The quality of their pre-production alone justified the investment.&rdquo;</p>
+      <p class="quote-attr">Director of Marketing &mdash; Boutique Hospitality Group</p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-blk" aria-labelledby="cta-h">
+  <div class="inner">
+    <span class="cta-ey rv">Work With Us</span>
+    <h2 class="cta-h rv d1" id="cta-h">Your Property<br>Deserves <em>Better.</em></h2>
+    <p class="cta-sub rv d2">We&rsquo;re selective about the projects we take on. If your property is underselling itself, we want to hear about it.</p>
+    <div class="cta-btns rv d3"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-ghost">See Our Services</a></div>
+  </div>
+</section>
+
+</main>
+<footer><div class="inner"><div class="fg"><div><a href="index.html" class="flogo">J<span class="dot" aria-hidden="true">·</span>MEDIA</a><p class="ftagl">Ongoing cinematic content for hotels, resorts, and experience-driven brands. Orlando, FL.</p></div><div><p class="fch">Navigate</p><ul class="fl"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div><div><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div><div><p class="fch">Contact</p><ul class="fl"><li><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>Orlando, FL</span></li></ul></div></div><div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC.</span><span>Privacy &middot; Terms</span></div></div></footer>
+<script>
+document.addEventListener('mousedown',function(){document.body.classList.add('mouse');});
+document.addEventListener('keydown',function(e){if(e.key==='Tab')document.body.classList.remove('mouse');});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>
