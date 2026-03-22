@@ -438,7 +438,7 @@ document.getElementById('submit-btn').addEventListener('click', function(){
   if(tl)     extra.push('Timeline: ' + tl);
   if(pain)   extra.push('Pain Points: ' + pain);
   if(notes)  extra.push('Notes: ' + notes);
-  if(extra.length){ fields.push({ name: 'jobtitle', value: extra.join(' | ') }); }
+  if(extra.length){ fields.push({ name: 'message', value: extra.join('\n') }); }
 
   var body = {
     fields: fields,
