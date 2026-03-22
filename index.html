@@ -318,16 +318,20 @@ body.mouse :focus-visible { outline:none; }
 /* ═══════════════════════════════════════════════
    9. PARTNERS
 ═══════════════════════════════════════════════ */
-#partners { padding:64px var(--pad); }
-.partners-lbl { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-3); text-align:center; margin-bottom:40px; }
-.partners-row { display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; }
+#partners { padding:72px var(--pad); border-bottom:1px solid var(--line); }
+.partners-lbl { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-3); text-align:center; margin-bottom:48px; }
+.partners-row { display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--bg-card); box-shadow:var(--shadow-sm); }
 .plog {
-  font-family:var(--Fd); font-size:13px; letter-spacing:4px; text-transform:uppercase;
-  color:var(--text-3); opacity:.6;
-  padding:10px 24px; border:1px solid var(--line); border-radius:4px;
-  transition:opacity .3s, border-color .3s;
+  display:flex; align-items:center; justify-content:center;
+  padding:32px 40px; flex:1; min-width:160px;
+  border-right:1px solid var(--line);
+  transition:background .25s;
 }
-.plog:hover { opacity:1; border-color:var(--text-3); }
+.plog:last-child { border-right:none; }
+.plog:hover { background:var(--bg-alt); }
+.plog svg { width:auto; height:28px; fill:var(--text-3); opacity:.55; transition:opacity .25s, fill .25s; display:block; }
+.plog:hover svg { opacity:.9; fill:var(--text); }
+@media(max-width:960px){ .partners-row { border-radius:12px; } .plog { min-width:calc(50% - 1px); padding:24px 28px; } .plog:nth-child(2n){ border-right:none; } .plog:nth-child(n+3){ border-top:1px solid var(--line); } }
 
 /* ═══════════════════════════════════════════════
    10. STICKY STATEMENT (scroll-driven chapter)
@@ -689,10 +693,47 @@ footer { background:var(--bg); border-top:1px solid var(--line); padding:72px va
   <div class="inner">
     <p class="partners-lbl">Trusted By</p>
     <ul class="partners-row" role="list">
-      <li class="plog">Universal Orlando</li>
-      <li class="plog">SuitePad</li>
-      <li class="plog">Boutique Hotels</li>
-      <li class="plog">Independent Resorts</li>
+
+      <!-- Universal Orlando -->
+      <li class="plog" title="Universal Orlando">
+        <svg viewBox="0 0 180 36" xmlns="http://www.w3.org/2000/svg" aria-label="Universal Orlando" role="img">
+          <text x="0" y="26" font-family="'DM Sans', sans-serif" font-weight="500" font-size="13" letter-spacing="3" text-transform="uppercase" fill="currentColor" style="text-transform:uppercase;letter-spacing:3px;">UNIVERSAL</text>
+          <text x="0" y="36" font-family="'DM Sans', sans-serif" font-weight="300" font-size="9" letter-spacing="3" fill="currentColor" opacity=".6" style="letter-spacing:3px;">ORLANDO</text>
+        </svg>
+      </li>
+
+      <!-- SuitePad -->
+      <li class="plog" title="SuitePad">
+        <svg viewBox="0 0 140 32" xmlns="http://www.w3.org/2000/svg" aria-label="SuitePad" role="img">
+          <rect x="0" y="6" width="20" height="20" rx="3" fill="#E8625A" opacity=".8"/>
+          <text x="26" y="23" font-family="'DM Sans', sans-serif" font-weight="500" font-size="15" letter-spacing="1" fill="currentColor">SuitePad</text>
+        </svg>
+      </li>
+
+      <!-- Planet Oat -->
+      <li class="plog" title="Planet Oat">
+        <svg viewBox="0 0 150 34" xmlns="http://www.w3.org/2000/svg" aria-label="Planet Oat" role="img">
+          <ellipse cx="11" cy="17" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".7"/>
+          <ellipse cx="11" cy="17" rx="5" ry="10" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/>
+          <text x="28" y="23" font-family="'Cormorant Garamond', serif" font-weight="400" font-size="17" letter-spacing="1" fill="currentColor">Planet Oat</text>
+        </svg>
+      </li>
+
+      <!-- Heinz -->
+      <li class="plog" title="Heinz">
+        <svg viewBox="0 0 90 32" xmlns="http://www.w3.org/2000/svg" aria-label="Heinz" role="img">
+          <text x="0" y="25" font-family="'Bebas Neue', sans-serif" font-size="30" letter-spacing="4" fill="currentColor">HEINZ</text>
+        </svg>
+      </li>
+
+      <!-- Carvana -->
+      <li class="plog" title="Carvana">
+        <svg viewBox="0 0 130 32" xmlns="http://www.w3.org/2000/svg" aria-label="Carvana" role="img">
+          <text x="0" y="24" font-family="'DM Sans', sans-serif" font-weight="500" font-size="18" letter-spacing="2" fill="currentColor">carvana</text>
+          <line x1="0" y1="28" x2="108" y2="28" stroke="#E8625A" stroke-width="2" opacity=".6"/>
+        </svg>
+      </li>
+
     </ul>
   </div>
 </section>
@@ -949,13 +990,13 @@ footer { background:var(--bg); border-top:1px solid var(--line); padding:72px va
       </div>
       <div><p class="fch">Navigate</p><ul class="fl"><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div>
-      <div><p class="fch">Contact</p><ul class="fl"><li><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>Orlando, FL</span></li></ul></div>
+      <div><p class="fch">Contact</p><ul class="fl"><li><a href="/cdn-cgi/l/email-protection#c4adaaa2ab84aee9a9a1a0ada5b4b6aba0b1a7b0adabaab7eaa7aba9"><span class="__cf_email__" data-cfemail="9af3f4fcf5daf0b7f7fffef3fbeae8f5feeff9eef3f5f4e9b4f9f5f7">[email&#160;protected]</span></a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>Orlando, FL</span></li></ul></div>
     </div>
     <div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC. All rights reserved.</span><span>Privacy &middot; Terms</span></div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Mouse/keyboard detection ──
 document.addEventListener('mousedown', function(){ document.body.classList.add('mouse'); });
 document.addEventListener('keydown', function(e){ if(e.key==='Tab') document.body.classList.remove('mouse'); });
@@ -1013,10 +1054,4 @@ function setT(i){
   document.getElementById('tNm').textContent = ts[i].nm;
   document.getElementById('tRl').textContent = ts[i].rl;
   document.getElementById('tAv').textContent = ts[i].av;
-  document.querySelectorAll('.tdot').forEach(function(d,j){ var a=j===i; d.classList.toggle('on',a); d.setAttribute('aria-selected',a); });
-}
-document.querySelectorAll('.tdot').forEach(function(d){ d.addEventListener('click', function(){ setT(parseInt(d.getAttribute('data-i'))); }); });
-setInterval(function(){ setT((ti+1)%ts.length); }, 5500);
-</script>
-</body>
-</html>
+  document.querySelectorAll('.tdot').forEach(function(d,j){ var a=j===i; d.classList.toggle('on',a); d.setAttribu
