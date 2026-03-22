@@ -10,21 +10,21 @@
 <style>
 /* ─── TOKENS ─────────────────────────────────── */
 :root {
-  --bg:#ffffff; --bg-alt:#f5f5f7; --bg-deep:#080808; --bg-card:#ffffff; --bg-card2:#f5f5f7;
-  --text:#1d1d1f; --text-2:#424245; --text-3:#6e6e73;
-  --text-inv:#f5f5f7; --text-inv2:rgba(255,255,255,.72);
-  --coral:#E8625A; --coral-dk:#c94e47; --coral-bg:rgba(232,98,90,.08); --coral-brd:rgba(232,98,90,.25);
-  --line:rgba(0,0,0,.08); --line-inv:rgba(255,255,255,.10);
+  --bg:#fff;--bg-alt:#f5f5f7;--bg-deep:#080808;--bg-card:#fff;--bg-card2:#f5f5f7;
+  --text:#1d1d1f;--text-2:#424245;--text-3:#6e6e73;
+  --text-inv:#f5f5f7;--text-inv2:rgba(255,255,255,.72);
+  --coral:#E8625A;--coral-dk:#c94e47;--coral-bg:rgba(232,98,90,.08);--coral-brd:rgba(232,98,90,.25);
+  --line:rgba(0,0,0,.08);--line-inv:rgba(255,255,255,.10);
   --nav-bg:rgba(255,255,255,.88);
-  --sh-sm:0 2px 16px rgba(0,0,0,.06); --sh-md:0 12px 48px rgba(0,0,0,.12);
-  --Fd:'Bebas Neue',sans-serif; --Fs:'Cormorant Garamond',serif; --Fb:'DM Sans',sans-serif;
-  --max:1200px; --pad:80px;
+  --sh-sm:0 2px 16px rgba(0,0,0,.06);--sh-md:0 12px 48px rgba(0,0,0,.12);
+  --Fd:'Bebas Neue',sans-serif;--Fs:'Cormorant Garamond',serif;--Fb:'DM Sans',sans-serif;
+  --max:1200px;--pad:80px;
 }
 @media(prefers-color-scheme:dark){:root{
-  --bg:#000; --bg-alt:#111; --bg-deep:#000; --bg-card:#1c1c1e; --bg-card2:#2c2c2e;
-  --text:#f5f5f7; --text-2:#aeaeb2; --text-3:#6e6e73;
-  --line:rgba(255,255,255,.10); --nav-bg:rgba(0,0,0,.88);
-  --sh-sm:0 2px 16px rgba(0,0,0,.4); --sh-md:0 12px 48px rgba(0,0,0,.6);
+  --bg:#000;--bg-alt:#111;--bg-deep:#000;--bg-card:#1c1c1e;--bg-card2:#2c2c2e;
+  --text:#f5f5f7;--text-2:#aeaeb2;--text-3:#6e6e73;
+  --line:rgba(255,255,255,.10);--nav-bg:rgba(0,0,0,.88);
+  --sh-sm:0 2px 16px rgba(0,0,0,.4);--sh-md:0 12px 48px rgba(0,0,0,.6);
 }}
 
 /* ─── RESET ──────────────────────────────────── */
@@ -33,12 +33,8 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
 body{background:var(--bg);color:var(--text);font-family:var(--Fb);font-weight:300;overflow-x:hidden;line-height:1.6;}
 a{text-decoration:none;color:inherit;}
 ul,ol{list-style:none;}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
-  html{scroll-behavior:auto;}
-}
-.skip{position:absolute;top:-100%;left:1rem;background:var(--coral);color:#fff;padding:12px 20px;font-weight:500;z-index:9999;border-radius:0 0 4px 4px;transition:top .2s;}
-.skip:focus{top:0;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+.skip{position:absolute;top:-100%;left:1rem;background:var(--coral);color:#fff;padding:12px 20px;font-weight:500;z-index:9999;border-radius:0 0 4px 4px;transition:top .2s;}.skip:focus{top:0;}
 .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
 body.mouse :focus-visible{outline:none;}
@@ -56,15 +52,11 @@ body.mouse :focus-visible{outline:none;}
   -webkit-backdrop-filter:saturate(180%) blur(20px);
   border-bottom:1px solid var(--line);
 }
-/* Logo swap: dark bg = white logo, light bg = dark logo */
 .nlogo-w{height:34px;width:auto;display:block;}
 .nlogo-d{height:34px;width:auto;display:none;}
 #nav.sc .nlogo-w{display:none;}
 #nav.sc .nlogo-d{display:block;}
-@media(prefers-color-scheme:dark){
-  #nav.sc .nlogo-w{display:block;}
-  #nav.sc .nlogo-d{display:none;}
-}
+@media(prefers-color-scheme:dark){#nav.sc .nlogo-w{display:block;}#nav.sc .nlogo-d{display:none;}}
 .nlinks{display:flex;gap:32px;position:absolute;left:50%;transform:translateX(-50%);}
 .nlinks a{font-size:12px;letter-spacing:.5px;color:rgba(255,255,255,.8);transition:color .2s;}
 .nlinks a:hover{color:#fff;}
@@ -77,15 +69,43 @@ body.mouse :focus-visible{outline:none;}
 #hero{
   position:relative;height:100svh;min-height:700px;
   display:flex;flex-direction:column;justify-content:flex-end;
-  overflow:hidden;background:var(--bg-deep);
+  overflow:hidden;
 }
-/* Video background */
-#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
-#hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.45) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.7) 100%);z-index:2;}
-.hbar{position:absolute;left:0;right:0;height:10%;background:var(--bg-deep);z-index:4;pointer-events:none;}
+/* Pure CSS animated background */
+.hbg{
+  position:absolute;inset:0;z-index:0;
+  background:#080808;
+}
+.hbg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 65% at 70% 30%, rgba(232,98,90,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(120,40,20,.25) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 80% 75%, rgba(80,20,10,.15) 0%, transparent 50%);
+  animation:bgShift 12s ease-in-out infinite alternate;
+}
+.hbg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 40%, rgba(232,98,90,.08) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 55% at 75% 60%, rgba(150,50,30,.12) 0%, transparent 45%);
+  animation:bgShift2 16s ease-in-out infinite alternate;
+}
+@keyframes bgShift{
+  0%  {opacity:1;transform:scale(1) translate(0,0);}
+  50% {opacity:.8;transform:scale(1.06) translate(-2%,2%);}
+  100%{opacity:1;transform:scale(1.03) translate(2%,-1%);}
+}
+@keyframes bgShift2{
+  0%  {opacity:.6;transform:scale(1) translate(0,0);}
+  50% {opacity:1;transform:scale(1.08) translate(3%,-2%);}
+  100%{opacity:.7;transform:scale(1.04) translate(-1%,3%);}
+}
+/* Cinematic letterbox bars */
+.hbar{position:absolute;left:0;right:0;height:9%;background:#080808;z-index:2;pointer-events:none;}
 .hbar.t{top:0;}.hbar.b{bottom:0;}
-.hcon{position:relative;z-index:5;padding:0 80px 100px;max-width:calc(var(--max) + 160px);}
-/* Hero logo */
+/* Content */
+.hcon{position:relative;z-index:3;padding:0 80px 100px;max-width:calc(var(--max) + 160px);}
 .hero-logo{
   display:block;height:48px;width:auto;margin-bottom:44px;
   opacity:0;transform:translateY(16px);
@@ -97,29 +117,33 @@ body.mouse :focus-visible{outline:none;}
   font-size:clamp(64px,9vw,148px);
   line-height:.88;letter-spacing:1px;
   color:#fff;margin-bottom:32px;
-  opacity:0;transform:translateY(48px);
+  opacity:0;transform:translateY(40px);
   transition:opacity 1.1s ease .15s,transform 1.1s cubic-bezier(.16,1,.3,1) .15s;
 }
 .hh1.in{opacity:1;transform:translateY(0);}
 .hh1 .ci{font-family:var(--Fs);font-style:italic;color:var(--coral);font-size:.88em;display:block;}
 .hsub{
-  font-size:17px;line-height:1.75;color:rgba(255,255,255,.62);
+  font-size:17px;line-height:1.75;color:rgba(255,255,255,.65);
   max-width:520px;margin-bottom:48px;
-  opacity:0;transform:translateY(24px);
+  opacity:0;transform:translateY(20px);
   transition:opacity .9s ease .32s,transform .9s ease .32s;
 }
 .hsub.in{opacity:1;transform:translateY(0);}
 .hbtns{
   display:flex;gap:14px;flex-wrap:wrap;
-  opacity:0;transform:translateY(20px);
+  opacity:0;transform:translateY(16px);
   transition:opacity .9s ease .48s,transform .9s ease .48s;
 }
 .hbtns.in{opacity:1;transform:translateY(0);}
-.shint{position:absolute;bottom:100px;right:80px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fU 1s ease 1.8s forwards;}
-@keyframes fU{to{opacity:1;}}
+.shint{
+  position:absolute;bottom:100px;right:80px;z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;animation:fUp 1s ease 1.8s forwards;
+}
+@keyframes fUp{to{opacity:1;}}
 .shint span{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl;}
-.sline{width:1px;height:56px;background:linear-gradient(to bottom,var(--coral),transparent);animation:sP 2.4s ease-in-out infinite;}
-@keyframes sP{0%,100%{opacity:.4;}50%{opacity:1;}}
+.sline{width:1px;height:56px;background:linear-gradient(to bottom,var(--coral),transparent);animation:sPulse 2.4s ease-in-out infinite;}
+@keyframes sPulse{0%,100%{opacity:.4;}50%{opacity:1;}}
 
 /* ─── BUTTONS ────────────────────────────────── */
 .btn-pill{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:14px 30px;border-radius:980px;background:var(--coral);color:#fff;transition:background .2s,transform .15s;border:none;cursor:pointer;font-family:var(--Fb);}
@@ -134,77 +158,57 @@ body.mouse :focus-visible{outline:none;}
 
 /* ─── TICKER ─────────────────────────────────── */
 .ticker{height:48px;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;background:var(--bg);}
-.ttrack{display:flex;animation:tR 30s linear infinite;white-space:nowrap;}
+.ttrack{display:flex;animation:tickR 30s linear infinite;white-space:nowrap;}
 .ttrack:hover,.ttrack:focus-within{animation-play-state:paused;}
 .ti{display:inline-flex;align-items:center;gap:24px;padding:0 24px;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--text-3);}
 .ts{color:var(--coral);font-size:7px;}
-@keyframes tR{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes tickR{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* ─── PARTNERS ───────────────────────────────── */
 #partners{padding:80px var(--pad);border-bottom:1px solid var(--line);}
 .inner{max-width:var(--max);margin:0 auto;}
 .partners-lbl{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--text-3);text-align:center;margin-bottom:52px;}
-.partners-row{
-  display:grid;grid-template-columns:repeat(5,1fr);
-  border:1px solid var(--line);border-radius:20px;overflow:hidden;
-  background:var(--bg-card);box-shadow:var(--sh-sm);
-}
-.plog{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:36px 24px;
-  border-right:1px solid var(--line);
-  transition:background .3s,transform .3s;
-  cursor:default;
-}
+.partners-row{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--bg-card);box-shadow:var(--sh-sm);}
+.plog{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 24px;border-right:1px solid var(--line);transition:background .25s;}
 .plog:last-child{border-right:none;}
 .plog:hover{background:var(--bg-alt);}
-.plog-mark{font-family:var(--Fd);font-size:22px;letter-spacing:3px;color:var(--text);opacity:.55;transition:opacity .3s;}
-.plog-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-top:5px;opacity:.5;transition:opacity .3s;}
+.plog-mark{font-family:var(--Fd);font-size:22px;letter-spacing:3px;color:var(--text);opacity:.5;transition:opacity .25s;}
+.plog-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-top:5px;opacity:.4;transition:opacity .25s;}
 .plog:hover .plog-mark,.plog:hover .plog-sub{opacity:1;}
-/* coral accent on J mark */
-.plog .coral{color:var(--coral);opacity:1 !important;}
+.plog .accent{color:var(--coral);}
 
 /* ─── STICKY STATEMENT ───────────────────────── */
-#ss{position:relative;height:420vh;}
-.ssi{
-  position:sticky;top:0;height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;background:#050505;
-}
-/* Animated particles canvas */
-#ss-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
-.ssglow{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(232,98,90,.1),transparent 65%);
-  opacity:0;transition:opacity .8s;pointer-events:none;z-index:2;
-}
+#ss{position:relative;height:480vh;}
+.ssi{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#050505;}
+/* CSS animated particle effect */
+.ssbg{position:absolute;inset:0;overflow:hidden;}
+.ssp{position:absolute;border-radius:50%;background:var(--coral);animation:ssFloat linear infinite;}
+@keyframes ssFloat{0%{transform:translateY(100vh) scale(0);opacity:0;}10%{opacity:.6;}90%{opacity:.2;}100%{transform:translateY(-20vh) scale(1.5);opacity:0;}}
+.ssglow{position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(232,98,90,.12),transparent 65%);opacity:0;transition:opacity .8s;pointer-events:none;}
 .ssi.lit .ssglow{opacity:1;}
-.sstxt{position:relative;z-index:3;text-align:center;max-width:1100px;padding:0 48px;}
-.sl{
-  font-family:var(--Fd);font-size:clamp(64px,9vw,130px);
-  line-height:.96;letter-spacing:1px;display:block;
-  margin-bottom:4px;
-}
-.sl em{font-family:var(--Fs);font-style:italic;font-size:.9em;}
-/* Each word is a span — starts dim, highlights coral as scroll passes */
+.sstxt{position:relative;z-index:2;text-align:center;max-width:1100px;padding:0 48px;}
+/* Word spans — each starts dim, highlights on scroll */
 .w{
   display:inline-block;
-  color:rgba(255,255,255,.1);
-  transition:color .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);
-  transform:translateY(4px);
+  color:rgba(255,255,255,.08);
+  transition:color .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1);
+  transform:translateY(6px);
+  font-family:var(--Fd);
+  font-size:clamp(64px,9vw,130px);
+  line-height:.96;
+  letter-spacing:1px;
 }
-.w.on{
-  color:#fff;
-  transform:translateY(0);
-}
-.w.cr{
-  color:var(--coral);
-}
-.ssdots{position:absolute;right:44px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:4;}
+.w em{font-family:var(--Fs);font-style:italic;font-size:.9em;}
+.w.on{color:#fff;transform:translateY(0);}
+.w.cr{color:rgba(232,98,90,.1);}
+.w.cr.on{color:var(--coral);transform:translateY(0);}
+/* Line breaks between sentence groups */
+.ss-line{display:block;margin-bottom:4px;}
+.ssdots{position:absolute;right:44px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:3;}
 .sdot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,transform .3s;}
 .sdot.on{background:var(--coral);transform:scale(1.6);}
 
-/* ─── SECTION HELPERS ────────────────────────── */
+/* ─── SECTIONS ───────────────────────────────── */
 .sec{padding:100px var(--pad);}
 .sec-alt{background:var(--bg-alt);}
 .sec-deep{background:var(--bg-deep);}
@@ -216,6 +220,16 @@ body.mouse :focus-visible{outline:none;}
 .body-lg strong{color:var(--text);font-weight:400;}
 .sec-deep .body-lg{color:var(--text-inv2);}
 .sec-deep .body-lg strong{color:var(--text-inv);}
+
+/* ─── REVEAL ANIMATIONS ──────────────────────── */
+/* IMPORTANT: opacity starts at 0, transform set — .in triggers transition */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv-l{opacity:0;transform:translateX(-28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.rv-l.in{opacity:1;transform:translateX(0);}
+.rv-s{opacity:0;transform:scale(.94);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.rv-s.in{opacity:1;transform:scale(1);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
 
 /* ─── VALUE ──────────────────────────────────── */
 .vi{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-bottom:72px;}
@@ -239,13 +253,7 @@ body.mouse :focus-visible{outline:none;}
 .hwsb strong{color:var(--text);font-weight:400;}
 
 /* ─── RETAINER ───────────────────────────────── */
-.retcard{
-  background:var(--bg-card);border:1px solid var(--line);
-  border-radius:24px;padding:72px;
-  display:grid;grid-template-columns:1fr 1fr;gap:72px;
-  align-items:start;box-shadow:var(--sh-sm);
-  position:relative;overflow:hidden;
-}
+.retcard{background:var(--bg-card);border:1px solid var(--line);border-radius:24px;padding:72px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;box-shadow:var(--sh-sm);position:relative;overflow:hidden;}
 .retcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--coral),transparent 65%);}
 .rettag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);background:var(--coral-bg);padding:6px 14px;border-radius:980px;border:1px solid var(--coral-brd);margin-bottom:20px;}
 .reth{font-family:var(--Fd);font-size:clamp(32px,3.5vw,52px);letter-spacing:1px;line-height:.95;margin-bottom:20px;color:var(--text);}
@@ -253,12 +261,11 @@ body.mouse :focus-visible{outline:none;}
 .rets{font-size:15px;line-height:1.8;color:var(--text-2);}
 .rets strong{color:var(--text);font-weight:400;}
 .retil{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
-/* Clean table layout — no dashes */
 .ret-table{width:100%;border-collapse:collapse;margin-bottom:28px;}
 .ret-table tr{border-bottom:1px solid var(--line);}
 .ret-table tr:last-child{border-bottom:none;}
 .ret-table td{padding:14px 16px;font-size:13px;}
-.ret-table td:first-child{font-weight:500;color:var(--text);width:48%;background:var(--bg-alt);border-radius:0;}
+.ret-table td:first-child{font-weight:500;color:var(--text);width:48%;background:var(--bg-alt);}
 .ret-table td:last-child{color:var(--text-2);}
 .ret-table tr:first-child td:first-child{border-radius:10px 0 0 0;}
 .ret-table tr:first-child td:last-child{border-radius:0 10px 0 0;}
@@ -275,11 +282,10 @@ body.mouse :focus-visible{outline:none;}
 .pft{font-size:14px;font-weight:500;color:#fff;margin-bottom:3px;}
 .pfd{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
 .pmsbadge{display:inline-flex;align-items:flex-start;gap:12px;margin-top:24px;padding:14px 20px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);}
-.pmsdot{width:8px;height:8px;border-radius:50%;background:#34d399;flex-shrink:0;margin-top:4px;animation:gP 2.4s ease-in-out infinite;}
-@keyframes gP{0%,100%{opacity:1;}50%{opacity:.3;}}
+.pmsdot{width:8px;height:8px;border-radius:50%;background:#34d399;flex-shrink:0;margin-top:4px;animation:gPulse 2.4s ease-in-out infinite;}
+@keyframes gPulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 .pmstxt{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;}
 .pmstxt strong{color:#fff;font-weight:500;}
-/* Portal UI */
 .pui{background:#1c1c1e;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);}
 .puich{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#141414;border-bottom:1px solid rgba(255,255,255,.08);}
 .puidots{display:flex;gap:6px;}
@@ -287,7 +293,7 @@ body.mouse :focus-visible{outline:none;}
 .puid:nth-child(1){background:#ff5f57;}.puid:nth-child(2){background:#febc2e;}.puid:nth-child(3){background:#28c840;}
 .puit{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
 .puil{display:flex;align-items:center;gap:6px;font-size:10px;color:#34d399;font-weight:500;}
-.puil-d{width:6px;height:6px;border-radius:50%;background:#34d399;animation:gP 2s ease-in-out infinite;}
+.puil-d{width:6px;height:6px;border-radius:50%;background:#34d399;animation:gPulse 2s ease-in-out infinite;}
 .puisum{display:grid;grid-template-columns:repeat(3,1fr);}
 .psm{padding:20px;border-right:1px solid rgba(255,255,255,.06);}
 .psm:last-child{border-right:none;}
@@ -361,15 +367,6 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 .fl a:hover{color:rgba(255,255,255,.9);}
 .fbot{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:12px;}
 
-/* Reveal animations — content always visible, keyframe adds entrance effect */
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-@keyframes fadeLeft{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:translateX(0);}}
-@keyframes fadeScale{from{opacity:0;transform:scale(.94);}to{opacity:1;transform:scale(1);}}
-.rv.in{animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;}
-.rv-l.in{animation:fadeLeft .8s cubic-bezier(.16,1,.3,1) both;}
-.rv-s.in{animation:fadeScale .8s cubic-bezier(.16,1,.3,1) both;}
-.d1.in{animation-delay:.08s;}.d2.in{animation-delay:.16s;}.d3.in{animation-delay:.24s;}.d4.in{animation-delay:.32s;}
-
 /* ─── RESPONSIVE ─────────────────────────────── */
 @media(max-width:960px){
   :root{--pad:24px;}
@@ -384,6 +381,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   .puisum{grid-template-columns:1fr 1fr;}
   .pvrow{grid-template-columns:44px 1fr 72px;}
   .pvrow .pvc:last-child{display:none;}
+  .w{font-size:clamp(44px,8vw,72px);}
 }
 </style>
 </head>
@@ -408,10 +406,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 
 <!-- ═══ HERO ═══ -->
 <section id="hero" aria-label="Introduction">
-  <video id="hero-video" autoplay muted loop playsinline aria-hidden="true">
-    <source src="Hero Shot4.mp4" type="video/mp4">
-  </video>
-  <div id="hero-overlay" aria-hidden="true"></div>
+  <div class="hbg" aria-hidden="true"></div>
   <div class="hbar t" aria-hidden="true"></div>
   <div class="hbar b" aria-hidden="true"></div>
   <div class="hcon">
@@ -451,26 +446,11 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   <div class="inner">
     <p class="partners-lbl rv">Trusted By</p>
     <ul class="partners-row rv d1" role="list">
-      <li class="plog" title="Universal Orlando">
-        <div class="plog-mark">UNIVERSAL</div>
-        <div class="plog-sub">Orlando</div>
-      </li>
-      <li class="plog" title="SuitePad">
-        <div class="plog-mark"><span class="coral">&#9632;</span> SuitePad</div>
-        <div class="plog-sub">Hospitality Tech</div>
-      </li>
-      <li class="plog" title="Planet Oat">
-        <div class="plog-mark" style="font-family:var(--Fs);font-style:italic;font-size:20px;">Planet Oat</div>
-        <div class="plog-sub">Food &amp; Beverage</div>
-      </li>
-      <li class="plog" title="Heinz">
-        <div class="plog-mark">HEINZ</div>
-        <div class="plog-sub">Consumer Brands</div>
-      </li>
-      <li class="plog" title="Carvana">
-        <div class="plog-mark" style="letter-spacing:1px;">carvana</div>
-        <div class="plog-sub" style="border-top:2px solid var(--coral);padding-top:4px;margin-top:2px;">Automotive</div>
-      </li>
+      <li class="plog" title="Universal Orlando"><div class="plog-mark">UNIVERSAL</div><div class="plog-sub">Orlando</div></li>
+      <li class="plog" title="SuitePad"><div class="plog-mark"><span class="accent">&#9632;</span> SuitePad</div><div class="plog-sub">Hospitality Tech</div></li>
+      <li class="plog" title="Planet Oat"><div class="plog-mark" style="font-family:var(--Fs);font-style:italic;font-size:20px;">Planet Oat</div><div class="plog-sub">Food &amp; Beverage</div></li>
+      <li class="plog" title="Heinz"><div class="plog-mark">HEINZ</div><div class="plog-sub">Consumer Brands</div></li>
+      <li class="plog" title="Carvana"><div class="plog-mark" style="letter-spacing:1px;">carvana</div><div class="plog-sub" style="border-top:2px solid var(--coral);padding-top:4px;margin-top:2px;">Automotive</div></li>
     </ul>
   </div>
 </section>
@@ -478,12 +458,19 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- ═══ STICKY STATEMENT ═══ -->
 <div id="ss" aria-hidden="true">
   <div class="ssi" id="ssI">
-    <canvas id="ss-canvas"></canvas>
+    <!-- CSS floating particles -->
+    <div class="ssbg" id="ssbg"></div>
     <div class="ssglow"></div>
     <div class="sstxt">
-      <span class="sl" id="sl1"><span class="w" data-i="0">Most</span> <span class="w" data-i="1">hotel</span> <span class="w" data-i="2">content</span></span>
-      <span class="sl" id="sl2"><span class="w" data-i="3">is</span> <span class="w" data-i="4">a</span> <span class="w" data-i="5">one-time</span> <span class="w" data-i="6">expense</span></span>
-      <span class="sl" id="sl3"><span class="w cr" data-i="7"><em>that</em></span> <span class="w cr" data-i="8"><em>solves</em></span> <span class="w cr" data-i="9"><em>nothing</em></span> <span class="w cr" data-i="10"><em>long</em></span> <span class="w cr" data-i="11"><em>term.</em></span></span>
+      <span class="ss-line">
+        <span class="w" data-i="0">Most</span>&nbsp;<span class="w" data-i="1">hotel</span>&nbsp;<span class="w" data-i="2">content</span>
+      </span>
+      <span class="ss-line">
+        <span class="w" data-i="3">is</span>&nbsp;<span class="w" data-i="4">a</span>&nbsp;<span class="w" data-i="5">one-time</span>&nbsp;<span class="w" data-i="6">expense</span>
+      </span>
+      <span class="ss-line">
+        <span class="w cr" data-i="7"><em>that</em></span>&nbsp;<span class="w cr" data-i="8"><em>solves</em></span>&nbsp;<span class="w cr" data-i="9"><em>nothing</em></span>&nbsp;<span class="w cr" data-i="10"><em>long</em></span>&nbsp;<span class="w cr" data-i="11"><em>term.</em></span>
+      </span>
     </div>
     <div class="ssdots">
       <div class="sdot" id="sd1"></div>
@@ -520,9 +507,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
     <span class="eyebrow rv">How It Works</span>
     <h2 class="hl rv d1" id="how-h">The Partnership <em>Model</em></h2>
     <div class="hwgrid">
-      <div class="rv-l d1">
-        <p class="hwl-p">We scope a monthly engagement around your property&rsquo;s specific needs. <strong>Most partnerships start with a free content audit</strong>, then we build a roadmap and execute from there.</p>
-      </div>
+      <div class="rv-l d1"><p class="hwl-p">We scope a monthly engagement around your property&rsquo;s specific needs. <strong>Most partnerships start with a free content audit</strong>, then we build a roadmap and execute from there.</p></div>
       <ol class="hwsteps" aria-label="Partnership steps">
         <li class="hws rv d1"><div class="hwsn" aria-hidden="true">01</div><div><h3 class="hwst">Free Property Audit</h3><p class="hwsb">We study your content, OTA listings, and comp set. We find the gap between what your property delivers and how it&rsquo;s presenting online. <strong>Costs you nothing.</strong></p></div></li>
         <li class="hws rv d2"><div class="hwsn" aria-hidden="true">02</div><div><h3 class="hwst">Content Roadmap</h3><p class="hwsb">A content plan tied to your booking calendar and channel priorities. You know exactly what&rsquo;s coming and why.</p></div></li>
@@ -541,23 +526,18 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
         <span class="rettag">The Partnership Model</span>
         <h2 class="reth" id="ret-h">A Monthly<br>Content Engine<br>for Your <em>Property.</em></h2>
         <p class="rets">No bloated production days. No one-and-done deliverables. A focused, ongoing engagement that keeps your content fresh, your channels active, and your brand above the comp set. <strong>Most properties start seeing traction within 60 days.</strong></p>
-        <div class="retcta" style="margin-top:28px;">
-          <a href="contact.html" class="btn-pill">Book a Free Audit</a>
-          <a href="services.html" class="btn-lnk">See Services</a>
-        </div>
+        <div class="retcta" style="margin-top:28px;"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-lnk">See Services</a></div>
       </div>
       <div>
         <p class="retil">What a Partnership Includes</p>
-        <table class="ret-table" role="presentation">
-          <tbody>
-            <tr><td>Monthly Shoot Day</td><td>Targeted, pre-planned, efficient</td></tr>
-            <tr><td>Multi-Format Delivery</td><td>OTA, social, web, email</td></tr>
-            <tr><td>Content Roadmap</td><td>Tied to your booking calendar</td></tr>
-            <tr><td>Brand Consistency</td><td>One visual language, every channel</td></tr>
-            <tr><td>Client Portal</td><td>Deliverables, performance data, PMS results</td></tr>
-            <tr><td>Quarterly Strategy Review</td><td>Adjust based on what&rsquo;s working</td></tr>
-          </tbody>
-        </table>
+        <table class="ret-table" role="presentation"><tbody>
+          <tr><td>Monthly Shoot Day</td><td>Targeted, pre-planned, efficient</td></tr>
+          <tr><td>Multi-Format Delivery</td><td>OTA, social, web, email</td></tr>
+          <tr><td>Content Roadmap</td><td>Tied to your booking calendar</td></tr>
+          <tr><td>Brand Consistency</td><td>One visual language, every channel</td></tr>
+          <tr><td>Client Portal</td><td>Deliverables, performance data, PMS results</td></tr>
+          <tr><td>Quarterly Strategy Review</td><td>Adjust based on what&rsquo;s working</td></tr>
+        </tbody></table>
       </div>
     </div>
   </div>
@@ -573,35 +553,21 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
         <p class="body-lg rv d2" style="margin-top:20px;">Most production partners hand you a Dropbox link and disappear. Every JMEDIA partnership includes a dedicated portal where you access deliverables, track performance per video, and see the direct booking impact of every piece of content we produce.</p>
         <p class="body-lg rv d2" style="margin-top:12px;"><strong>We don&rsquo;t just talk about ROI. We show it to you.</strong></p>
         <div class="pfeats rv d3">
-          <div class="pf"><div class="pfi" aria-hidden="true">&#128193;</div><div><p class="pft">Organized Asset Library</p><p class="pfd">Every deliverable sorted by channel, campaign, and date. Download what you need, when you need it.</p></div></div>
+          <div class="pf"><div class="pfi" aria-hidden="true">&#128193;</div><div><p class="pft">Organized Asset Library</p><p class="pfd">Every deliverable sorted by channel, campaign, and date.</p></div></div>
           <div class="pf"><div class="pfi" aria-hidden="true">&#128202;</div><div><p class="pft">Per-Video Performance</p><p class="pfd">OTA click-through, direct booking lift, and social engagement tracked per asset.</p></div></div>
           <div class="pf"><div class="pfi" aria-hidden="true">&#128279;</div><div><p class="pft">Direct Booking Attribution</p><p class="pfd">Revenue movement tied to specific content &mdash; numbers you can take to ownership.</p></div></div>
         </div>
-        <div class="pmsbadge rv">
-          <div class="pmsdot" aria-hidden="true"></div>
-          <p class="pmstxt"><strong>PMS Integration</strong> &mdash; connects to all major property management systems so your content data and booking data live in one place.</p>
-        </div>
+        <div class="pmsbadge rv"><div class="pmsdot" aria-hidden="true"></div><p class="pmstxt"><strong>PMS Integration</strong> &mdash; connects to all major property management systems.</p></div>
       </div>
       <div class="rv-s d1" aria-hidden="true">
         <div class="pui" role="img" aria-label="Sample client portal dashboard">
-          <div class="puich">
-            <div class="puidots"><div class="puid"></div><div class="puid"></div><div class="puid"></div></div>
-            <div class="puit">JMEDIA Portal &mdash; The Seaside Resort</div>
-            <div class="puil"><div class="puil-d"></div>Live</div>
-          </div>
-          <div class="puisum">
-            <div class="psm"><div class="psml">Direct Bookings</div><div class="psmv">+34%</div><div class="psmd">&#8593; vs last quarter</div></div>
-            <div class="psm"><div class="psml">OTA Click-Through</div><div class="psmv">2.1x</div><div class="psmd">&#8593; since brand film</div></div>
-            <div class="psm"><div class="psml">ADR Impact</div><div class="psmv">+$28</div><div class="psmd">&#8593; avg rate lift</div></div>
-          </div>
+          <div class="puich"><div class="puidots"><div class="puid"></div><div class="puid"></div><div class="puid"></div></div><div class="puit">JMEDIA Portal &mdash; The Seaside Resort</div><div class="puil"><div class="puil-d"></div>Live</div></div>
+          <div class="puisum"><div class="psm"><div class="psml">Direct Bookings</div><div class="psmv">+34%</div><div class="psmd">&#8593; vs last quarter</div></div><div class="psm"><div class="psml">OTA Click-Through</div><div class="psmv">2.1x</div><div class="psmd">&#8593; since brand film</div></div><div class="psm"><div class="psml">ADR Impact</div><div class="psmv">+$28</div><div class="psmd">&#8593; avg rate lift</div></div></div>
           <div class="puitabs"><div class="puitab on">Deliverables</div><div class="puitab">Analytics</div><div class="puitab">Roadmap</div></div>
           <div class="pvrow"><div class="pvth">&#9654;</div><div class="pvinfo"><div class="pvn">Summer Brand Film &mdash; 90s</div><div class="pvd">Mar 2, 2026</div></div><div class="pvc g"><div class="pvnum">+22%</div><div class="pvtype">Direct lift</div></div><div class="pvc"><div class="pvnum">2.4k</div><div class="pvtype">OTA views</div></div></div>
           <div class="pvrow"><div class="pvth">&#9654;</div><div class="pvinfo"><div class="pvn">Pool &amp; F&amp;B Reel &mdash; 30s</div><div class="pvd">Feb 14, 2026</div></div><div class="pvc"><div class="pvnum">18.4k</div><div class="pvtype">Impressions</div></div><div class="pvc g"><div class="pvnum">+14%</div><div class="pvtype">CVR lift</div></div></div>
           <div class="pvrow"><div class="pvth">&#9654;</div><div class="pvinfo"><div class="pvn">OTA Hero Update &mdash; Stills</div><div class="pvd">Jan 28, 2026</div></div><div class="pvc g"><div class="pvnum">+41%</div><div class="pvtype">OTA CTR</div></div><div class="pvc"><div class="pvnum">892</div><div class="pvtype">Downloads</div></div></div>
-          <div class="puispk">
-            <div class="spkh"><div class="spkl">Booking Impact &mdash; 90 Days</div><div class="spkl">Jan &mdash; Mar 2026</div></div>
-            <div class="spkbars"><div class="sb lo" style="height:28%"></div><div class="sb lo" style="height:35%"></div><div class="sb lo" style="height:30%"></div><div class="sb md" style="height:44%"></div><div class="sb md" style="height:50%"></div><div class="sb md" style="height:58%"></div><div class="sb md" style="height:54%"></div><div class="sb md" style="height:66%"></div><div class="sb hi" style="height:75%"></div><div class="sb hi" style="height:85%"></div><div class="sb hi" style="height:92%"></div><div class="sb hi" style="height:100%"></div></div>
-          </div>
+          <div class="puispk"><div class="spkh"><div class="spkl">Booking Impact &mdash; 90 Days</div><div class="spkl">Jan &mdash; Mar 2026</div></div><div class="spkbars"><div class="sb lo" style="height:28%"></div><div class="sb lo" style="height:35%"></div><div class="sb lo" style="height:30%"></div><div class="sb md" style="height:44%"></div><div class="sb md" style="height:50%"></div><div class="sb md" style="height:58%"></div><div class="sb md" style="height:54%"></div><div class="sb md" style="height:66%"></div><div class="sb hi" style="height:75%"></div><div class="sb hi" style="height:85%"></div><div class="sb hi" style="height:92%"></div><div class="sb hi" style="height:100%"></div></div></div>
         </div>
       </div>
     </div>
@@ -611,10 +577,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- ═══ STATS ═══ -->
 <section class="sec sec-alt" aria-labelledby="stats-h">
   <div class="inner">
-    <div class="stintro rv">
-      <h2 class="sr" id="stats-h">About JMEDIA</h2>
-      <p>Founded in 2021, built specifically around <strong>hospitality and experience-driven brands.</strong> Every decision &mdash; how we shoot, how we scope, how we structure partnerships &mdash; is designed to work for the way hotels actually operate.</p>
-    </div>
+    <div class="stintro rv"><h2 class="sr" id="stats-h">About JMEDIA</h2><p>Founded in 2021, built specifically around <strong>hospitality and experience-driven brands.</strong> Every decision &mdash; how we shoot, how we scope, how we structure partnerships &mdash; is designed to work for the way hotels actually operate.</p></div>
     <div class="strow" role="list">
       <div class="stbox rv" role="listitem"><div class="stbn" aria-label="15 plus">15+</div><div class="stbl">Years Experience</div></div>
       <div class="stbox rv d1" role="listitem"><div class="stbn" aria-label="20 plus">20+</div><div class="stbl">Repeat Clients</div></div>
@@ -634,26 +597,11 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
         <p class="faqled rv d2">Honest answers to what most GMs and marketing directors want to know before getting on a call.</p>
       </div>
       <div class="flist rv">
-        <div class="fi" data-open>
-          <button class="fibtn" aria-expanded="true" aria-controls="fa1">How is this different from hiring a production company? <div class="fitog" aria-hidden="true">+</div></button>
-          <div class="fans" id="fa1">A production company gives you a deliverable and moves on. We give you an ongoing content strategy tied to your booking goals &mdash; with a portal that shows exactly how each piece is performing. The work compounds month over month.</div>
-        </div>
-        <div class="fi">
-          <button class="fibtn" aria-expanded="false" aria-controls="fa2">We already have vendor relationships. Why add another? <div class="fitog" aria-hidden="true">+</div></button>
-          <div class="fans" id="fa2">Most properties start by filling a gap &mdash; social content, seasonal assets, OTA refresh &mdash; and the relationship grows from there. We come in with a plan tied to your booking goals, not just a camera and an invoice.</div>
-        </div>
-        <div class="fi">
-          <button class="fibtn" aria-expanded="false" aria-controls="fa3">Can we start with a single project before committing? <div class="fitog" aria-hidden="true">+</div></button>
-          <div class="fans" id="fa3">Yes. A brand film or OTA content refresh is a common starting point. We approach every project with the same strategy-first process. Most clients continue because the results make the case.</div>
-        </div>
-        <div class="fi">
-          <button class="fibtn" aria-expanded="false" aria-controls="fa4">How disruptive is a shoot day for the property? <div class="fitog" aria-hidden="true">+</div></button>
-          <div class="fans" id="fa4">Minimal. A typical shoot involves 1&ndash;2 people, planned around your quieter operational windows. Guests often don&rsquo;t notice we&rsquo;re there.</div>
-        </div>
-        <div class="fi">
-          <button class="fibtn" aria-expanded="false" aria-controls="fa5">How do I actually measure the impact? <div class="fitog" aria-hidden="true">+</div></button>
-          <div class="fans" id="fa5">Through your client portal. Every asset is tracked &mdash; OTA click-through, direct booking attribution, social engagement. We connect to your PMS so you can see booking movement tied to specific content.</div>
-        </div>
+        <div class="fi" data-open><button class="fibtn" aria-expanded="true" aria-controls="fa1">How is this different from hiring a production company? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa1">A production company gives you a deliverable and moves on. We give you an ongoing content strategy tied to your booking goals &mdash; with a portal that shows exactly how each piece is performing. The work compounds month over month.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa2">We already have vendor relationships. Why add another? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa2">Most properties start by filling a gap &mdash; social content, seasonal assets, OTA refresh &mdash; and the relationship grows from there. We come in with a plan tied to your booking goals, not just a camera and an invoice.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa3">Can we start with a single project before committing? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa3">Yes. A brand film or OTA content refresh is a common starting point. We approach every project with the same strategy-first process. Most clients continue because the results make the case.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa4">How disruptive is a shoot day for the property? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa4">Minimal. A typical shoot involves 1&ndash;2 people, planned around your quieter operational windows. Guests often don&rsquo;t notice we&rsquo;re there.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa5">How do I actually measure the impact? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa5">Through your client portal. Every asset is tracked &mdash; OTA click-through, direct booking attribution, social engagement. We connect to your PMS so you can see booking movement tied to specific content.</div></div>
       </div>
     </div>
   </div>
@@ -665,10 +613,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
     <span class="ctaey rv">No Commitment Required</span>
     <h2 class="ctah rv d1" id="cta-h">Stop Paying<br>for <em>One-Off Shoots.</em></h2>
     <p class="ctasub rv d2">We&rsquo;ll audit your current content and show you exactly where the gap is &mdash; before you spend a dollar.</p>
-    <div class="ctabtns rv d3">
-      <a href="contact.html" class="btn-pill">Book a Free Audit</a>
-      <a href="services.html" class="btn-ghost-dk">See How It Works</a>
-    </div>
+    <div class="ctabtns rv d3"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-ghost-dk">See How It Works</a></div>
   </div>
 </section>
 
@@ -685,13 +630,13 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
       </div>
       <div><p class="fch">Navigate</p><ul class="fl"><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div>
-      <div><p class="fch">Contact</p><ul class="fl"><li><a href="/cdn-cgi/l/email-protection#7e171018113e1453131b1a171f0e0c111a0b1d0a1711100d501d1113"><span class="__cf_email__" data-cfemail="f990979f96b993d4949c9d9098898b969d8c9a8d9096978ad79a9694">[email&#160;protected]</span></a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Ste 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
+      <div><p class="fch">Contact</p><ul class="fl"><li><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Suite 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
     </div>
     <div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC. All rights reserved.</span><span>Privacy &middot; Terms</span></div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── Mouse detection ── */
 document.addEventListener('mousedown',function(){document.body.classList.add('mouse');});
 document.addEventListener('keydown',function(e){if(e.key==='Tab')document.body.classList.remove('mouse');});
@@ -701,165 +646,103 @@ window.addEventListener('scroll',function(){
   document.getElementById('nav').classList.toggle('sc',window.scrollY>60);
 },{passive:true});
 
-/* ── Hero entrance ── */
+/* ── Hero entrance — runs immediately since script is at bottom of body ── */
 setTimeout(function(){document.getElementById('hLogo').classList.add('in');},200);
 setTimeout(function(){document.getElementById('hH1').classList.add('in');},380);
 setTimeout(function(){document.getElementById('hSb').classList.add('in');},580);
 setTimeout(function(){document.getElementById('hBt').classList.add('in');},760);
 
-/* ── Hero video fallback ── */
+/* ── CSS particle dots for sticky section ── */
 (function(){
-  var v = document.getElementById('hero-video');
-  if(!v) return;
-  v.play().catch(function(){});
+  var bg = document.getElementById('ssbg');
+  if(!bg) return;
+  for(var i=0;i<18;i++){
+    var dot = document.createElement('div');
+    dot.className = 'ssp';
+    var size = Math.random()*3+1;
+    dot.style.cssText = [
+      'width:'+size+'px',
+      'height:'+size+'px',
+      'left:'+(Math.random()*100)+'%',
+      'animation-duration:'+(Math.random()*12+8)+'s',
+      'animation-delay:'+(Math.random()*8)+'s',
+      'opacity:0',
+      i%4===0 ? 'background:var(--coral)' : 'background:rgba(255,255,255,.5)'
+    ].join(';');
+    bg.appendChild(dot);
+  }
 })();
 
-/* ══════════════════════════════════════════
-   STICKY STATEMENT — Floating particles
-   Interactive: particles drift, connect,
-   react to scroll progress
-══════════════════════════════════════════ */
+/* ── Scroll reveal — robust two-step approach ── */
 (function(){
-  var canvas = document.getElementById('ss-canvas');
-  if(!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var W, H, particles=[], scrollProgress=0;
-  var CORAL=[232,98,90], N=60;
+  var els = Array.from(document.querySelectorAll('.rv,.rv-l,.rv-s'));
 
-  function resize(){
-    W=canvas.width=canvas.offsetWidth;
-    H=canvas.height=canvas.offsetHeight;
+  function isInView(el){
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.92 && r.bottom > 0;
   }
 
-  function Particle(){
-    this.x=Math.random()*W;
-    this.y=Math.random()*H;
-    this.vx=(Math.random()-.5)*.4;
-    this.vy=(Math.random()-.5)*.4;
-    this.r=Math.random()*2+.5;
-    this.life=Math.random();
-    this.speed=Math.random()*.5+.3;
-    this.coral=Math.random()<.25;
-  }
-  Particle.prototype.update=function(){
-    this.x+=this.vx*(1+scrollProgress*.8);
-    this.y+=this.vy*(1+scrollProgress*.8);
-    this.life+=.003*this.speed;
-    if(this.x<0||this.x>W||this.y<0||this.y>H||this.life>1){
-      this.x=Math.random()*W;
-      this.y=Math.random()*H;
-      this.life=0;
-    }
-  };
-
-  function init(){
-    resize();
-    particles=[];
-    for(var i=0;i<N;i++) particles.push(new Particle());
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    var alpha=Math.max(0,Math.min(1,scrollProgress*2-.1));
-    if(alpha<.01){requestAnimationFrame(draw);return;}
-
-    // Draw connections
-    for(var i=0;i<particles.length;i++){
-      for(var j=i+1;j<particles.length;j++){
-        var dx=particles[i].x-particles[j].x;
-        var dy=particles[i].y-particles[j].y;
-        var dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<120){
-          var lineAlpha=(1-dist/120)*0.15*alpha;
-          var p=particles[i].coral||particles[j].coral;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x,particles[i].y);
-          ctx.lineTo(particles[j].x,particles[j].y);
-          ctx.strokeStyle=p?
-            'rgba('+CORAL[0]+','+CORAL[1]+','+CORAL[2]+','+lineAlpha*1.5+')':
-            'rgba(255,255,255,'+lineAlpha+')';
-          ctx.lineWidth=.5;
-          ctx.stroke();
-        }
+  function checkAll(){
+    els.forEach(function(el){
+      if(!el.classList.contains('in') && isInView(el)){
+        el.classList.add('in');
       }
-    }
-    // Draw particles
-    particles.forEach(function(p){
-      p.update();
-      var a=Math.sin(p.life*Math.PI)*alpha*.8;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      if(p.coral){
-        ctx.fillStyle='rgba('+CORAL[0]+','+CORAL[1]+','+CORAL[2]+','+a+')';
-      } else {
-        ctx.fillStyle='rgba(255,255,255,'+a*.6+')';
-      }
-      ctx.fill();
     });
-
-    requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize',init,{passive:true});
-  init();
-  draw();
+  // Check immediately for above-fold elements
+  checkAll();
 
-  // Track scroll progress through sticky section
-  var ssSect=document.getElementById('ss');
-  window.addEventListener('scroll',function(){
-    var rect=ssSect.getBoundingClientRect();
-    var total=ssSect.offsetHeight-window.innerHeight;
-    scrollProgress=Math.max(0,Math.min(1,-rect.top/total));
-  },{passive:true});
+  // Also check on scroll
+  window.addEventListener('scroll', checkAll, {passive:true});
+
+  // Also use IntersectionObserver as additional trigger
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); }
+      });
+    },{threshold:0.08, rootMargin:'0px 0px -20px 0px'});
+    els.forEach(function(el){ obs.observe(el); });
+  }
+
+  // Nuclear fallback: after 2s, show everything that hasn't animated in yet
+  setTimeout(function(){
+    els.forEach(function(el){ el.classList.add('in'); });
+  }, 2000);
 })();
-
-/* ── Scroll reveal ── */
-var revEls = Array.from(document.querySelectorAll('.rv,.rv-l,.rv-s,.stbox,.hws,.vc'));
-if('IntersectionObserver' in window){
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
-    });
-  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-  revEls.forEach(function(el){obs.observe(el);});
-} else {
-  revEls.forEach(function(el){el.classList.add('in');});
-}
 
 /* ── Sticky statement — word by word ── */
 (function(){
-  var ssEl = document.getElementById('ss');
-  var ssI  = document.getElementById('ssI');
+  var ssEl  = document.getElementById('ss');
+  var ssI   = document.getElementById('ssI');
   var words = Array.from(document.querySelectorAll('.w'));
   var dots  = [document.getElementById('sd1'),document.getElementById('sd2'),document.getElementById('sd3')];
-  var total = words.length; // 12 words
+  var total = words.length;
 
-  window.addEventListener('scroll', function(){
+  function update(){
     var rect  = ssEl.getBoundingClientRect();
     var range = ssEl.offsetHeight - window.innerHeight;
     var prog  = Math.max(0, Math.min(1, -rect.top / range));
-
-    // How many words to light up — spread across 0–85% of scroll
-    var lit = Math.round(prog / 0.85 * total);
+    var lit   = Math.round(prog / 0.85 * total);
     lit = Math.min(lit, total);
-
-    words.forEach(function(w, i){
-      w.classList.toggle('on', i < lit);
-    });
-
-    // Glow kicks in when all words are lit
+    words.forEach(function(w, i){ w.classList.toggle('on', i < lit); });
     ssI.classList.toggle('lit', lit >= total);
-
-    // Dots: 3 dots mapped to thirds of words
     dots.forEach(function(d, i){
-      var threshold = Math.round((i + 1) / dots.length * total);
-      d.classList.toggle('on', lit >= threshold);
+      d.classList.toggle('on', lit >= Math.round((i+1)/dots.length*total));
     });
-  }, {passive:true});
+  }
+  window.addEventListener('scroll', update, {passive:true});
 })();
 
-/* ── FAQ ── */
+/* ── FAQ accordion ── */
 document.querySelectorAll('.fi').forEach(function(item){
   item.querySelector('.fibtn').addEventListener('click',function(){
-    var open=item.hasAttribute('data-open');
-    
+    var open = item.hasAttribute('data-open');
+    if(open){ item.removeAttribute('data-open'); item.querySelector('.fibtn').setAttribute('aria-expanded','false'); }
+    else{ item.setAttribute('data-open',''); item.querySelector('.fibtn').setAttribute('aria-expanded','true'); }
+  });
+});
+</script>
+</body>
+</html>
