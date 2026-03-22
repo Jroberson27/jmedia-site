@@ -428,12 +428,39 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25);}
 .roi-fname{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);}
 .roi-fval{font-family:var(--Fd);font-size:22px;letter-spacing:1px;color:var(--coral);min-width:70px;text-align:right;transition:all .15s;}
 /* Range slider */
-.roi-slider{width:100%;height:4px;-webkit-appearance:none;appearance:none;border-radius:4px;outline:none;cursor:pointer;background:rgba(255,255,255,.12);position:relative;}
-.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--coral);border:3px solid rgba(255,255,255,.2);box-shadow:0 2px 12px rgba(232,98,90,.5);transition:transform .2s,box-shadow .2s;cursor:grab;}
-.roi-slider:active::-webkit-slider-thumb{cursor:grabbing;transform:scale(1.3);box-shadow:0 4px 20px rgba(232,98,90,.7);}
-.roi-slider::-moz-range-thumb{width:22px;height:22px;border:3px solid rgba(255,255,255,.2);border-radius:50%;background:var(--coral);box-shadow:0 2px 12px rgba(232,98,90,.5);cursor:grab;}
-.roi-slider-track{position:relative;margin-bottom:6px;}
-.roi-slider-fill{position:absolute;top:50%;left:0;height:4px;background:var(--coral);border-radius:4px;transform:translateY(-50%);pointer-events:none;transition:width .05s;}
+.roi-slider{
+  width:100%;height:22px;
+  -webkit-appearance:none;appearance:none;
+  background:transparent;
+  outline:none;cursor:pointer;
+  margin:0;padding:0;
+}
+.roi-slider::-webkit-slider-runnable-track{
+  height:5px;border-radius:5px;
+  background:linear-gradient(to right,var(--coral) 0%,var(--coral) var(--sl-pct,20%),rgba(255,255,255,.15) var(--sl-pct,20%),rgba(255,255,255,.15) 100%);
+}
+.roi-slider::-moz-range-track{
+  height:5px;border-radius:5px;background:rgba(255,255,255,.15);
+}
+.roi-slider::-moz-range-progress{height:5px;border-radius:5px;background:var(--coral);}
+.roi-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--coral);
+  border:2px solid rgba(255,255,255,.3);
+  box-shadow:0 2px 12px rgba(232,98,90,.5);
+  margin-top:-8.5px;
+  transition:transform .15s,box-shadow .15s;
+  cursor:grab;
+}
+.roi-slider:active::-webkit-slider-thumb{cursor:grabbing;transform:scale(1.25);box-shadow:0 4px 20px rgba(232,98,90,.7);}
+.roi-slider::-moz-range-thumb{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--coral);border:2px solid rgba(255,255,255,.3);
+  box-shadow:0 2px 12px rgba(232,98,90,.5);cursor:grab;
+}
+.roi-slider-track{margin-bottom:6px;}
+.roi-slider-fill{display:none;}
 .roi-range-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.5px;}
 /* Grade badge */
 .roi-grade-wrap{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;margin-bottom:16px;}
@@ -704,6 +731,27 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
     </div>
   </div>
 </section>
+
+<!-- FAQ -->
+<section class="sec" aria-labelledby="faq-h">
+  <div class="inner">
+    <div class="faqwrap">
+      <div>
+        <span class="eyebrow ax ax-fade-left">Common Questions</span>
+        <h2 class="hl ax ax-clip axd1" id="faq-h">Before You<br><em>Reach Out.</em></h2>
+        <p class="faqled ax ax-fade-up axd2">Honest answers to what most GMs and marketing directors want to know before getting on a call.</p>
+      </div>
+      <div class="flist ax ax-fade-right">
+        <div class="fi" data-open><button class="fibtn" aria-expanded="true" aria-controls="fa1">How is this different from hiring a production company? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa1">A production company gives you a deliverable and moves on. We give you an ongoing content strategy tied to your booking goals &mdash; with a portal that shows exactly how each piece is performing. The work compounds month over month.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa2">We already have vendor relationships. Why add another? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa2">Most properties start by filling a gap &mdash; social content, seasonal assets, OTA refresh &mdash; and the relationship grows from there. We come in with a plan tied to your booking goals, not just a camera and an invoice.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa3">Can we start with a single project before committing? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa3">Yes. A brand film or OTA content refresh is a common starting point. We approach every project with the same strategy-first process. Most clients continue because the results make the case.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa4">How disruptive is a shoot day for the property? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa4">Minimal. A typical shoot involves 1&ndash;2 people, planned around your quieter operational windows. Guests often don&rsquo;t notice we&rsquo;re there.</div></div>
+        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa5">How do I actually measure the impact? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa5">Through your client portal. Every asset is tracked &mdash; OTA click-through, direct booking attribution, social engagement. We connect to your PMS so you can see booking movement tied to specific content.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- FAQ -->
 <section class="sec" aria-labelledby="faq-h">
@@ -1124,8 +1172,8 @@ document.querySelectorAll('.fi').forEach(function(item){
 
   function updateFill(field, val){
     var pct = ((val - field.min) / (field.max - field.min) * 100).toFixed(1) + '%';
-    var fill = document.getElementById(field.fillId);
-    if(fill) fill.style.width = pct;
+    var sl = document.getElementById(field.id);
+    if(sl) sl.style.setProperty('--sl-pct', pct);
   }
 
   function getGrade(otaPct){
