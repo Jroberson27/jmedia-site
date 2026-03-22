@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-/* ─── TOKENS ─── */
+/* ── TOKENS ── */
 :root{
   --bg:#fff;--bg-alt:#f5f5f7;--bg-deep:#080808;--bg-card:#fff;--bg-card2:#f5f5f7;
   --text:#1d1d1f;--text-2:#424245;--text-3:#6e6e73;
@@ -18,7 +18,7 @@
   --nav-bg:rgba(255,255,255,.88);
   --sh-sm:0 2px 16px rgba(0,0,0,.06);--sh-md:0 16px 56px rgba(0,0,0,.14);
   --Fd:'Bebas Neue',sans-serif;--Fs:'Cormorant Garamond',serif;--Fb:'DM Sans',sans-serif;
-  --max:1200px;--pad:80px;
+  --max:1200px;--pad:80px;--green:#34d399;
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#000;--bg-alt:#111;--bg-deep:#000;--bg-card:#1c1c1e;--bg-card2:#2c2c2e;
@@ -35,156 +35,71 @@ a{text-decoration:none;color:inherit;}ul,ol{list-style:none;}
 .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;}body.mouse :focus-visible{outline:none;}
 
-/* ─── ANIMATION SYSTEM ───────────────────────
-   CRITICAL: Elements are ALWAYS visible by default.
-   Only when body has class 'animated' do .ax elements hide.
-   JS adds 'animated' class immediately — if JS fails, everything shows.
-─────────────────────────────────────────────── */
-
-/* All animation types as CSS variables for JS to apply */
-@keyframes axFadeUp    {from{opacity:0;transform:translateY(40px);}   to{opacity:1;transform:translateY(0);}}
-@keyframes axFadeDown  {from{opacity:0;transform:translateY(-30px);}  to{opacity:1;transform:translateY(0);}}
-@keyframes axFadeLeft  {from{opacity:0;transform:translateX(-44px);}  to{opacity:1;transform:translateX(0);}}
-@keyframes axFadeRight {from{opacity:0;transform:translateX(44px);}   to{opacity:1;transform:translateX(0);}}
-@keyframes axScaleUp   {from{opacity:0;transform:scale(.82);}         to{opacity:1;transform:scale(1);}}
-@keyframes axScaleDown {from{opacity:0;transform:scale(1.18);}        to{opacity:1;transform:scale(1);}}
-@keyframes axBlurIn    {from{opacity:0;filter:blur(14px);transform:translateY(20px);}to{opacity:1;filter:blur(0);transform:translateY(0);}}
-@keyframes axRotateIn  {from{opacity:0;transform:rotate(-5deg) translateY(30px);}to{opacity:1;transform:rotate(0) translateY(0);}}
-@keyframes axFlipX     {from{opacity:0;transform:perspective(600px) rotateX(40deg);}to{opacity:1;transform:perspective(600px) rotateX(0);}}
-@keyframes axClip      {from{clip-path:inset(0 0 100% 0);opacity:0;} to{clip-path:inset(0 0 0% 0);opacity:1;}}
-@keyframes axRiseGlow  {from{opacity:0;transform:translateY(32px);text-shadow:0 0 0 transparent;}to{opacity:1;transform:translateY(0);text-shadow:0 0 40px rgba(232,98,90,.35);}}
-@keyframes axSpring    {0%{opacity:0;transform:scale(0) rotate(-8deg);}60%{transform:scale(1.12) rotate(2deg);}80%{transform:scale(.96) rotate(-1deg);}100%{opacity:1;transform:scale(1) rotate(0);}}
-
-/* Default state: visible (no .animated body class) */
-.ax{opacity:1;transform:none;filter:none;}
-
-/* When JS is running, hide elements until triggered */
-body.animated .ax{
-  opacity:0;
-  animation-fill-mode:both;
-  animation-play-state:paused;
-}
-body.animated .ax.fired{
-  animation-play-state:running;
-}
-
-/* Named animation bindings */
-body.animated .ax-fade-up      {animation:axFadeUp    .8s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-fade-down    {animation:axFadeDown  .8s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-fade-left    {animation:axFadeLeft  .85s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-fade-right   {animation:axFadeRight .85s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-scale-up     {animation:axScaleUp   .9s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-scale-down   {animation:axScaleDown .9s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-blur-in      {animation:axBlurIn    1s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-rotate-in    {animation:axRotateIn  .85s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-flip-x       {animation:axFlipX     .9s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-clip         {animation:axClip      .8s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-rise-glow    {animation:axRiseGlow  1s cubic-bezier(.16,1,.3,1) both paused;}
-body.animated .ax-spring       {animation:axSpring    .9s cubic-bezier(.16,1,.3,1) both paused;}
-
-/* Fired = running */
-body.animated .ax.fired{ animation-play-state:running !important; }
-
-/* Stagger delays */
-.axd1{animation-delay:.06s!important;}.axd2{animation-delay:.12s!important;}
-.axd3{animation-delay:.18s!important;}.axd4{animation-delay:.24s!important;}
-.axd5{animation-delay:.32s!important;}.axd6{animation-delay:.40s!important;}
-.axd7{animation-delay:.48s!important;}.axd8{animation-delay:.56s!important;}
-
-/* ─── HERO LETTER ANIMATIONS ─── */
-.hero-char{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(60px) rotate(-3deg);
-  transition:opacity .5s ease, transform .5s cubic-bezier(.16,1,.3,1), filter .5s;
-  filter:blur(8px);
-}
-.hero-char.in{opacity:1;transform:translateY(0) rotate(0);filter:blur(0);}
-.ci-char{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(40px) scale(.8);
-  transition:opacity .4s ease, transform .4s cubic-bezier(.16,1,.3,1);
-}
-.ci-char.in{opacity:1;transform:translateY(0) scale(1);}
-/* Coral glow pulse on "Busy Work" after entrance */
-@keyframes coralPulse{0%,100%{text-shadow:0 0 20px rgba(232,98,90,0);}50%{text-shadow:0 0 40px rgba(232,98,90,.5),0 0 80px rgba(232,98,90,.2);}}
-.ci.glowing{animation:coralPulse 3s ease-in-out infinite 1s;}
-
-/* ─── LIVING ANIMATIONS (continuous) ─── */
-@keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-@keyframes float2{0%,100%{transform:translateY(-4px);}50%{transform:translateY(6px);}}
-@keyframes float3{0%,100%{transform:translateY(-6px) rotate(.5deg);}50%{transform:translateY(4px) rotate(-.5deg);}}
-@keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.03);}}
-@keyframes scanLine{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
-@keyframes orbDrift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-30px,20px) scale(1.05);}66%{transform:translate(20px,-15px) scale(.97);}}
-@keyframes orbDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(24px,-18px) scale(1.08);}}
-@keyframes bgBreath{0%,100%{opacity:1;}50%{opacity:.75;}}
-@keyframes coralBlink{0%,90%,100%{opacity:1;}95%{opacity:.3;}}
-
-/* ─── NAV ─── */
+/* ── NAV ── */
 #nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;transition:background .4s,backdrop-filter .4s,border-bottom .4s;}
 #nav.sc{background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
-.nlogo-w{height:34px;width:auto;display:block;transition:transform .3s;}
-.nlogo-d{height:34px;width:auto;display:none;transition:transform .3s;}
+.nlogo-w{height:34px;width:auto;display:block;}
+.nlogo-d{height:34px;width:auto;display:none;}
 #nav.sc .nlogo-w{display:none;}#nav.sc .nlogo-d{display:block;}
 @media(prefers-color-scheme:dark){#nav.sc .nlogo-w{display:block;}#nav.sc .nlogo-d{display:none;}}
-a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .nlinks{display:flex;gap:32px;position:absolute;left:50%;transform:translateX(-50%);}
-.nlinks a{font-size:12px;letter-spacing:.5px;color:rgba(255,255,255,.8);transition:color .2s,letter-spacing .3s;}
-.nlinks a:hover{color:#fff;letter-spacing:1px;}
+.nlinks a{font-size:12px;letter-spacing:.5px;color:rgba(255,255,255,.8);transition:color .2s;}.nlinks a:hover{color:#fff;}
 #nav.sc .nlinks a{color:var(--text-3);}#nav.sc .nlinks a:hover{color:var(--text);}
-.ncta{font-size:12px;font-weight:500;padding:9px 20px;background:var(--coral);color:#fff;border-radius:980px;transition:background .2s,transform .2s,box-shadow .2s;}
-.ncta:hover{background:var(--coral-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,98,90,.35);}
+.ncta{font-size:12px;font-weight:500;padding:9px 20px;background:var(--coral);color:#fff;border-radius:980px;transition:background .2s,transform .15s;}
+.ncta:hover{background:var(--coral-dk);transform:translateY(-1px);}
 
-/* ─── HERO ─── */
+/* ── HERO ── */
 #hero{position:relative;height:100svh;min-height:700px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
 .hbg{position:absolute;inset:0;z-index:0;background:#080808;overflow:hidden;}
 .hbg::before{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse 80% 65% at 70% 30%,rgba(232,98,90,.2) 0%,transparent 60%),
   radial-gradient(ellipse 50% 50% at 20% 80%,rgba(120,40,20,.28) 0%,transparent 55%),
   radial-gradient(ellipse 40% 40% at 80% 75%,rgba(60,15,8,.18) 0%,transparent 50%);
-  animation:orbDrift 14s ease-in-out infinite;}
+  animation:orbA 14s ease-in-out infinite;}
 .hbg::after{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse 55% 40% at 35% 45%,rgba(232,98,90,.09) 0%,transparent 50%),
   radial-gradient(ellipse 30% 55% at 72% 55%,rgba(140,45,25,.14) 0%,transparent 45%);
-  animation:orbDrift2 18s ease-in-out infinite;}
-/* Grain texture overlay */
+  animation:orbB 18s ease-in-out infinite;}
+@keyframes orbA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-30px,20px) scale(1.05);}}
+@keyframes orbB{0%,100%{transform:translate(0,0);}50%{transform:translate(24px,-18px) scale(1.08);}}
 .hgrain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.18;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
   background-size:180px;}
 .hbar{position:absolute;left:0;right:0;height:9%;background:#080808;z-index:3;pointer-events:none;}
 .hbar.t{top:0;}.hbar.b{bottom:0;}
 .hcon{position:relative;z-index:4;padding:0 80px 100px;max-width:calc(var(--max) + 160px);}
-/* Hero logo */
-.hero-logo{display:block;height:48px;width:auto;margin-bottom:44px;opacity:0;transform:translateY(-20px) scale(.9);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
+.hero-logo{display:block;height:48px;width:auto;margin-bottom:44px;opacity:0;transform:translateY(-16px) scale(.94);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
 .hero-logo.in{opacity:1;transform:translateY(0) scale(1);}
-/* Hero headline — words are individually wrapped by JS */
 .hh1{font-family:var(--Fd);font-size:clamp(64px,9vw,148px);line-height:.88;letter-spacing:1px;color:#fff;margin-bottom:32px;}
 .hh1 .ci{font-family:var(--Fs);font-style:italic;color:var(--coral);font-size:.88em;display:block;}
-/* Subtext */
+.hero-char{display:inline-block;opacity:0;transform:translateY(60px) rotate(-3deg);filter:blur(8px);transition:opacity .5s,transform .5s cubic-bezier(.16,1,.3,1),filter .5s;}
+.hero-char.in{opacity:1;transform:translateY(0) rotate(0);filter:blur(0);}
+.ci-char{display:inline-block;opacity:0;transform:translateY(40px) scale(.8);transition:opacity .4s,transform .4s cubic-bezier(.16,1,.3,1);}
+.ci-char.in{opacity:1;transform:translateY(0) scale(1);}
+@keyframes coralPulse{0%,100%{text-shadow:0 0 20px rgba(232,98,90,0);}50%{text-shadow:0 0 40px rgba(232,98,90,.5),0 0 80px rgba(232,98,90,.2);}}
+.ci.glowing{animation:coralPulse 3s ease-in-out infinite 1s;}
 .hsub{font-size:17px;line-height:1.75;color:rgba(255,255,255,.65);max-width:520px;margin-bottom:48px;opacity:0;transform:translateY(20px);transition:opacity .9s ease .7s,transform .9s ease .7s;}
 .hsub.in{opacity:1;transform:translateY(0);}
-/* Buttons */
 .hbtns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;transform:translateY(16px);transition:opacity .9s ease .9s,transform .9s ease .9s;}
 .hbtns.in{opacity:1;transform:translateY(0);}
-/* Scroll hint */
-.shint{position:absolute;bottom:100px;right:80px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:axFadeUp .8s ease 1.8s both;}
+.shint{position:absolute;bottom:100px;right:80px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeInD 1s ease 1.8s both;}
+@keyframes fadeInD{to{opacity:1;}}
 .shint span{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl;}
-.sline{width:1px;height:56px;background:linear-gradient(to bottom,var(--coral),transparent);animation:coralBlink 2.4s ease-in-out infinite;}
+.sline{width:1px;height:56px;background:linear-gradient(to bottom,var(--coral),transparent);animation:linePulse 2.4s ease-in-out infinite;}
+@keyframes linePulse{0%,100%{opacity:.4;}50%{opacity:1;}}
 
-/* ─── BUTTONS ─── */
-.btn-pill{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:14px 30px;border-radius:980px;background:var(--coral);color:#fff;transition:background .2s,transform .2s,box-shadow .2s;border:none;cursor:pointer;font-family:var(--Fb);}
-.btn-pill:hover{background:var(--coral-dk);transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,98,90,.4);}
-.btn-ghost{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:13px 30px;border-radius:980px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);transition:border-color .2s,transform .2s,background .2s;cursor:pointer;font-family:var(--Fb);}
-.btn-ghost:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);transform:translateY(-2px);}
-.btn-ghost-dk{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:13px 30px;border-radius:980px;background:transparent;color:var(--text);border:1.5px solid var(--line);transition:border-color .2s,transform .2s;cursor:pointer;font-family:var(--Fb);}
+/* ── BUTTONS ── */
+.btn-pill{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:14px 30px;border-radius:980px;background:var(--coral);color:#fff;transition:background .2s,transform .15s,box-shadow .2s;border:none;cursor:pointer;font-family:var(--Fb);}
+.btn-pill:hover{background:var(--coral-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,98,90,.35);}
+.btn-ghost{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:13px 30px;border-radius:980px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);transition:border-color .2s,transform .15s;cursor:pointer;font-family:var(--Fb);}
+.btn-ghost:hover{border-color:rgba(255,255,255,.7);transform:translateY(-2px);}
+.btn-ghost-dk{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:13px 30px;border-radius:980px;background:transparent;color:var(--text);border:1.5px solid var(--line);transition:border-color .2s,transform .15s;cursor:pointer;font-family:var(--Fb);}
 .btn-ghost-dk:hover{border-color:var(--text-3);transform:translateY(-2px);}
 .btn-lnk{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--coral);transition:gap .2s;}
 .btn-lnk:hover{gap:10px;}
 .btn-lnk::after{content:'→';}
 
-/* ─── TICKER ─── */
+/* ── TICKER ── */
 .ticker{height:48px;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;background:var(--bg);}
 .ttrack{display:flex;animation:tickR 28s linear infinite;white-space:nowrap;}
 .ttrack:hover{animation-play-state:paused;}
@@ -192,48 +107,47 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .ts{color:var(--coral);font-size:7px;}
 @keyframes tickR{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* ─── PARTNERS ─── */
+/* ── PARTNERS ── */
 #partners{padding:80px var(--pad);border-bottom:1px solid var(--line);}
 .inner{max-width:var(--max);margin:0 auto;}
 .partners-lbl{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--text-3);text-align:center;margin-bottom:52px;}
 .partners-row{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--bg-card);box-shadow:var(--sh-sm);}
-.plog{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 24px;border-right:1px solid var(--line);transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1);}
+.plog{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 24px;border-right:1px solid var(--line);transition:background .25s,transform .4s cubic-bezier(.16,1,.3,1);}
 .plog:last-child{border-right:none;}
 .plog:hover{background:var(--bg-alt);transform:translateY(-3px);}
 .plog-mark{font-family:var(--Fd);font-size:22px;letter-spacing:3px;color:var(--text);opacity:.5;transition:opacity .25s;}
 .plog-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-top:5px;opacity:.4;transition:opacity .25s;}
 .plog:hover .plog-mark,.plog:hover .plog-sub{opacity:1;}
 .plog .accent{color:var(--coral);}
-/* Floating animation per logo */
-.plog:nth-child(1){animation:float1 6s ease-in-out infinite;}
-.plog:nth-child(2){animation:float2 7s ease-in-out infinite .5s;}
-.plog:nth-child(3){animation:float3 8s ease-in-out infinite 1s;}
-.plog:nth-child(4){animation:float1 6.5s ease-in-out infinite 1.5s;}
-.plog:nth-child(5){animation:float2 7.5s ease-in-out infinite 2s;}
+@keyframes fl1{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+@keyframes fl2{0%,100%{transform:translateY(-4px);}50%{transform:translateY(5px);}}
+.plog:nth-child(odd){animation:fl1 6s ease-in-out infinite;}
+.plog:nth-child(even){animation:fl2 7s ease-in-out infinite .5s;}
 
-/* ─── STICKY STATEMENT ─── */
+/* ── STICKY STATEMENT ── */
 #ss{position:relative;height:480vh;}
 .ssi{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#050505;}
-.ssbg{position:absolute;inset:0;overflow:hidden;}
-.ssp{position:absolute;border-radius:50%;animation:axFadeUp linear infinite;}
+.ssbg{position:absolute;inset:0;}
+.ssp{position:absolute;border-radius:50%;animation:spFloat linear infinite;}
+@keyframes spFloat{0%{transform:translateY(110vh);opacity:0;}10%{opacity:.5;}90%{opacity:.2;}100%{transform:translateY(-10vh);opacity:0;}}
 .ssglow{position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(232,98,90,.12),transparent 65%);opacity:0;transition:opacity .8s;pointer-events:none;}
 .ssi.lit .ssglow{opacity:1;}
 .sstxt{position:relative;z-index:2;text-align:center;max-width:1100px;padding:0 48px;}
+.ss-line{display:block;margin-bottom:4px;}
 .w{display:inline-block;color:rgba(255,255,255,.08);transition:color .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1),text-shadow .5s;transform:translateY(6px);font-family:var(--Fd);font-size:clamp(64px,9vw,130px);line-height:.96;letter-spacing:1px;}
 .w em{font-family:var(--Fs);font-style:italic;font-size:.9em;}
 .w.on{color:#fff;transform:translateY(0);}
 .w.cr{color:rgba(232,98,90,.1);}
 .w.cr.on{color:var(--coral);transform:translateY(0);text-shadow:0 0 30px rgba(232,98,90,.3);}
-.ss-line{display:block;margin-bottom:4px;}
 .ssdots{position:absolute;right:44px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:3;}
 .sdot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,transform .3s,box-shadow .3s;}
 .sdot.on{background:var(--coral);transform:scale(1.6);box-shadow:0 0 8px rgba(232,98,90,.6);}
 
-/* ─── SECTION HELPERS ─── */
-.sec{padding:100px var(--pad);}.sec-alt{background:var(--bg-alt);}.sec-deep{background:var(--bg-deep);}
-.eyebrow{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:12px;position:relative;overflow:hidden;}
-/* Scan line on eyebrow */
-.eyebrow::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(232,98,90,.3),transparent);transform:translateX(-100%);animation:scanLine 3s ease-in-out infinite 2s;}
+/* ── SECTIONS ── */
+.sec{padding:100px var(--pad);}
+.sec-alt{background:var(--bg-alt);}
+.sec-deep{background:var(--bg-deep);}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:12px;}
 .hl{font-family:var(--Fd);font-size:clamp(36px,4.5vw,68px);letter-spacing:1px;line-height:.95;color:var(--text);}
 .hl em{font-family:var(--Fs);font-style:italic;color:var(--coral);font-size:.92em;}
 .sec-deep .hl{color:var(--text-inv);}
@@ -242,22 +156,46 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .sec-deep .body-lg{color:var(--text-inv2);}
 .sec-deep .body-lg strong{color:var(--text-inv);}
 
-/* ─── VALUE ─── */
+/* ── SCROLL ANIMATIONS ── */
+body.animated .ax{opacity:0;animation-fill-mode:both;animation-play-state:paused;}
+body.animated .ax.fired{animation-play-state:running;}
+@keyframes axUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+@keyframes axLeft{from{opacity:0;transform:translateX(-36px);}to{opacity:1;transform:translateX(0);}}
+@keyframes axRight{from{opacity:0;transform:translateX(36px);}to{opacity:1;transform:translateX(0);}}
+@keyframes axScale{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+@keyframes axBlur{from{opacity:0;filter:blur(12px);transform:translateY(18px);}to{opacity:1;filter:blur(0);transform:translateY(0);}}
+@keyframes axFlip{from{opacity:0;transform:perspective(600px) rotateX(35deg);}to{opacity:1;transform:perspective(600px) rotateX(0);}}
+@keyframes axSpin{from{opacity:0;transform:rotate(-6deg) translateY(24px);}to{opacity:1;transform:rotate(0) translateY(0);}}
+@keyframes axSpring{0%{opacity:0;transform:scale(0) rotate(-8deg);}60%{transform:scale(1.1) rotate(2deg);}80%{transform:scale(.97);}100%{opacity:1;transform:scale(1) rotate(0);}}
+body.animated .ax-up    {animation:axUp     .8s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-left  {animation:axLeft   .85s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-right {animation:axRight  .85s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-scale {animation:axScale  .9s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-blur  {animation:axBlur   1s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-flip  {animation:axFlip   .9s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-spin  {animation:axSpin   .85s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-spring{animation:axSpring .9s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax.fired{animation-play-state:running!important;}
+.d1{animation-delay:.06s!important;}.d2{animation-delay:.12s!important;}
+.d3{animation-delay:.18s!important;}.d4{animation-delay:.24s!important;}
+.d5{animation-delay:.32s!important;}.d6{animation-delay:.40s!important;}
+
+/* ── VALUE ── */
 .vi{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-bottom:72px;}
 .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.vc{background:var(--bg-card);border:1px solid var(--line);border-radius:20px;padding:40px 32px;box-shadow:var(--sh-sm);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;}
+.vc{background:var(--bg-card);border:1px solid var(--line);border-radius:20px;padding:40px 32px;box-shadow:var(--sh-sm);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;}
 .vc:hover{transform:translateY(-8px) scale(1.01);box-shadow:var(--sh-md);}
 .vcn{font-family:var(--Fd);font-size:52px;color:var(--coral);opacity:.15;line-height:1;margin-bottom:20px;transition:opacity .3s;}
-.vc:hover .vcn{opacity:.5;}
+.vc:hover .vcn{opacity:.45;}
 .vct{font-family:var(--Fd);font-size:24px;letter-spacing:.5px;margin-bottom:12px;color:var(--text);}
 .vcb{font-size:14px;line-height:1.75;color:var(--text-3);}
 
-/* ─── HOW IT WORKS ─── */
+/* ── HOW IT WORKS ── */
 .hwgrid{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;margin-top:64px;}
 .hwl-p{font-size:16px;line-height:1.8;color:var(--text-2);margin-top:24px;}
 .hwl-p strong{color:var(--text);font-weight:400;}
 .hwsteps{border-top:1px solid var(--line);}
-.hws{display:grid;grid-template-columns:64px 1fr;gap:32px;padding:40px 0;border-bottom:1px solid var(--line);align-items:start;transition:background .25s;}
+.hws{display:grid;grid-template-columns:64px 1fr;gap:32px;padding:40px 0;border-bottom:1px solid var(--line);align-items:start;transition:background .2s;}
 .hws:hover{background:rgba(232,98,90,.02);}
 .hwsn{font-family:var(--Fd);font-size:44px;color:var(--coral);opacity:.3;line-height:1;transition:opacity .3s;}
 .hws:hover .hwsn{opacity:.7;}
@@ -265,12 +203,12 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .hwsb{font-size:14px;line-height:1.75;color:var(--text-3);}
 .hwsb strong{color:var(--text);font-weight:400;}
 
-/* ─── RETAINER ─── */
+/* ── RETAINER ── */
 .retcard{background:var(--bg-card);border:1px solid var(--line);border-radius:24px;padding:72px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;box-shadow:var(--sh-sm);position:relative;overflow:hidden;}
 .retcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--coral),transparent 65%);}
-/* Animated coral line */
-.retcard::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:3px;background:linear-gradient(to right,transparent,rgba(232,98,90,.8),transparent);animation:scanLine 4s ease-in-out infinite 1s;}
-.rettag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);background:var(--coral-bg);padding:6px 14px;border-radius:980px;border:1px solid var(--coral-brd);margin-bottom:20px;animation:breathe 3s ease-in-out infinite;}
+@keyframes scanLine{0%{transform:translateX(-100%);}100%{transform:translateX(200%);}}
+.retcard::after{content:'';position:absolute;top:0;left:0;width:50%;height:3px;background:linear-gradient(to right,transparent,rgba(232,98,90,.8),transparent);animation:scanLine 4s ease-in-out infinite 1s;}
+.rettag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);background:var(--coral-bg);padding:6px 14px;border-radius:980px;border:1px solid var(--coral-brd);margin-bottom:20px;}
 .reth{font-family:var(--Fd);font-size:clamp(32px,3.5vw,52px);letter-spacing:1px;line-height:.95;margin-bottom:20px;color:var(--text);}
 .reth em{font-family:var(--Fs);font-style:italic;color:var(--coral);}
 .rets{font-size:15px;line-height:1.8;color:var(--text-2);}
@@ -278,8 +216,8 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .retil{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
 .ret-table{width:100%;border-collapse:collapse;margin-bottom:28px;}
 .ret-table tr{border-bottom:1px solid var(--line);transition:background .2s;}
-.ret-table tr:last-child{border-bottom:none;}
 .ret-table tr:hover{background:var(--coral-bg);}
+.ret-table tr:last-child{border-bottom:none;}
 .ret-table td{padding:14px 16px;font-size:13px;}
 .ret-table td:first-child{font-weight:500;color:var(--text);width:48%;background:var(--bg-alt);}
 .ret-table td:last-child{color:var(--text-2);}
@@ -289,16 +227,17 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .ret-table tr:last-child td:last-child{border-radius:0 0 10px 0;}
 .retcta{display:flex;gap:12px;flex-wrap:wrap;}
 
-/* ─── PORTAL ─── */
+/* ── PORTAL ── */
 .pwrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
 .pfeats{display:flex;flex-direction:column;gap:8px;margin-top:32px;}
-.pf{display:flex;align-items:flex-start;gap:16px;padding:16px 20px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line-inv);transition:background .25s,transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;}
-.pf:hover{background:rgba(255,255,255,.08);transform:translateX(6px);box-shadow:0 4px 20px rgba(232,98,90,.1);}
+.pf{display:flex;align-items:flex-start;gap:16px;padding:16px 20px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line-inv);transition:background .25s,transform .3s;}
+.pf:hover{background:rgba(255,255,255,.08);transform:translateX(5px);}
 .pfi{font-size:20px;flex-shrink:0;line-height:1;margin-top:2px;}
 .pft{font-size:14px;font-weight:500;color:#fff;margin-bottom:3px;}
 .pfd{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
 .pmsbadge{display:inline-flex;align-items:flex-start;gap:12px;margin-top:24px;padding:14px 20px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);}
-.pmsdot{width:8px;height:8px;border-radius:50%;background:#34d399;flex-shrink:0;margin-top:4px;animation:breathe 2.4s ease-in-out infinite;}
+@keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+.pmsdot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:4px;animation:breathe 2.4s ease-in-out infinite;}
 .pmstxt{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;}
 .pmstxt strong{color:#fff;font-weight:500;}
 .pui{background:#1c1c1e;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);}
@@ -307,20 +246,19 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .puid{width:10px;height:10px;border-radius:50%;}
 .puid:nth-child(1){background:#ff5f57;}.puid:nth-child(2){background:#febc2e;}.puid:nth-child(3){background:#28c840;}
 .puit{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
-.puil{display:flex;align-items:center;gap:6px;font-size:10px;color:#34d399;font-weight:500;}
-.puil-d{width:6px;height:6px;border-radius:50%;background:#34d399;animation:breathe 2s ease-in-out infinite;}
+.puil{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--green);font-weight:500;}
+.puil-d{width:6px;height:6px;border-radius:50%;background:var(--green);animation:breathe 2s ease-in-out infinite;}
 .puisum{display:grid;grid-template-columns:repeat(3,1fr);}
 .psm{padding:20px;border-right:1px solid rgba(255,255,255,.06);}
 .psm:last-child{border-right:none;}
 .psml{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px;}
 .psmv{font-family:var(--Fd);font-size:32px;color:var(--coral);letter-spacing:-1px;line-height:1;}
-.psmd{font-size:10px;color:#34d399;margin-top:4px;}
+.psmd{font-size:10px;color:var(--green);margin-top:4px;}
 .puitabs{display:flex;border-bottom:1px solid rgba(255,255,255,.06);}
-.puitab{font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:12px 20px;color:rgba(255,255,255,.35);border-bottom:2px solid transparent;cursor:pointer;transition:color .2s;}
+.puitab{font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:12px 20px;color:rgba(255,255,255,.35);border-bottom:2px solid transparent;cursor:pointer;}
 .puitab.on{color:var(--coral);border-bottom-color:var(--coral);}
 .pvrow{display:grid;grid-template-columns:44px 1fr 80px 80px;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.05);align-items:center;transition:background .2s;}
-.pvrow:last-child{border-bottom:none;}
-.pvrow:hover{background:rgba(255,255,255,.04);}
+.pvrow:last-child{border-bottom:none;}.pvrow:hover{background:rgba(255,255,255,.04);}
 .pvth{width:40px;height:28px;border-radius:4px;background:rgba(232,98,90,.12);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--coral);border:1px solid rgba(232,98,90,.2);}
 .pvinfo{padding:0 14px;}
 .pvn{font-size:12px;color:#fff;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -328,38 +266,148 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .pvc{text-align:right;}
 .pvnum{font-size:13px;font-weight:500;color:#fff;}
 .pvtype{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px;}
-.pvc.g .pvnum{color:#34d399;}
+.pvc.g .pvnum{color:var(--green);}
 .puispk{padding:16px 20px 20px;border-top:1px solid rgba(255,255,255,.06);}
 .spkh{display:flex;justify-content:space-between;margin-bottom:10px;}
 .spkl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
 .spkbars{display:flex;align-items:flex-end;gap:3px;height:36px;}
-.sb{flex:1;border-radius:2px 2px 0 0;background:var(--coral);transform-origin:bottom;transform:scaleY(0);transition:transform .6s cubic-bezier(.16,1,.3,1);}
+.sb{flex:1;border-radius:2px 2px 0 0;background:var(--coral);}
 .sb.lo{opacity:.2;}.sb.md{opacity:.5;}.sb.hi{opacity:1;}
-.pui.in-view .sb{transform:scaleY(1);}
-.pui.in-view .sb:nth-child(1){transition-delay:.05s;}
-.pui.in-view .sb:nth-child(2){transition-delay:.1s;}
-.pui.in-view .sb:nth-child(3){transition-delay:.15s;}
-.pui.in-view .sb:nth-child(4){transition-delay:.2s;}
-.pui.in-view .sb:nth-child(5){transition-delay:.25s;}
-.pui.in-view .sb:nth-child(6){transition-delay:.3s;}
-.pui.in-view .sb:nth-child(7){transition-delay:.35s;}
-.pui.in-view .sb:nth-child(8){transition-delay:.4s;}
-.pui.in-view .sb:nth-child(9){transition-delay:.45s;}
-.pui.in-view .sb:nth-child(10){transition-delay:.5s;}
-.pui.in-view .sb:nth-child(11){transition-delay:.55s;}
-.pui.in-view .sb:nth-child(12){transition-delay:.6s;}
 
-/* ─── STATS ─── */
+/* ── STATS ── */
 .stintro{max-width:620px;margin-bottom:80px;}
 .stintro p{font-family:var(--Fs);font-size:clamp(20px,2.5vw,30px);font-weight:300;line-height:1.6;color:var(--text-2);font-style:italic;}
 .stintro p strong{color:var(--text);font-style:normal;font-weight:400;}
 .strow{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
-.stbox{background:var(--bg-card);border:1px solid var(--line);padding:44px 36px;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,background .25s;}
-.stbox:hover{transform:scale(1.04) translateY(-4px);box-shadow:var(--sh-md);background:var(--bg-alt);}
+.stbox{background:var(--bg-card);border:1px solid var(--line);padding:44px 36px;transition:transform .3s,background .2s;}
+.stbox:hover{transform:scale(1.03) translateY(-3px);}
 .stbn{font-family:var(--Fd);font-size:80px;line-height:1;color:var(--coral);letter-spacing:-2px;margin-bottom:8px;}
 .stbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-3);}
 
-/* ─── FAQ ─── */
+/* ════════════════════════════════════════
+   ROI CALCULATOR
+════════════════════════════════════════ */
+.roi-sec{background:var(--bg-deep);padding:100px var(--pad);position:relative;overflow:hidden;}
+.roi-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 45% at 75% 20%,rgba(232,98,90,.08),transparent 55%);pointer-events:none;}
+.roi-head{text-align:center;max-width:680px;margin:0 auto 64px;}
+.roi-head .hl{color:#fff;}
+.roi-head p{font-size:15px;color:rgba(255,255,255,.5);margin-top:16px;line-height:1.7;}
+.roi-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start;}
+
+/* Input panel */
+.roi-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px;}
+.roi-panel-hd{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:32px;}
+.roi-field{margin-bottom:28px;}
+.roi-field:last-child{margin-bottom:0;}
+.roi-frow{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.roi-fname{font-size:13px;color:rgba(255,255,255,.65);}
+.roi-fval{font-family:var(--Fd);font-size:24px;letter-spacing:1px;color:var(--coral);min-width:80px;text-align:right;}
+
+/* ── THE SLIDER ──
+   Key decisions:
+   - No fill div. Background gradient on the slider itself, updated by JS.
+   - height:20px gives a large enough hit area without looking thick.
+   - Transparent background so only the track pseudo-element shows.
+   - -webkit-slider-runnable-track handles the fill gradient.
+   - Both ::-webkit and ::-moz covered.
+*/
+.roi-sl{
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+  height:20px;
+  background:transparent;
+  cursor:pointer;
+  outline:none;
+  display:block;
+}
+/* WebKit track */
+.roi-sl::-webkit-slider-runnable-track{
+  height:5px;
+  border-radius:5px;
+  background:linear-gradient(
+    to right,
+    var(--coral) 0%,
+    var(--coral) var(--pct,20%),
+    rgba(255,255,255,.14) var(--pct,20%),
+    rgba(255,255,255,.14) 100%
+  );
+}
+/* WebKit thumb */
+.roi-sl::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:var(--coral);
+  border:2px solid rgba(255,255,255,.3);
+  box-shadow:0 2px 12px rgba(232,98,90,.5);
+  margin-top:-8.5px;
+  cursor:grab;
+  transition:transform .15s,box-shadow .15s;
+}
+.roi-sl:active::-webkit-slider-thumb{
+  cursor:grabbing;
+  transform:scale(1.25);
+  box-shadow:0 4px 20px rgba(232,98,90,.7);
+}
+/* Firefox track */
+.roi-sl::-moz-range-track{
+  height:5px;border-radius:5px;background:rgba(255,255,255,.14);
+}
+.roi-sl::-moz-range-progress{
+  height:5px;border-radius:5px;background:var(--coral);
+}
+/* Firefox thumb */
+.roi-sl::-moz-range-thumb{
+  width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.3);
+  background:var(--coral);box-shadow:0 2px 12px rgba(232,98,90,.5);cursor:grab;
+}
+.roi-rlabels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.25);margin-top:4px;}
+
+/* Results panel */
+.roi-results{display:flex;flex-direction:column;gap:14px;}
+
+/* Grade */
+.roi-grade{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;}
+.roi-gbadge{width:60px;height:60px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--Fd);font-size:34px;flex-shrink:0;transition:background .4s,color .4s;}
+.roi-ginfo{}
+.roi-glabel{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px;}
+.roi-gtitle{font-size:16px;font-weight:500;color:#fff;transition:color .4s;}
+.roi-gsub{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;}
+
+/* Achievements */
+.roi-achs{display:flex;gap:8px;flex-wrap:wrap;}
+.roi-ach{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:980px;font-size:11px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);transition:all .4s;}
+.roi-ach.on{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:var(--green);}
+.ach-icon{font-size:13px;}
+
+/* Metric cards */
+.roi-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.roi-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;}
+.roi-card.hot{border-color:rgba(232,98,90,.3);background:rgba(232,98,90,.08);}
+.roi-clbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:7px;}
+.roi-cval{font-family:var(--Fd);font-size:clamp(26px,3vw,36px);letter-spacing:-1px;line-height:1;color:var(--coral);}
+.roi-csub{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px;}
+@keyframes roiPop{0%{transform:scale(1);}40%{transform:scale(1.1);}100%{transform:scale(1);}}
+.roi-cval.pop{animation:roiPop .25s ease;}
+
+/* Bar chart */
+.roi-chart{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;}
+.roi-chtitle{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px;}
+.roi-bars{display:flex;flex-direction:column;gap:12px;}
+.roi-brow{display:flex;flex-direction:column;gap:5px;}
+.roi-blbls{display:flex;justify-content:space-between;font-size:11px;}
+.roi-blbls span:first-child{color:rgba(255,255,255,.4);}
+.roi-blbls span:last-child{color:rgba(255,255,255,.75);font-weight:500;}
+.roi-btrack{height:8px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;}
+.roi-bfill{height:100%;border-radius:8px;transition:width .7s cubic-bezier(.16,1,.3,1);}
+.roi-more{text-align:center;margin-top:4px;}
+.roi-mlink{font-size:13px;font-weight:500;color:var(--coral);display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.roi-mlink:hover{gap:10px;}
+.roi-mlink::after{content:'→';}
+
+/* ── FAQ ── */
 .faqwrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
 .faqled{font-size:16px;line-height:1.8;color:var(--text-2);margin-top:20px;}
 .flist{padding-top:4px;}
@@ -372,156 +420,31 @@ a:hover .nlogo-w,a:hover .nlogo-d{transform:scale(1.05);}
 .fans{font-size:14px;line-height:1.8;color:var(--text-3);max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1),padding .3s;}
 .fi[data-open] .fans{max-height:220px;padding-bottom:20px;}
 
-
-/* ─── ROI CALCULATOR ─── */
-.roi-sec{background:var(--bg-deep);padding:100px var(--pad);}
-.roi-intro{max-width:680px;margin:0 auto 64px;text-align:center;}
-.roi-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start;max-width:var(--max);margin:0 auto;}
-.roi-inputs{background:rgba(255,255,255,.04);border:1px solid var(--line-inv);border-radius:24px;padding:44px;}
-.roi-results{display:flex;flex-direction:column;gap:16px;}
-.roi-field{margin-bottom:28px;}
-.roi-field:last-child{margin-bottom:0;}
-.roi-fl{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
-.roi-fl-name{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);}
-.roi-fl-val{font-family:var(--Fd);font-size:24px;letter-spacing:1px;color:var(--coral);}
-input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:3px;border-radius:3px;outline:none;cursor:pointer;background:linear-gradient(to right,var(--coral) 0%,var(--coral) var(--val,50%),rgba(255,255,255,.15) var(--val,50%),rgba(255,255,255,.15) 100%);}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--coral);box-shadow:0 2px 8px rgba(232,98,90,.5);transition:transform .2s;}
-input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25);}
-.roi-range-labels{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:rgba(255,255,255,.3);}
-/* Result cards */
-.roi-top-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.roi-card-sm{background:rgba(255,255,255,.05);border:1px solid var(--line-inv);border-radius:16px;padding:24px;}
-.roi-card-sm.featured{background:rgba(232,98,90,.1);border-color:rgba(232,98,90,.3);}
-.rcs-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px;}
-.rcs-value{font-family:var(--Fd);font-size:clamp(28px,3vw,40px);letter-spacing:-1px;line-height:1;color:var(--coral);}
-.rcs-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:6px;line-height:1.4;}
-/* Bar chart */
-.roi-chart{background:rgba(255,255,255,.04);border:1px solid var(--line-inv);border-radius:16px;padding:28px;}
-.roi-chart-title{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;}
-.roi-bars{display:flex;flex-direction:column;gap:14px;}
-.roi-bar-row{display:flex;flex-direction:column;gap:5px;}
-.roi-bar-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.5);}
-.roi-bar-labels span:last-child{color:rgba(255,255,255,.8);font-weight:500;}
-.roi-bar-track{height:8px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;}
-.roi-bar-fill{height:100%;border-radius:8px;transition:width .9s cubic-bezier(.16,1,.3,1);}
-/* CTA link */
-.roi-link-row{text-align:center;margin-top:8px;}
-.roi-cta-link{font-size:13px;font-weight:500;color:var(--coral);display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
-.roi-cta-link:hover{gap:10px;}
-.roi-cta-link::after{content:'→';}
-@media(max-width:960px){.roi-wrap{grid-template-columns:1fr;}.roi-top-cards{grid-template-columns:1fr 1fr;}}
-
-/* ─── ROI CALCULATOR ─── */
-.roi-sec{background:var(--bg-deep);padding:100px var(--pad);position:relative;overflow:hidden;}
-.roi-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(232,98,90,.07),transparent 55%);pointer-events:none;}
-.roi-inner{max-width:var(--max);margin:0 auto;}
-.roi-head{text-align:center;max-width:680px;margin:0 auto 64px;}
-.roi-head .hl{color:#fff;}
-.roi-head p{font-size:15px;color:rgba(255,255,255,.5);margin-top:16px;line-height:1.7;}
-.roi-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:start;}
-/* Inputs panel */
-.roi-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px;}
-.roi-panel-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:28px;}
-.roi-field{margin-bottom:26px;}
-.roi-field:last-child{margin-bottom:0;}
-.roi-frow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
-.roi-fname{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);}
-.roi-fval{font-family:var(--Fd);font-size:22px;letter-spacing:1px;color:var(--coral);min-width:70px;text-align:right;transition:all .15s;}
-/* Range slider */
-.roi-slider{
-  width:100%;height:22px;
-  -webkit-appearance:none;appearance:none;
-  background:transparent;
-  outline:none;cursor:pointer;
-  margin:0;padding:0;
-}
-.roi-slider::-webkit-slider-runnable-track{
-  height:5px;border-radius:5px;
-  background:linear-gradient(to right,var(--coral) 0%,var(--coral) var(--sl-pct,20%),rgba(255,255,255,.15) var(--sl-pct,20%),rgba(255,255,255,.15) 100%);
-}
-.roi-slider::-moz-range-track{
-  height:5px;border-radius:5px;background:rgba(255,255,255,.15);
-}
-.roi-slider::-moz-range-progress{height:5px;border-radius:5px;background:var(--coral);}
-.roi-slider::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  width:22px;height:22px;border-radius:50%;
-  background:var(--coral);
-  border:2px solid rgba(255,255,255,.3);
-  box-shadow:0 2px 12px rgba(232,98,90,.5);
-  margin-top:-8.5px;
-  transition:transform .15s,box-shadow .15s;
-  cursor:grab;
-}
-.roi-slider:active::-webkit-slider-thumb{cursor:grabbing;transform:scale(1.25);box-shadow:0 4px 20px rgba(232,98,90,.7);}
-.roi-slider::-moz-range-thumb{
-  width:22px;height:22px;border-radius:50%;
-  background:var(--coral);border:2px solid rgba(255,255,255,.3);
-  box-shadow:0 2px 12px rgba(232,98,90,.5);cursor:grab;
-}
-.roi-slider-track{margin-bottom:6px;}
-.roi-slider-fill{display:none;}
-.roi-range-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.5px;}
-/* Grade badge */
-.roi-grade-wrap{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;margin-bottom:16px;}
-.roi-grade-badge{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--Fd);font-size:36px;letter-spacing:1px;flex-shrink:0;transition:background .4s,color .4s;}
-.roi-grade-info{}
-.roi-grade-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:4px;}
-.roi-grade-title{font-size:16px;font-weight:500;color:#fff;transition:color .4s;}
-.roi-grade-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;}
-/* Achievements */
-.roi-achievements{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.roi-ach{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:980px;font-size:11px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.35);transition:background .4s,border-color .4s,color .4s;}
-.roi-ach.unlocked{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:#34d399;}
-.roi-ach .ach-icon{font-size:14px;}
-/* Result cards */
-.roi-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.roi-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 22px;transition:border-color .4s;}
-.roi-card.hot{border-color:rgba(232,98,90,.3);background:rgba(232,98,90,.08);}
-.roi-clabel{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px;}
-.roi-cvalue{font-family:var(--Fd);font-size:clamp(28px,3vw,36px);letter-spacing:-1px;line-height:1;color:var(--coral);transition:all .2s;}
-.roi-csub{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px;line-height:1.4;}
-/* Bar chart */
-.roi-chart{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;}
-.roi-chart-title{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px;}
-.roi-bars{display:flex;flex-direction:column;gap:12px;}
-.roi-brow{display:flex;flex-direction:column;gap:5px;}
-.roi-blabels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.4);}
-.roi-blabels span:last-child{color:rgba(255,255,255,.75);font-weight:500;}
-.roi-btrack{height:8px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;}
-.roi-bfill{height:100%;border-radius:8px;transition:width .6s cubic-bezier(.16,1,.3,1);}
-.roi-link{text-align:center;margin-top:12px;}
-.roi-cta-link{font-size:13px;font-weight:500;color:var(--coral);display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
-.roi-cta-link:hover{gap:10px;}
-.roi-cta-link::after{content:'→';}
-@keyframes roiPop{0%{transform:scale(1);}50%{transform:scale(1.12);}100%{transform:scale(1);}}
-.roi-cvalue.pop{animation:roiPop .3s ease;}
-@media(max-width:960px){.roi-layout{grid-template-columns:1fr;}.roi-cards{grid-template-columns:1fr 1fr;}}
-/* ─── CTA ─── */
+/* ── CTA ── */
 .ctasec{padding:160px var(--pad);text-align:center;background:var(--bg-alt);position:relative;overflow:hidden;}
-.ctasec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(232,98,90,.08),transparent);pointer-events:none;animation:bgBreath 6s ease-in-out infinite;}
+.ctasec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(232,98,90,.08),transparent);pointer-events:none;}
 .ctaey{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:16px;}
 .ctah{font-family:var(--Fd);font-size:clamp(52px,7vw,108px);line-height:.92;letter-spacing:1px;color:var(--text);margin-bottom:24px;position:relative;z-index:1;}
 .ctah em{font-family:var(--Fs);font-style:italic;color:var(--coral);}
 .ctasub{font-size:17px;line-height:1.65;color:var(--text-2);max-width:500px;margin:0 auto;position:relative;z-index:1;}
 .ctabtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px;position:relative;z-index:1;}
 
-/* ─── FOOTER ─── */
+/* ── FOOTER ── */
 footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padding:72px var(--pad) 48px;}
 .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
 .flogo-img{height:32px;width:auto;display:block;margin-bottom:20px;transition:transform .3s;}
 .flogo-img:hover{transform:scale(1.05);}
 .ftagl{font-size:13px;line-height:1.75;color:rgba(255,255,255,.45);max-width:260px;margin-bottom:24px;}
 .fsocs{display:flex;gap:8px;}
-.fsoc{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:rgba(255,255,255,.4);transition:border-color .25s,color .25s,transform .25s,box-shadow .25s;}
-.fsoc:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-3px);box-shadow:0 6px 18px rgba(232,98,90,.3);}
+.fsoc{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:rgba(255,255,255,.4);transition:border-color .2s,color .2s,transform .2s;}
+.fsoc:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-3px);}
 .fch{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px;}
 .fl li{margin-bottom:12px;}
-.fl a{font-size:13px;color:rgba(255,255,255,.45);transition:color .2s,letter-spacing .2s;}
-.fl a:hover{color:rgba(255,255,255,.9);letter-spacing:.5px;}
+.fl a{font-size:13px;color:rgba(255,255,255,.45);transition:color .2s;}
+.fl a:hover{color:rgba(255,255,255,.9);}
 .fbot{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:12px;}
 
-/* ─── RESPONSIVE ─── */
+/* ── RESPONSIVE ── */
 @media(max-width:960px){
   :root{--pad:24px;}
   #nav{padding:0 20px;}.nlinks{display:none;}
@@ -536,12 +459,15 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   .pvrow{grid-template-columns:44px 1fr 72px;}
   .pvrow .pvc:last-child{display:none;}
   .w{font-size:clamp(44px,8vw,72px);}
+  .roi-layout{grid-template-columns:1fr;}
+  .roi-cards{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
 
+<!-- NAV -->
 <nav id="nav" aria-label="Main navigation">
   <a href="/" aria-label="JMEDIA Productions home">
     <img src="jmedia-logo.png" alt="JMEDIA Productions" class="nlogo-w">
@@ -600,13 +526,13 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- PARTNERS -->
 <section id="partners" aria-label="Brand partners">
   <div class="inner">
-    <p class="partners-lbl ax ax-fade-down">Trusted By</p>
+    <p class="partners-lbl ax ax-up">Trusted By</p>
     <ul class="partners-row" role="list">
-      <li class="plog ax ax-fade-up axd1" title="Universal Orlando"><div class="plog-mark">UNIVERSAL</div><div class="plog-sub">Orlando</div></li>
-      <li class="plog ax ax-scale-up axd2" title="SuitePad"><div class="plog-mark"><span class="accent">&#9632;</span> SuitePad</div><div class="plog-sub">Hospitality Tech</div></li>
-      <li class="plog ax ax-fade-up axd3" title="Planet Oat"><div class="plog-mark" style="font-family:var(--Fs);font-style:italic;font-size:20px;">Planet Oat</div><div class="plog-sub">Food &amp; Beverage</div></li>
-      <li class="plog ax ax-scale-up axd4" title="Heinz"><div class="plog-mark">HEINZ</div><div class="plog-sub">Consumer Brands</div></li>
-      <li class="plog ax ax-fade-up axd5" title="Carvana"><div class="plog-mark" style="letter-spacing:1px;">carvana</div><div class="plog-sub" style="border-top:2px solid var(--coral);padding-top:4px;margin-top:2px;">Automotive</div></li>
+      <li class="plog ax ax-up d1" title="Universal Orlando"><div class="plog-mark">UNIVERSAL</div><div class="plog-sub">Orlando</div></li>
+      <li class="plog ax ax-scale d2" title="SuitePad"><div class="plog-mark"><span class="accent">&#9632;</span> SuitePad</div><div class="plog-sub">Hospitality Tech</div></li>
+      <li class="plog ax ax-up d3" title="Planet Oat"><div class="plog-mark" style="font-family:var(--Fs);font-style:italic;font-size:20px;">Planet Oat</div><div class="plog-sub">Food &amp; Beverage</div></li>
+      <li class="plog ax ax-scale d4" title="Heinz"><div class="plog-mark">HEINZ</div><div class="plog-sub">Consumer Brands</div></li>
+      <li class="plog ax ax-up d5" title="Carvana"><div class="plog-mark" style="letter-spacing:1px;">carvana</div><div class="plog-sub" style="border-top:2px solid var(--coral);padding-top:4px;margin-top:2px;">Automotive</div></li>
     </ul>
   </div>
 </section>
@@ -630,18 +556,18 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   <div class="inner">
     <div class="vi">
       <div>
-        <span class="eyebrow ax ax-fade-left">Why Hotels Partner With Us</span>
-        <h2 class="hl ax ax-clip axd1" id="val-h">Not a Vendor.<br>A <em>Partner.</em></h2>
+        <span class="eyebrow ax ax-left">Why Hotels Partner With Us</span>
+        <h2 class="hl ax ax-up d1" id="val-h">Not a Vendor.<br>A <em>Partner.</em></h2>
       </div>
-      <div class="ax ax-blur-in axd2" style="padding-top:8px;">
+      <div class="ax ax-blur d2" style="padding-top:8px;">
         <p class="body-lg">The typical vendor relationship: you spend the budget, get a video, and six months later the content is stale and you&rsquo;re back at square one. <strong>The shoot solved the immediate problem but nothing downstream changed.</strong></p>
         <p class="body-lg" style="margin-top:16px;">JMEDIA works differently. We plug into your property on an ongoing basis &mdash; building a content library that serves your OTA listings, social channels, email campaigns, and direct booking page simultaneously.</p>
       </div>
     </div>
     <div class="vgrid" role="list">
-      <article class="vc ax ax-rotate-in" role="listitem"><div class="vcn" aria-hidden="true">01</div><h3 class="vct">Content That Stacks</h3><p class="vcb">A single shoot produces assets across every channel &mdash; brand film, OTA cuts, social reels, stills, email headers. Your investment compounds every month.</p></article>
-      <article class="vc ax ax-flip-x axd2" role="listitem"><div class="vcn" aria-hidden="true">02</div><h3 class="vct">Lean and Agile</h3><p class="vcb">We show up focused, move fast, and deliver cinematic results with a small footprint &mdash; so we can work with your property consistently without disrupting operations.</p></article>
-      <article class="vc ax ax-rotate-in axd4" role="listitem"><div class="vcn" aria-hidden="true">03</div><h3 class="vct">Hospitality Is All We Do</h3><p class="vcb">We understand booking funnels, OTA dynamics, and how guests decide before they arrive. That context is built into every brief we write.</p></article>
+      <article class="vc ax ax-spin" role="listitem"><div class="vcn" aria-hidden="true">01</div><h3 class="vct">Content That Stacks</h3><p class="vcb">A single shoot produces assets across every channel &mdash; brand film, OTA cuts, social reels, stills, email headers. Your investment compounds every month.</p></article>
+      <article class="vc ax ax-flip d2" role="listitem"><div class="vcn" aria-hidden="true">02</div><h3 class="vct">Lean and Agile</h3><p class="vcb">We show up focused, move fast, and deliver cinematic results with a small footprint &mdash; so we can work consistently without disrupting operations.</p></article>
+      <article class="vc ax ax-spin d4" role="listitem"><div class="vcn" aria-hidden="true">03</div><h3 class="vct">Hospitality Is All We Do</h3><p class="vcb">We understand booking funnels, OTA dynamics, and how guests decide before they arrive. That context is built into every brief we write.</p></article>
     </div>
   </div>
 </section>
@@ -649,15 +575,15 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- HOW IT WORKS -->
 <section class="sec" aria-labelledby="how-h">
   <div class="inner">
-    <span class="eyebrow ax ax-fade-right">How It Works</span>
-    <h2 class="hl ax ax-scale-up axd1" id="how-h">The Partnership <em>Model</em></h2>
+    <span class="eyebrow ax ax-right">How It Works</span>
+    <h2 class="hl ax ax-scale d1" id="how-h">The Partnership <em>Model</em></h2>
     <div class="hwgrid">
-      <div class="ax ax-fade-left axd1"><p class="hwl-p">We scope a monthly engagement around your property&rsquo;s specific needs. <strong>Most partnerships start with a free content audit</strong>, then we build a roadmap and execute from there.</p></div>
+      <div class="ax ax-left d1"><p class="hwl-p">We scope a monthly engagement around your property&rsquo;s specific needs. <strong>Most partnerships start with a free content audit</strong>, then we build a roadmap and execute from there.</p></div>
       <ol class="hwsteps" aria-label="Partnership steps">
-        <li class="hws ax ax-fade-right axd1"><div class="hwsn" aria-hidden="true">01</div><div><h3 class="hwst">Free Property Audit</h3><p class="hwsb">We study your content, OTA listings, and comp set. We find the gap between what your property delivers and how it&rsquo;s presenting online. <strong>Costs you nothing.</strong></p></div></li>
-        <li class="hws ax ax-fade-right axd2"><div class="hwsn" aria-hidden="true">02</div><div><h3 class="hwst">Content Roadmap</h3><p class="hwsb">A content plan tied to your booking calendar and channel priorities. You know exactly what&rsquo;s coming and why.</p></div></li>
-        <li class="hws ax ax-fade-right axd3"><div class="hwsn" aria-hidden="true">03</div><div><h3 class="hwst">Monthly Execution</h3><p class="hwsb">We show up, capture what the roadmap calls for, and deliver formatted assets for every channel. <strong>Your content library grows every month.</strong></p></div></li>
-        <li class="hws ax ax-fade-right axd4"><div class="hwsn" aria-hidden="true">04</div><div><h3 class="hwst">Track, Review, Iterate</h3><p class="hwsb">Through your client portal, you track what each piece of content is doing. We adjust based on what&rsquo;s moving your numbers.</p></div></li>
+        <li class="hws ax ax-right d1"><div class="hwsn" aria-hidden="true">01</div><div><h3 class="hwst">Free Property Audit</h3><p class="hwsb">We study your content, OTA listings, and comp set. We find the gap between what your property delivers and how it&rsquo;s presenting online. <strong>Costs you nothing.</strong></p></div></li>
+        <li class="hws ax ax-right d2"><div class="hwsn" aria-hidden="true">02</div><div><h3 class="hwst">Content Roadmap</h3><p class="hwsb">A content plan tied to your booking calendar and channel priorities. You know exactly what&rsquo;s coming and why.</p></div></li>
+        <li class="hws ax ax-right d3"><div class="hwsn" aria-hidden="true">03</div><div><h3 class="hwst">Monthly Execution</h3><p class="hwsb">We show up, capture what the roadmap calls for, and deliver formatted assets for every channel. <strong>Your content library grows every month.</strong></p></div></li>
+        <li class="hws ax ax-right d4"><div class="hwsn" aria-hidden="true">04</div><div><h3 class="hwst">Track, Review, Iterate</h3><p class="hwsb">Through your client portal, you track what each piece of content is doing. We adjust based on what&rsquo;s moving your numbers.</p></div></li>
       </ol>
     </div>
   </div>
@@ -666,14 +592,14 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- RETAINER -->
 <section class="sec sec-alt" style="padding-top:0;" aria-labelledby="ret-h">
   <div class="inner">
-    <div class="retcard ax ax-scale-up">
+    <div class="retcard ax ax-scale">
       <div>
         <span class="rettag">The Partnership Model</span>
-        <h2 class="reth ax ax-blur-in axd1" id="ret-h">A Monthly<br>Content Engine<br>for Your <em>Property.</em></h2>
-        <p class="rets ax ax-fade-up axd2">No bloated production days. No one-and-done deliverables. A focused, ongoing engagement that keeps your content fresh, your channels active, and your brand above the comp set. <strong>Most properties start seeing traction within 60 days.</strong></p>
-        <div class="retcta ax ax-fade-up axd3" style="margin-top:28px;"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-lnk">See Services</a></div>
+        <h2 class="reth" id="ret-h">A Monthly<br>Content Engine<br>for Your <em>Property.</em></h2>
+        <p class="rets">No bloated production days. No one-and-done deliverables. A focused, ongoing engagement that keeps your content fresh, your channels active, and your brand above the comp set. <strong>Most properties start seeing traction within 60 days.</strong></p>
+        <div class="retcta" style="margin-top:28px;"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-lnk">See Services</a></div>
       </div>
-      <div class="ax ax-fade-left axd2">
+      <div class="ax ax-left d2">
         <p class="retil">What a Partnership Includes</p>
         <table class="ret-table" role="presentation"><tbody>
           <tr><td>Monthly Shoot Day</td><td>Targeted, pre-planned, efficient</td></tr>
@@ -693,19 +619,19 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   <div class="inner">
     <div class="pwrap">
       <div>
-        <span class="eyebrow ax ax-fade-down">The Client Portal</span>
-        <h2 class="hl ax ax-clip axd1" id="portal-h" style="color:#fff;">See Exactly What<br>Your Content <em>Is Doing.</em></h2>
-        <p class="body-lg ax ax-blur-in axd2" style="margin-top:20px;">Most production partners hand you a Dropbox link and disappear. Every JMEDIA partnership includes a dedicated portal where you access deliverables, track performance per video, and see the direct booking impact of every piece of content we produce.</p>
-        <p class="body-lg ax ax-fade-up axd3" style="margin-top:12px;"><strong>We don&rsquo;t just talk about ROI. We show it to you.</strong></p>
-        <div class="pfeats ax ax-fade-left axd3">
+        <span class="eyebrow ax ax-up">The Client Portal</span>
+        <h2 class="hl ax ax-up d1" id="portal-h" style="color:#fff;">See Exactly What<br>Your Content <em>Is Doing.</em></h2>
+        <p class="body-lg ax ax-blur d2" style="margin-top:20px;">Most production partners hand you a Dropbox link and disappear. Every JMEDIA partnership includes a dedicated portal where you access deliverables, track performance per video, and see the direct booking impact.</p>
+        <p class="body-lg ax ax-up d3" style="margin-top:12px;"><strong>We don&rsquo;t just talk about ROI. We show it to you.</strong></p>
+        <div class="pfeats ax ax-left d3">
           <div class="pf"><div class="pfi" aria-hidden="true">&#128193;</div><div><p class="pft">Organized Asset Library</p><p class="pfd">Every deliverable sorted by channel, campaign, and date.</p></div></div>
-          <div class="pf"><div class="pfi" aria-hidden="true">&#128202;</div><div><p class="pft">Per-Video Performance</p><p class="pfd">OTA click-through, direct booking lift, and social engagement tracked per asset.</p></div></div>
-          <div class="pf"><div class="pfi" aria-hidden="true">&#128279;</div><div><p class="pft">Direct Booking Attribution</p><p class="pfd">Revenue movement tied to specific content &mdash; numbers you can take to ownership.</p></div></div>
+          <div class="pf"><div class="pfi" aria-hidden="true">&#128202;</div><div><p class="pft">Per-Video Performance</p><p class="pfd">OTA click-through, direct booking lift, and social engagement per asset.</p></div></div>
+          <div class="pf"><div class="pfi" aria-hidden="true">&#128279;</div><div><p class="pft">Direct Booking Attribution</p><p class="pfd">Revenue movement tied to specific content &mdash; numbers for ownership.</p></div></div>
         </div>
-        <div class="pmsbadge ax ax-spring axd4"><div class="pmsdot" aria-hidden="true"></div><p class="pmstxt"><strong>PMS Integration</strong> &mdash; connects to all major property management systems.</p></div>
+        <div class="pmsbadge ax ax-spring d4"><div class="pmsdot" aria-hidden="true"></div><p class="pmstxt"><strong>PMS Integration</strong> &mdash; connects to all major property management systems.</p></div>
       </div>
-      <div class="ax ax-flip-x axd2" aria-hidden="true">
-        <div class="pui" id="portalUI" role="img" aria-label="Sample client portal dashboard">
+      <div class="ax ax-flip d1" aria-hidden="true">
+        <div class="pui" role="img" aria-label="Sample client portal">
           <div class="puich"><div class="puidots"><div class="puid"></div><div class="puid"></div><div class="puid"></div></div><div class="puit">JMEDIA Portal &mdash; The Seaside Resort</div><div class="puil"><div class="puil-d"></div>Live</div></div>
           <div class="puisum"><div class="psm"><div class="psml">Direct Bookings</div><div class="psmv">+34%</div><div class="psmd">&#8593; vs last quarter</div></div><div class="psm"><div class="psml">OTA Click-Through</div><div class="psmv">2.1x</div><div class="psmd">&#8593; since brand film</div></div><div class="psm"><div class="psml">ADR Impact</div><div class="psmv">+$28</div><div class="psmd">&#8593; avg rate lift</div></div></div>
           <div class="puitabs"><div class="puitab on">Deliverables</div><div class="puitab">Analytics</div><div class="puitab">Roadmap</div></div>
@@ -722,176 +648,179 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- STATS -->
 <section class="sec sec-alt" aria-labelledby="stats-h">
   <div class="inner">
-    <div class="stintro ax ax-blur-in"><h2 class="sr" id="stats-h">About JMEDIA</h2><p>Founded in 2021, built specifically around <strong>hospitality and experience-driven brands.</strong> Every decision &mdash; how we shoot, how we scope, how we structure partnerships &mdash; is designed to work for the way hotels actually operate.</p></div>
+    <div class="stintro ax ax-blur"><h2 class="sr" id="stats-h">About JMEDIA</h2><p>Founded in 2021, built specifically around <strong>hospitality and experience-driven brands.</strong> Every decision &mdash; how we shoot, how we scope, how we structure partnerships &mdash; is designed to work for the way hotels actually operate.</p></div>
     <div class="strow" role="list">
-      <div class="stbox ax ax-scale-up" role="listitem"><div class="stbn" data-count="15" aria-label="15 plus">0+</div><div class="stbl">Years Experience</div></div>
-      <div class="stbox ax ax-flip-x axd2" role="listitem"><div class="stbn" data-count="20" aria-label="20 plus">0+</div><div class="stbl">Repeat Clients</div></div>
-      <div class="stbox ax ax-scale-up axd4" role="listitem"><div class="stbn" data-count="100" aria-label="100 plus">0+</div><div class="stbl">Projects Delivered</div></div>
-      <div class="stbox ax ax-flip-x axd6" role="listitem"><div class="stbn" data-count="100" aria-label="100 plus">0+</div><div class="stbl">Happy Clients</div></div>
+      <div class="stbox ax ax-scale" role="listitem"><div class="stbn" id="cnt-0" data-target="15">0+</div><div class="stbl">Years Experience</div></div>
+      <div class="stbox ax ax-flip d2" role="listitem"><div class="stbn" id="cnt-1" data-target="20">0+</div><div class="stbl">Repeat Clients</div></div>
+      <div class="stbox ax ax-scale d4" role="listitem"><div class="stbn" id="cnt-2" data-target="100">0+</div><div class="stbl">Projects Delivered</div></div>
+      <div class="stbox ax ax-flip d6" role="listitem"><div class="stbn" id="cnt-3" data-target="100">0+</div><div class="stbl">Happy Clients</div></div>
     </div>
   </div>
 </section>
-
-<!-- FAQ -->
-<section class="sec" aria-labelledby="faq-h">
-  <div class="inner">
-    <div class="faqwrap">
-      <div>
-        <span class="eyebrow ax ax-fade-left">Common Questions</span>
-        <h2 class="hl ax ax-clip axd1" id="faq-h">Before You<br><em>Reach Out.</em></h2>
-        <p class="faqled ax ax-fade-up axd2">Honest answers to what most GMs and marketing directors want to know before getting on a call.</p>
-      </div>
-      <div class="flist ax ax-fade-right">
-        <div class="fi" data-open><button class="fibtn" aria-expanded="true" aria-controls="fa1">How is this different from hiring a production company? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa1">A production company gives you a deliverable and moves on. We give you an ongoing content strategy tied to your booking goals &mdash; with a portal that shows exactly how each piece is performing. The work compounds month over month.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa2">We already have vendor relationships. Why add another? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa2">Most properties start by filling a gap &mdash; social content, seasonal assets, OTA refresh &mdash; and the relationship grows from there. We come in with a plan tied to your booking goals, not just a camera and an invoice.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa3">Can we start with a single project before committing? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa3">Yes. A brand film or OTA content refresh is a common starting point. We approach every project with the same strategy-first process. Most clients continue because the results make the case.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa4">How disruptive is a shoot day for the property? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa4">Minimal. A typical shoot involves 1&ndash;2 people, planned around your quieter operational windows. Guests often don&rsquo;t notice we&rsquo;re there.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa5">How do I actually measure the impact? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa5">Through your client portal. Every asset is tracked &mdash; OTA click-through, direct booking attribution, social engagement. We connect to your PMS so you can see booking movement tied to specific content.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- FAQ -->
-<section class="sec" aria-labelledby="faq-h">
-  <div class="inner">
-    <div class="faqwrap">
-      <div>
-        <span class="eyebrow ax ax-fade-left">Common Questions</span>
-        <h2 class="hl ax ax-clip axd1" id="faq-h">Before You<br><em>Reach Out.</em></h2>
-        <p class="faqled ax ax-fade-up axd2">Honest answers to what most GMs and marketing directors want to know before getting on a call.</p>
-      </div>
-      <div class="flist ax ax-fade-right">
-        <div class="fi" data-open><button class="fibtn" aria-expanded="true" aria-controls="fa1">How is this different from hiring a production company? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa1">A production company gives you a deliverable and moves on. We give you an ongoing content strategy tied to your booking goals &mdash; with a portal that shows exactly how each piece is performing. The work compounds month over month.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa2">We already have vendor relationships. Why add another? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa2">Most properties start by filling a gap &mdash; social content, seasonal assets, OTA refresh &mdash; and the relationship grows from there. We come in with a plan tied to your booking goals, not just a camera and an invoice.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa3">Can we start with a single project before committing? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa3">Yes. A brand film or OTA content refresh is a common starting point. We approach every project with the same strategy-first process. Most clients continue because the results make the case.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa4">How disruptive is a shoot day for the property? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa4">Minimal. A typical shoot involves 1&ndash;2 people, planned around your quieter operational windows. Guests often don&rsquo;t notice we&rsquo;re there.</div></div>
-        <div class="fi"><button class="fibtn" aria-expanded="false" aria-controls="fa5">How do I actually measure the impact? <div class="fitog" aria-hidden="true">+</div></button><div class="fans" id="fa5">Through your client portal. Every asset is tracked &mdash; OTA click-through, direct booking attribution, social engagement. We connect to your PMS so you can see booking movement tied to specific content.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ROI CALCULATOR -->
 <section class="roi-sec" aria-labelledby="roi-h">
-  <div class="roi-inner">
-    <div class="roi-head ax ax-fade-up">
+  <div class="inner">
+    <div class="roi-head ax ax-up">
       <span class="eyebrow" style="color:rgba(232,98,90,.9);">ROI Calculator</span>
-      <h2 class="hl ax ax-scale-up axd1" id="roi-h">See Your Numbers<br><em>Before You Commit.</em></h2>
-      <p class="ax ax-fade-up axd2">Drag the sliders to match your property. Results update live — and your OTA dependency gets graded.</p>
+      <h2 class="hl ax ax-scale d1" id="roi-h">See Your Numbers<br><em>Before You Commit.</em></h2>
+      <p class="ax ax-up d2">Drag the sliders. Numbers update instantly. Your OTA dependency gets graded.</p>
     </div>
     <div class="roi-layout">
-      <!-- Inputs -->
-      <div class="roi-panel ax ax-fade-left">
-        <div class="roi-panel-title">Your Property</div>
+
+      <!-- INPUT PANEL -->
+      <div class="roi-panel ax ax-left">
+        <div class="roi-panel-hd">Your Property</div>
+
         <div class="roi-field">
-          <div class="roi-frow"><span class="roi-fname">Number of Rooms</span><span class="roi-fval" id="ri-rooms">120</span></div>
-          <div class="roi-slider-track">
-            <div class="roi-slider-fill" id="rf-rooms" style="width:21%"></div>
-            <input class="roi-slider" type="range" id="rs-rooms" min="20" max="500" value="120" step="5" aria-label="Number of rooms">
+          <div class="roi-frow">
+            <span class="roi-fname">Number of Rooms</span>
+            <span class="roi-fval" id="dv-rooms">120</span>
           </div>
-          <div class="roi-range-labels"><span>20 rooms</span><span>500 rooms</span></div>
+          <input class="roi-sl" type="range" id="sl-rooms" min="20" max="500" value="120" step="5" aria-label="Number of rooms">
+          <div class="roi-rlabels"><span>20 rooms</span><span>500 rooms</span></div>
         </div>
+
         <div class="roi-field">
-          <div class="roi-frow"><span class="roi-fname">Average Daily Rate</span><span class="roi-fval" id="ri-adr">$185</span></div>
-          <div class="roi-slider-track">
-            <div class="roi-slider-fill" id="rf-adr" style="width:15%"></div>
-            <input class="roi-slider" type="range" id="rs-adr" min="80" max="800" value="185" step="5" aria-label="Average daily rate">
+          <div class="roi-frow">
+            <span class="roi-fname">Average Daily Rate</span>
+            <span class="roi-fval" id="dv-adr">$185</span>
           </div>
-          <div class="roi-range-labels"><span>$80</span><span>$800</span></div>
+          <input class="roi-sl" type="range" id="sl-adr" min="80" max="800" value="185" step="5" aria-label="Average daily rate">
+          <div class="roi-rlabels"><span>$80</span><span>$800</span></div>
         </div>
+
         <div class="roi-field">
-          <div class="roi-frow"><span class="roi-fname">OTA Dependency</span><span class="roi-fval" id="ri-ota">55%</span></div>
-          <div class="roi-slider-track">
-            <div class="roi-slider-fill" id="rf-ota" style="width:56%"></div>
-            <input class="roi-slider" type="range" id="rs-ota" min="10" max="90" value="55" step="1" aria-label="OTA dependency">
+          <div class="roi-frow">
+            <span class="roi-fname">OTA Dependency</span>
+            <span class="roi-fval" id="dv-ota">55%</span>
           </div>
-          <div class="roi-range-labels"><span>10% — healthy</span><span>90% — critical</span></div>
+          <input class="roi-sl" type="range" id="sl-ota" min="10" max="90" value="55" step="1" aria-label="OTA dependency">
+          <div class="roi-rlabels"><span>10% &mdash; healthy</span><span>90% &mdash; critical</span></div>
         </div>
+
         <div class="roi-field">
-          <div class="roi-frow"><span class="roi-fname">Commission Rate</span><span class="roi-fval" id="ri-comm">18%</span></div>
-          <div class="roi-slider-track">
-            <div class="roi-slider-fill" id="rf-comm" style="width:38%"></div>
-            <input class="roi-slider" type="range" id="rs-comm" min="12" max="28" value="18" step="1" aria-label="OTA commission rate">
+          <div class="roi-frow">
+            <span class="roi-fname">Commission Rate</span>
+            <span class="roi-fval" id="dv-comm">18%</span>
           </div>
-          <div class="roi-range-labels"><span>12%</span><span>28%</span></div>
+          <input class="roi-sl" type="range" id="sl-comm" min="12" max="28" value="18" step="1" aria-label="Commission rate">
+          <div class="roi-rlabels"><span>12%</span><span>28%</span></div>
         </div>
+
         <div class="roi-field">
-          <div class="roi-frow"><span class="roi-fname">Occupancy Rate</span><span class="roi-fval" id="ri-occ">68%</span></div>
-          <div class="roi-slider-track">
-            <div class="roi-slider-fill" id="rf-occ" style="width:58%"></div>
-            <input class="roi-slider" type="range" id="rs-occ" min="30" max="95" value="68" step="1" aria-label="Occupancy rate">
+          <div class="roi-frow">
+            <span class="roi-fname">Occupancy Rate</span>
+            <span class="roi-fval" id="dv-occ">68%</span>
           </div>
-          <div class="roi-range-labels"><span>30%</span><span>95%</span></div>
+          <input class="roi-sl" type="range" id="sl-occ" min="30" max="95" value="68" step="1" aria-label="Occupancy rate">
+          <div class="roi-rlabels"><span>30%</span><span>95%</span></div>
         </div>
       </div>
-      <!-- Results -->
-      <div class="ax ax-fade-right" style="display:flex;flex-direction:column;gap:14px;">
-        <!-- Grade badge -->
-        <div class="roi-grade-wrap">
-          <div class="roi-grade-badge" id="rg-badge" style="background:rgba(251,191,36,.15);color:#fbbf24;">C</div>
-          <div class="roi-grade-info">
-            <div class="roi-grade-label">OTA Dependency Grade</div>
-            <div class="roi-grade-title" id="rg-title">At Risk</div>
-            <div class="roi-grade-sub" id="rg-sub">55% of bookings via OTA — significant margin exposure</div>
+
+      <!-- RESULTS PANEL -->
+      <div class="roi-results ax ax-right">
+
+        <!-- Grade -->
+        <div class="roi-grade">
+          <div class="roi-gbadge" id="roi-gbadge" style="background:rgba(251,191,36,.15);color:#fbbf24;">C</div>
+          <div class="roi-ginfo">
+            <div class="roi-glabel">OTA Dependency Grade</div>
+            <div class="roi-gtitle" id="roi-gtitle">At Risk</div>
+            <div class="roi-gsub" id="roi-gsub">55% via OTA &mdash; significant margin exposure</div>
           </div>
         </div>
+
         <!-- Achievements -->
-        <div class="roi-achievements" id="roi-achs">
-          <span class="roi-ach" id="ach-100k"><span class="ach-icon">🔒</span> $100k+ Recovery</span>
-          <span class="roi-ach" id="ach-5x"><span class="ach-icon">🔒</span> 5x+ ROI</span>
-          <span class="roi-ach" id="ach-grade-a"><span class="ach-icon">🔒</span> Grade A</span>
-          <span class="roi-ach" id="ach-margin"><span class="ach-icon">🔒</span> Direct Majority</span>
+        <div class="roi-achs">
+          <span class="roi-ach" id="ach-100k"><span class="ach-icon">&#128274;</span> $100k+ Recovery</span>
+          <span class="roi-ach" id="ach-5x"><span class="ach-icon">&#128274;</span> 5x+ ROI</span>
+          <span class="roi-ach" id="ach-a"><span class="ach-icon">&#128274;</span> Grade A</span>
+          <span class="roi-ach" id="ach-dir"><span class="ach-icon">&#128274;</span> Direct Majority</span>
         </div>
+
         <!-- Metric cards -->
         <div class="roi-cards">
           <div class="roi-card hot">
-            <div class="roi-clabel">Annual OTA Commission</div>
-            <div class="roi-cvalue" id="rr-ota">$545,494</div>
+            <div class="roi-clbl">Annual OTA Commission</div>
+            <div class="roi-cval" id="rv-comm">$545,494</div>
             <div class="roi-csub">Currently leaving your property</div>
           </div>
           <div class="roi-card hot">
-            <div class="roi-clabel">Recoverable / Year</div>
-            <div class="roi-cvalue" id="rr-recover">$136,373</div>
+            <div class="roi-clbl">Recoverable / Year</div>
+            <div class="roi-cval" id="rv-rec">$136,373</div>
             <div class="roi-csub">At 25% direct shift</div>
           </div>
           <div class="roi-card">
-            <div class="roi-clabel">ADR Lift Potential</div>
-            <div class="roi-cvalue" id="rr-adr">$15/night</div>
+            <div class="roi-clbl">ADR Lift Potential</div>
+            <div class="roi-cval" id="rv-adr">$15/night</div>
             <div class="roi-csub">With premium positioning</div>
           </div>
           <div class="roi-card">
-            <div class="roi-clabel">Content ROI</div>
-            <div class="roi-cvalue" id="rr-roi">6x</div>
-            <div class="roi-csub">Return vs. $5k/mo investment</div>
+            <div class="roi-clbl">Content ROI</div>
+            <div class="roi-cval" id="rv-roi">6x</div>
+            <div class="roi-csub">vs. $5k/mo investment</div>
           </div>
         </div>
+
         <!-- Bar chart -->
         <div class="roi-chart">
-          <div class="roi-chart-title">Revenue Breakdown (Annual)</div>
+          <div class="roi-chtitle">Revenue Breakdown (Annual)</div>
           <div class="roi-bars">
             <div class="roi-brow">
-              <div class="roi-blabels"><span>Current Direct</span><span id="rl-direct">$2,479,518</span></div>
-              <div class="roi-btrack"><div class="roi-bfill" id="rb-direct" style="width:72.9%;background:#34d399;"></div></div>
+              <div class="roi-blbls"><span>Current Direct</span><span id="rl-dir">$2,479,518</span></div>
+              <div class="roi-btrack"><div class="roi-bfill" id="rb-dir" style="width:72.9%;background:#34d399;"></div></div>
             </div>
             <div class="roi-brow">
-              <div class="roi-blabels"><span>OTA Channel Revenue</span><span id="rl-ota">$3,030,522</span></div>
+              <div class="roi-blbls"><span>OTA Revenue</span><span id="rl-ota">$3,030,522</span></div>
               <div class="roi-btrack"><div class="roi-bfill" id="rb-ota" style="width:89.2%;background:var(--coral);"></div></div>
             </div>
             <div class="roi-brow">
-              <div class="roi-blabels"><span>Projected Direct After JMEDIA</span><span id="rl-proj">$3,237,148</span></div>
-              <div class="roi-btrack"><div class="roi-bfill" id="rb-proj" style="width:95.2%;background:#60a5fa;"></div></div>
+              <div class="roi-blbls"><span>Projected Direct After JMEDIA</span><span id="rl-prj">$3,237,148</span></div>
+              <div class="roi-btrack"><div class="roi-bfill" id="rb-prj" style="width:95.2%;background:#60a5fa;"></div></div>
             </div>
             <div class="roi-brow">
-              <div class="roi-blabels"><span>Commission Paid Out</span><span id="rl-comm">$545,494</span></div>
-              <div class="roi-btrack"><div class="roi-bfill" id="rb-comm" style="width:16%;background:rgba(232,98,90,.5);"></div></div>
+              <div class="roi-blbls"><span>Commission Paid Out</span><span id="rl-com">$545,494</span></div>
+              <div class="roi-btrack"><div class="roi-bfill" id="rb-com" style="width:16%;background:rgba(232,98,90,.5);"></div></div>
             </div>
           </div>
         </div>
-        <div class="roi-link">
-          <a href="roi.html" class="roi-cta-link">Full 12-month projection</a>
+
+        <div class="roi-more"><a href="roi.html" class="roi-mlink">Full 12-month projection</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" aria-labelledby="faq-h">
+  <div class="inner">
+    <div class="faqwrap">
+      <div>
+        <span class="eyebrow ax ax-left">Common Questions</span>
+        <h2 class="hl ax ax-up d1" id="faq-h">Before You<br><em>Reach Out.</em></h2>
+        <p class="faqled ax ax-up d2">Honest answers to what most GMs and marketing directors want to know before getting on a call.</p>
+      </div>
+      <div class="flist ax ax-right">
+        <div class="fi" data-open>
+          <button class="fibtn" aria-expanded="true" aria-controls="fa1">How is this different from hiring a production company? <div class="fitog" aria-hidden="true">+</div></button>
+          <div class="fans" id="fa1">A production company gives you a deliverable and moves on. We give you an ongoing content strategy tied to your booking goals &mdash; with a portal that shows exactly how each piece is performing. The work compounds month over month.</div>
+        </div>
+        <div class="fi">
+          <button class="fibtn" aria-expanded="false" aria-controls="fa2">We already have vendor relationships. Why add another? <div class="fitog" aria-hidden="true">+</div></button>
+          <div class="fans" id="fa2">Most properties start by filling a gap &mdash; social content, seasonal assets, OTA refresh &mdash; and the relationship grows from there. We come in with a plan tied to your booking goals, not just a camera and an invoice.</div>
+        </div>
+        <div class="fi">
+          <button class="fibtn" aria-expanded="false" aria-controls="fa3">Can we start with a single project before committing? <div class="fitog" aria-hidden="true">+</div></button>
+          <div class="fans" id="fa3">Yes. A brand film or OTA content refresh is a common starting point. We approach every project with the same strategy-first process. Most clients continue because the results make the case.</div>
+        </div>
+        <div class="fi">
+          <button class="fibtn" aria-expanded="false" aria-controls="fa4">How disruptive is a shoot day for the property? <div class="fitog" aria-hidden="true">+</div></button>
+          <div class="fans" id="fa4">Minimal. A typical shoot involves 1&ndash;2 people, planned around your quieter operational windows. Guests often don&rsquo;t notice we&rsquo;re there.</div>
+        </div>
+        <div class="fi">
+          <button class="fibtn" aria-expanded="false" aria-controls="fa5">How do I actually measure the impact? <div class="fitog" aria-hidden="true">+</div></button>
+          <div class="fans" id="fa5">Through your client portal. Every asset is tracked &mdash; OTA click-through, direct booking attribution, social engagement. We connect to your PMS so you can see booking movement tied to specific content.</div>
         </div>
       </div>
     </div>
@@ -901,251 +830,277 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- CTA -->
 <section class="ctasec" aria-labelledby="cta-h">
   <div class="inner">
-    <span class="ctaey ax ax-fade-down">No Commitment Required</span>
-    <h2 class="ctah ax ax-rise-glow axd1" id="cta-h">Stop Paying<br>for <em>One-Off Shoots.</em></h2>
-    <p class="ctasub ax ax-blur-in axd2">We&rsquo;ll audit your current content and show you exactly where the gap is &mdash; before you spend a dollar.</p>
-    <div class="ctabtns ax ax-spring axd3"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-ghost-dk">See How It Works</a></div>
+    <span class="ctaey ax ax-up">No Commitment Required</span>
+    <h2 class="ctah ax ax-scale d1" id="cta-h">Stop Paying<br>for <em>One-Off Shoots.</em></h2>
+    <p class="ctasub ax ax-blur d2">We&rsquo;ll audit your current content and show you exactly where the gap is &mdash; before you spend a dollar.</p>
+    <div class="ctabtns ax ax-spring d3"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-ghost-dk">See How It Works</a></div>
   </div>
 </section>
 
 </main>
 
+<!-- FOOTER -->
 <footer>
   <div class="inner">
     <div class="fg">
-      <div class="ax ax-fade-up">
+      <div class="ax ax-up">
         <img src="jmedia-logo.png" alt="JMEDIA Productions" class="flogo-img">
         <p class="ftagl">Ongoing cinematic content for hotels, resorts, and experience-driven brands. Based in Orlando, FL.</p>
         <nav aria-label="Social links"><div class="fsocs"><a href="#" class="fsoc" aria-label="Instagram">IG</a><a href="#" class="fsoc" aria-label="YouTube">YT</a><a href="#" class="fsoc" aria-label="LinkedIn">LI</a></div></nav>
       </div>
-      <div class="ax ax-fade-up axd2"><p class="fch">Navigate</p><ul class="fl"><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="ax ax-fade-up axd4"><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div>
-      <div class="ax ax-fade-up axd6"><p class="fch">Contact</p><ul class="fl"><li><a href="/cdn-cgi/l/email-protection#afc6c1c9c0efc582c2cacbc6cedfddc0cbdaccdbc6c0c1dc81ccc0c2"><span class="__cf_email__" data-cfemail="adc4c3cbc2edc780c0c8c9c4ccdddfc2c9d8ced9c4c2c3de83cec2c0">[email&#160;protected]</span></a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Suite 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
+      <div class="ax ax-up d2"><p class="fch">Navigate</p><ul class="fl"><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="ax ax-up d4"><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div>
+      <div class="ax ax-up d6"><p class="fch">Contact</p><ul class="fl"><li><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Suite 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
     </div>
     <div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC. All rights reserved.</span><span>Privacy &middot; Terms</span></div>
   </div>
 </footer>
 
 <script>
-/* ─── CRITICAL: Add 'animated' class immediately ─── */
-document.body.classList.add('animated');
+/* ═══════════════════════════════════════
+   ALL JS IN ONE BLOCK — NO PATCHES
+═══════════════════════════════════════ */
 
-/* ─── Mouse detection ─── */
-document.addEventListener('mousedown',function(){document.body.classList.add('mouse');});
-document.addEventListener('keydown',function(e){if(e.key==='Tab')document.body.classList.remove('mouse');});
+/* ── Setup ── */
+document.body.classList.add('animated','mouse');
+document.addEventListener('mousedown', function(){ document.body.classList.add('mouse'); });
+document.addEventListener('keydown', function(e){ if(e.key==='Tab') document.body.classList.remove('mouse'); });
+window.addEventListener('scroll', function(){ document.getElementById('nav').classList.toggle('sc', window.scrollY > 60); }, {passive:true});
 
-/* ─── Nav scroll ─── */
-window.addEventListener('scroll',function(){
-  document.getElementById('nav').classList.toggle('sc',window.scrollY>60);
-},{passive:true});
-
-/* ═══════════════════════════════════════════════
-   HERO TEXT ANIMATION
-   Each word in H1 wraps into individual spans
-   then staggers in with blur + lift + rotation
-═══════════════════════════════════════════════ */
+/* ── Hero entrance ── */
 (function(){
   var h1 = document.getElementById('hH1');
   var ci = document.getElementById('hCI');
   if(!h1) return;
 
-  // Wrap first two lines word by word
-  var rawLines = ['Your Content', "Shouldn\u2019t Feel Like"];
-  var firstLineHTML = rawLines[0].split(' ').map(function(w,i){
-    return '<span class="hero-char" style="transition-delay:'+(0.15+i*0.08)+'s">' + w + '</span>';
-  }).join(' ');
-  var secondLineHTML = rawLines[1].split(' ').map(function(w,i){
-    return '<span class="hero-char" style="transition-delay:'+(0.38+i*0.08)+'s">' + w + '</span>';
-  }).join(' ');
+  var lines = ['Your Content', "Shouldn\u2019t Feel Like"];
+  var html = lines.map(function(line, li){
+    return line.split(' ').map(function(word, wi){
+      var delay = (0.15 + li*0.2 + wi*0.08).toFixed(2);
+      return '<span class="hero-char" style="transition-delay:'+delay+'s">'+word+'</span>';
+    }).join(' ');
+  }).join('<br>');
 
-  // Wrap "Busy Work." letter by letter
   var ciText = 'Busy Work.';
-  var ciHTML = ciText.split('').map(function(ch,i){
-    return '<span class="ci-char" style="transition-delay:'+(0.72+i*0.04)+'s">' + (ch===' '?'&nbsp;':ch) + '</span>';
+  var ciHtml = ciText.split('').map(function(ch, i){
+    var delay = (0.72 + i*0.04).toFixed(2);
+    return '<span class="ci-char" style="transition-delay:'+delay+'s">'+(ch===' '?'&nbsp;':ch)+'</span>';
   }).join('');
 
-  h1.innerHTML = firstLineHTML + '<br>' + secondLineHTML + '<span class="ci" id="hCI">' + ciHTML + '</span>';
+  h1.innerHTML = html + '<span class="ci" id="hCI">'+ciHtml+'</span>';
 
-  // Store ci reference after re-render
-  var ciEl = document.getElementById('hCI');
-
-  // Trigger entrance
+  setTimeout(function(){ document.getElementById('hLogo').classList.add('in'); }, 150);
+  setTimeout(function(){ document.querySelectorAll('.hero-char').forEach(function(el){ el.classList.add('in'); }); }, 300);
+  setTimeout(function(){ document.querySelectorAll('.ci-char').forEach(function(el){ el.classList.add('in'); }); }, 680);
   setTimeout(function(){
-    document.getElementById('hLogo').classList.add('in');
-  },150);
-  setTimeout(function(){
-    document.querySelectorAll('.hero-char').forEach(function(el){ el.classList.add('in'); });
-  },320);
-  setTimeout(function(){
-    document.querySelectorAll('.ci-char').forEach(function(el){ el.classList.add('in'); });
-  },700);
-  setTimeout(function(){
-    // Add coral glow pulse to ci after letters land
-    if(ciEl) ciEl.classList.add('glowing');
-  },1800);
+    var ci2 = document.getElementById('hCI');
+    if(ci2) ci2.classList.add('glowing');
+  }, 1800);
   setTimeout(function(){
     document.getElementById('hSb').classList.add('in');
     document.getElementById('hBt').classList.add('in');
-  },900);
+  }, 880);
 })();
 
-/* ═══════════════════════════════════════════════
-   SCROLL ANIMATION ENGINE
-   Dual trigger: scroll check + IntersectionObserver
-   Nuclear fallback at 1.5s
-═══════════════════════════════════════════════ */
+/* ── Scroll reveal ── */
 (function(){
   var els = Array.from(document.querySelectorAll('.ax'));
-
-  function fire(el){
-    if(!el.classList.contains('fired')){
-      el.classList.add('fired');
-    }
+  function fire(el){ if(!el.classList.contains('fired')) el.classList.add('fired'); }
+  function check(){
+    els.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight * 0.92 && r.bottom > 0) fire(el);
+    });
   }
-
-  function isVisible(el){
-    var r = el.getBoundingClientRect();
-    return r.top < window.innerHeight * 0.90 && r.bottom > 0;
-  }
-
-  function checkAll(){
-    els.forEach(function(el){ if(isVisible(el)) fire(el); });
-  }
-
-  // Immediate pass for above-fold
-  checkAll();
-
-  // Scroll listener
-  window.addEventListener('scroll', checkAll, {passive:true});
-
-  // IntersectionObserver as additional trigger
+  check();
+  window.addEventListener('scroll', check, {passive:true});
   if('IntersectionObserver' in window){
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting) fire(e.target); });
-    },{threshold:0.06, rootMargin:'0px 0px -30px 0px'});
+    }, {threshold:0.06, rootMargin:'0px 0px -20px 0px'});
     els.forEach(function(el){ obs.observe(el); });
   }
-
-  // Fallback: show everything after 1.5s no matter what
-  setTimeout(function(){
-    els.forEach(function(el){ fire(el); });
-  }, 1500);
+  setTimeout(function(){ els.forEach(function(el){ fire(el); }); }, 1500);
 })();
 
-/* ═══════════════════════════════════════════════
-   STAT COUNTER — counts up when in view
-═══════════════════════════════════════════════ */
+/* ── Sticky particles ── */
 (function(){
-  var counters = Array.from(document.querySelectorAll('.stbn[data-count]'));
-  var fired = [];
-
-  function animateCount(el){
-    var target = parseInt(el.getAttribute('data-count'));
-    var duration = 1200;
-    var start = performance.now();
-    function step(now){
-      var elapsed = now - start;
-      var progress = Math.min(elapsed / duration, 1);
-      var ease = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(ease * target) + '+';
-      if(progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+  var bg = document.getElementById('ssbg');
+  if(!bg) return;
+  for(var i=0; i<20; i++){
+    var d = document.createElement('div');
+    d.className = 'ssp';
+    var sz = Math.random()*3+1;
+    d.style.cssText = 'position:absolute;width:'+sz+'px;height:'+sz+'px;left:'+(Math.random()*100)+'%;bottom:-10px;'
+      +'animation-duration:'+(Math.random()*14+8)+'s;animation-delay:'+(Math.random()*10)+'s;'
+      +(i%4===0?'background:var(--coral);':'background:rgba(255,255,255,.4);');
+    bg.appendChild(d);
   }
+})();
 
-  function checkCounters(){
-    counters.forEach(function(el, i){
-      if(fired[i]) return;
+/* ── Sticky statement ── */
+(function(){
+  var ssEl = document.getElementById('ss');
+  var ssI  = document.getElementById('ssI');
+  var words = Array.from(document.querySelectorAll('.w'));
+  var dots  = [document.getElementById('sd1'),document.getElementById('sd2'),document.getElementById('sd3')];
+  var n = words.length;
+  window.addEventListener('scroll', function(){
+    var rect = ssEl.getBoundingClientRect();
+    var prog = Math.max(0, Math.min(1, -rect.top / (ssEl.offsetHeight - window.innerHeight)));
+    var lit  = Math.min(n, Math.round(prog / 0.85 * n));
+    words.forEach(function(w,i){ w.classList.toggle('on', i<lit); });
+    ssI.classList.toggle('lit', lit>=n);
+    dots.forEach(function(d,i){ d.classList.toggle('on', lit >= Math.round((i+1)/dots.length*n)); });
+  }, {passive:true});
+})();
+
+/* ── Stat counters ── */
+(function(){
+  var boxes = Array.from(document.querySelectorAll('.stbn[data-target]'));
+  var done = [];
+  function countUp(el, target){
+    var start = performance.now();
+    var dur = 1200;
+    (function step(now){
+      var p = Math.min(1, (now-start)/dur);
+      var ease = 1 - Math.pow(1-p, 3);
+      el.textContent = Math.round(ease*target)+'+';
+      if(p<1) requestAnimationFrame(step);
+    })(start);
+  }
+  function check(){
+    boxes.forEach(function(el, i){
+      if(done[i]) return;
       var r = el.getBoundingClientRect();
-      if(r.top < window.innerHeight * 0.85){
-        fired[i] = true;
-        setTimeout(function(){ animateCount(el); }, i * 120);
+      if(r.top < window.innerHeight*0.88){
+        done[i] = true;
+        setTimeout(function(){ countUp(el, +el.getAttribute('data-target')); }, i*100);
       }
     });
-  }
-
-  window.addEventListener('scroll', checkCounters, {passive:true});
-  checkCounters();
-})();
-
-/* ═══════════════════════════════════════════════
-   PORTAL BAR CHART — animates in on scroll
-═══════════════════════════════════════════════ */
-(function(){
-  var portal = document.getElementById('portalUI');
-  if(!portal) return;
-  var fired = false;
-  function check(){
-    if(fired) return;
-    var r = portal.getBoundingClientRect();
-    if(r.top < window.innerHeight * 0.85){
-      fired = true;
-      portal.classList.add('in-view');
-    }
   }
   window.addEventListener('scroll', check, {passive:true});
   check();
 })();
 
-/* ═══════════════════════════════════════════════
-   CSS PARTICLE DOTS — sticky section
-═══════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   ROI CALCULATOR
+   Self-contained. No external dependencies.
+   Sliders use CSS custom property --pct for
+   the gradient fill on the track.
+   All DOM IDs unique and verified below.
+══════════════════════════════════════════ */
 (function(){
-  var bg = document.getElementById('ssbg');
-  if(!bg) return;
-  for(var i=0;i<24;i++){
-    var dot = document.createElement('div');
-    dot.className = 'ssp';
-    var size = Math.random()*3+1;
-    dot.style.cssText = [
-      'width:'+size+'px',
-      'height:'+size+'px',
-      'left:'+(Math.random()*100)+'%',
-      'bottom:-20px',
-      'position:absolute',
-      'animation-name:axFadeUp',
-      'animation-duration:'+(Math.random()*14+8)+'s',
-      'animation-delay:'+(Math.random()*10)+'s',
-      'animation-timing-function:linear',
-      'animation-iteration-count:infinite',
-      'opacity:0',
-      i%4===0?'background:var(--coral)':'background:rgba(255,255,255,.5)'
-    ].join(';');
-    bg.appendChild(dot);
+
+  /* -- Helpers -- */
+  function $id(id){ return document.getElementById(id); }
+  function fmt(n){ return '$' + Math.round(n).toLocaleString(); }
+
+  /* -- Update slider gradient -- */
+  function updateGrad(sl){
+    var pct = ((sl.value - sl.min) / (sl.max - sl.min) * 100).toFixed(1) + '%';
+    sl.style.setProperty('--pct', pct);
   }
-})();
 
-/* ═══════════════════════════════════════════════
-   STICKY STATEMENT — word by word
-═══════════════════════════════════════════════ */
-(function(){
-  var ssEl  = document.getElementById('ss');
-  var ssI   = document.getElementById('ssI');
-  var words = Array.from(document.querySelectorAll('.w'));
-  var dots  = [document.getElementById('sd1'),document.getElementById('sd2'),document.getElementById('sd3')];
-  var total = words.length;
-
-  function update(){
-    var rect  = ssEl.getBoundingClientRect();
-    var range = ssEl.offsetHeight - window.innerHeight;
-    var prog  = Math.max(0, Math.min(1, -rect.top / range));
-    var lit   = Math.round(prog / 0.85 * total);
-    lit = Math.min(lit, total);
-    words.forEach(function(w,i){ w.classList.toggle('on', i < lit); });
-    ssI.classList.toggle('lit', lit >= total);
-    dots.forEach(function(d,i){
-      d.classList.toggle('on', lit >= Math.round((i+1)/dots.length*total));
-    });
+  /* -- Grade system -- */
+  function grade(otaPct){
+    if(otaPct<=20) return {g:'A+',t:'Exceptional', s:'Under 20% OTA \u2014 excellent direct booking health', c:'#34d399', bg:'rgba(52,211,153,.15)'};
+    if(otaPct<=35) return {g:'A', t:'Strong',      s:'Low OTA dependency \u2014 strong margin position',    c:'#34d399', bg:'rgba(52,211,153,.12)'};
+    if(otaPct<=50) return {g:'B', t:'Average',     s:'Moderate OTA use \u2014 room for improvement',       c:'#60a5fa', bg:'rgba(96,165,250,.15)'};
+    if(otaPct<=65) return {g:'C', t:'At Risk',     s:otaPct+'% via OTA \u2014 significant margin exposure', c:'#fbbf24', bg:'rgba(251,191,36,.15)'};
+    if(otaPct<=75) return {g:'D', t:'Exposed',     s:'High OTA dependency \u2014 margin heavily impacted',  c:'#f97316', bg:'rgba(249,115,22,.15)'};
+    return              {g:'F', t:'Critical',    s:'OTA controls bookings \u2014 urgent action needed',  c:'#E8625A', bg:'rgba(232,98,90,.2)'};
   }
-  window.addEventListener('scroll', update, {passive:true});
-})();
 
-/* ─── FAQ accordion ─── */
-document./* ── FAQ accordion ── */
+  /* -- Pop animation -- */
+  function pop(el){
+    el.classList.remove('pop');
+    void el.offsetWidth;
+    el.classList.add('pop');
+  }
+
+  /* -- Set achievement -- */
+  function ach(id, icon, label, unlocked){
+    var el = $id(id);
+    if(!el) return;
+    if(unlocked){ el.classList.add('on'); el.querySelector('.ach-icon').textContent = icon; }
+    else        { el.classList.remove('on'); el.querySelector('.ach-icon').textContent = '\uD83D\uDD12'; }
+  }
+
+  /* -- Main calc -- */
+  function calc(){
+    var rooms = +$id('sl-rooms').value;
+    var adr   = +$id('sl-adr').value;
+    var ota   = +$id('sl-ota').value / 100;
+    var comm  = +$id('sl-comm').value / 100;
+    var occ   = +$id('sl-occ').value / 100;
+
+    /* Financials */
+    var total   = rooms * adr * occ * 365;
+    var otaRev  = total * ota;
+    var dirRev  = total * (1 - ota);
+    var otaComm = otaRev * comm;
+    var recover = otaRev * 0.25 * comm;
+    var adrLift = Math.round(adr * 0.08);
+    var projDir = dirRev + otaRev * 0.25;
+    var roi     = Math.round((recover + adr * 0.08 * rooms * occ * 365 * 0.5) / 60000);
+    var barMax  = Math.max(otaRev, projDir, dirRev) * 1.05 || 1;
+
+    function bw(v){ return Math.min(100, v/barMax*100).toFixed(1)+'%'; }
+
+    /* Display labels */
+    $id('dv-rooms').textContent = rooms;
+    $id('dv-adr').textContent   = '$' + adr;
+    $id('dv-ota').textContent   = Math.round(ota*100) + '%';
+    $id('dv-comm').textContent  = Math.round(comm*100) + '%';
+    $id('dv-occ').textContent   = Math.round(occ*100) + '%';
+
+    /* Metric cards */
+    var cv = $id('rv-comm'); pop(cv); cv.textContent = fmt(otaComm);
+    var rr = $id('rv-rec');  pop(rr); rr.textContent = fmt(recover);
+    $id('rv-adr').textContent = '$' + adrLift + '/night';
+    $id('rv-roi').textContent = roi + 'x';
+
+    /* Bar chart */
+    $id('rl-dir').textContent = fmt(dirRev);   $id('rb-dir').style.width = bw(dirRev);
+    $id('rl-ota').textContent = fmt(otaRev);   $id('rb-ota').style.width = bw(otaRev);
+    $id('rl-prj').textContent = fmt(projDir);  $id('rb-prj').style.width = bw(projDir);
+    $id('rl-com').textContent = fmt(otaComm);  $id('rb-com').style.width = bw(otaComm);
+
+    /* Grade */
+    var otaPct = Math.round(ota*100);
+    var g = grade(otaPct);
+    var badge = $id('roi-gbadge');
+    badge.textContent = g.g; badge.style.color = g.c; badge.style.background = g.bg;
+    $id('roi-gtitle').textContent = g.t; $id('roi-gtitle').style.color = g.c;
+    $id('roi-gsub').textContent   = g.s;
+
+    /* Achievements */
+    ach('ach-100k', '\uD83D\uDCB0', '$100k+ Recovery',  recover >= 100000);
+    ach('ach-5x',   '\uD83D\uDE80', '5x+ ROI',          roi >= 5);
+    ach('ach-a',    '\u2B50',       'Grade A',           otaPct <= 35);
+    ach('ach-dir',  '\uD83C\uDFAF', 'Direct Majority',   ota < 0.5);
+  }
+
+  /* -- Wire sliders -- */
+  var sliderIds = ['sl-rooms','sl-adr','sl-ota','sl-comm','sl-occ'];
+  sliderIds.forEach(function(id){
+    var sl = $id(id);
+    if(!sl){ console.warn('ROI slider not found:', id); return; }
+    updateGrad(sl);
+    sl.addEventListener('input',  function(){ updateGrad(this); calc(); });
+    sl.addEventListener('change', function(){ updateGrad(this); calc(); }); /* mobile fallback */
+  });
+
+  /* Initial render */
+  calc();
+
+})(); /* end ROI IIFE */
+
+/* ── FAQ accordion ── */
 document.querySelectorAll('.fi').forEach(function(item){
-  item.querySelector('.fibtn').addEventListener('click',function(){
-    var open = item.hasAttribute('data-open');
-    if(open){
+  item.querySelector('.fibtn').addEventListener('click', function(){
+    if(item.hasAttribute('data-open')){
       item.removeAttribute('data-open');
       item.querySelector('.fibtn').setAttribute('aria-expanded','false');
     } else {
@@ -1155,133 +1110,6 @@ document.querySelectorAll('.fi').forEach(function(item){
   });
 });
 
-/* ════════════════════════════════════════
-   ROI CALCULATOR — inline in main script
-   All DOM refs verified present above
-════════════════════════════════════════ */
-(function(){
-  var FIELDS = {
-    rooms: {id:'rs-rooms', displayId:'ri-rooms', fillId:'rf-rooms', min:20,  max:500, fmt:function(v){return v;}},
-    adr:   {id:'rs-adr',   displayId:'ri-adr',   fillId:'rf-adr',   min:80,  max:800, fmt:function(v){return '$'+v;}},
-    ota:   {id:'rs-ota',   displayId:'ri-ota',   fillId:'rf-ota',   min:10,  max:90,  fmt:function(v){return v+'%';}},
-    comm:  {id:'rs-comm',  displayId:'ri-comm',  fillId:'rf-comm',  min:12,  max:28,  fmt:function(v){return v+'%';}},
-    occ:   {id:'rs-occ',   displayId:'ri-occ',   fillId:'rf-occ',   min:30,  max:95,  fmt:function(v){return v+'%';}}
-  };
-
-  function fmt(n){ return '$'+Math.round(n).toLocaleString(); }
-
-  function updateFill(field, val){
-    var pct = ((val - field.min) / (field.max - field.min) * 100).toFixed(1) + '%';
-    var sl = document.getElementById(field.id);
-    if(sl) sl.style.setProperty('--sl-pct', pct);
-  }
-
-  function getGrade(otaPct){
-    if(otaPct <= 20) return {grade:'A+', title:'Exceptional', sub:'Under 20% OTA — excellent direct booking health', color:'#34d399', bg:'rgba(52,211,153,.15)'};
-    if(otaPct <= 35) return {grade:'A',  title:'Strong',      sub:'Low OTA dependency — strong margin position',     color:'#34d399', bg:'rgba(52,211,153,.12)'};
-    if(otaPct <= 50) return {grade:'B',  title:'Average',     sub:'Moderate OTA use — room for improvement',        color:'#60a5fa', bg:'rgba(96,165,250,.15)'};
-    if(otaPct <= 65) return {grade:'C',  title:'At Risk',     sub:otaPct+'% via OTA — significant margin exposure',  color:'#fbbf24', bg:'rgba(251,191,36,.15)'};
-    if(otaPct <= 75) return {grade:'D',  title:'Exposed',     sub:'High OTA dependency — margin heavily impacted',   color:'#f97316', bg:'rgba(249,115,22,.15)'};
-    return               {grade:'F',  title:'Critical',    sub:'OTA controls your bookings — urgent action needed',color:'#E8625A', bg:'rgba(232,98,90,.2)'};
-  }
-
-  function popAnimate(el){
-    el.classList.remove('pop');
-    void el.offsetWidth;
-    el.classList.add('pop');
-  }
-
-  function calcROI(){
-    var rooms = +document.getElementById('rs-rooms').value;
-    var adr   = +document.getElementById('rs-adr').value;
-    var ota   = +document.getElementById('rs-ota').value / 100;
-    var comm  = +document.getElementById('rs-comm').value / 100;
-    var occ   = +document.getElementById('rs-occ').value / 100;
-
-    var totalRev = rooms * adr * occ * 365;
-    var otaRev   = totalRev * ota;
-    var dirRev   = totalRev * (1 - ota);
-    var otaComm  = otaRev * comm;
-    var recover  = otaRev * 0.25 * comm;
-    var adrLift  = adr * 0.08;
-    var projDir  = dirRev + otaRev * 0.25;
-    var roi      = (recover + adrLift * rooms * occ * 365 * 0.5) / 60000;
-    var barMax   = Math.max(otaRev, projDir, dirRev) * 1.05;
-    function bw(v){ return Math.min(100, v / barMax * 100).toFixed(1) + '%'; }
-
-    /* ── Update metric cards ── */
-    var otaEl     = document.getElementById('rr-ota');
-    var recEl     = document.getElementById('rr-recover');
-    var adrEl     = document.getElementById('rr-adr');
-    var roiEl     = document.getElementById('rr-roi');
-
-    if(otaEl){ popAnimate(otaEl); otaEl.textContent = fmt(otaComm); }
-    if(recEl){ popAnimate(recEl); recEl.textContent = fmt(recover); }
-    if(adrEl){ adrEl.textContent = '$' + Math.round(adrLift) + '/night'; }
-    if(roiEl){ roiEl.textContent = Math.round(roi) + 'x'; }
-
-    /* ── Bar chart ── */
-    var setBar = function(id, val, labelId, labelVal){
-      var b = document.getElementById(id); if(b) b.style.width = bw(val);
-      var l = document.getElementById(labelId); if(l) l.textContent = fmt(labelVal);
-    };
-    setBar('rb-direct', dirRev,   'rl-direct', dirRev);
-    setBar('rb-ota',    otaRev,   'rl-ota',    otaRev);
-    setBar('rb-proj',   projDir,  'rl-proj',   projDir);
-    setBar('rb-comm',   otaComm,  'rl-comm',   otaComm);
-
-    /* ── Grade system ── */
-    var otaPct = Math.round(ota * 100);
-    var g = getGrade(otaPct);
-    var badge = document.getElementById('rg-badge');
-    var titleEl = document.getElementById('rg-title');
-    var subEl = document.getElementById('rg-sub');
-    if(badge){ badge.textContent = g.grade; badge.style.color = g.color; badge.style.background = g.bg; }
-    if(titleEl){ titleEl.textContent = g.title; titleEl.style.color = g.color; }
-    if(subEl){ subEl.textContent = g.sub; }
-
-    /* ── Achievements ── */
-    function setAch(id, icon, label, unlocked){
-      var el = document.getElementById(id);
-      if(!el) return;
-      if(unlocked){
-        el.classList.add('unlocked');
-        el.innerHTML = '<span class="ach-icon">'+icon+'</span> '+label;
-      } else {
-        el.classList.remove('unlocked');
-        el.innerHTML = '<span class="ach-icon">🔒</span> '+label;
-      }
-    }
-    setAch('ach-100k',  '💰', '$100k+ Recovery',  recover >= 100000);
-    setAch('ach-5x',    '🚀', '5x+ ROI',          roi >= 5);
-    setAch('ach-grade-a','⭐', 'Grade A',           otaPct <= 35);
-    setAch('ach-margin', '🎯', 'Direct Majority',   ota < 0.5);
-  }
-
-  /* ── Wire sliders ── */
-  Object.keys(FIELDS).forEach(function(key){
-    var f   = FIELDS[key];
-    var sl  = document.getElementById(f.id);
-    var dsp = document.getElementById(f.displayId);
-    if(!sl) return;
-
-    function update(){
-      var val = +sl.value;
-      updateFill(f, val);
-      if(dsp) dsp.textContent = f.fmt(val);
-      calcROI();
-    }
-
-    // Set initial fill
-    updateFill(f, +sl.value);
-
-    sl.addEventListener('input',  update);
-    sl.addEventListener('change', update); // fallback for some mobile browsers
-  });
-
-  /* ── Initial render ── */
-  calcROI();
-})();
 </script>
 </body>
 </html>
