@@ -20,7 +20,7 @@ a{text-decoration:none;color:inherit;}ul,ol{list-style:none;}
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;}body.mouse :focus-visible{outline:none;}
 
 #nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
-.nlogo{font-family:var(--Fd);font-size:18px;letter-spacing:5px;color:var(--text);}.nlogo .dot{color:var(--coral);}
+.nlogo-w{height:32px;width:auto;display:block;} .nlogo-d{height:32px;width:auto;display:none;} #nav.sc .nlogo-w{display:none;} #nav.sc .nlogo-d{display:block;} @media(prefers-color-scheme:dark){#nav.sc .nlogo-w{display:block;}#nav.sc .nlogo-d{display:none;}}
 .nlinks{display:flex;gap:32px;position:absolute;left:50%;transform:translateX(-50%);}
 .nlinks a{font-size:12px;letter-spacing:.5px;color:var(--text-3);transition:color .2s;}.nlinks a:hover,.nlinks a.cur{color:var(--text);}
 .ncta{font-size:12px;font-weight:500;padding:8px 18px;background:var(--coral);color:#fff;border-radius:980px;transition:background .2s;}.ncta:hover{background:var(--coral-dk);}
@@ -89,7 +89,7 @@ a{text-decoration:none;color:inherit;}ul,ol{list-style:none;}
 
 footer{background:var(--bg);border-top:1px solid var(--line);padding:72px var(--pad) 48px;}
 .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
-.flogo{font-family:var(--Fd);font-size:20px;letter-spacing:5px;display:block;margin-bottom:14px;color:var(--text);}.flogo .dot{color:var(--coral);}
+.flogo-img{height:30px;width:auto;display:block;margin-bottom:16px;}
 .ftagl{font-size:13px;line-height:1.75;color:var(--text-3);max-width:260px;}
 .fch{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:18px;}
 .fl li{margin-bottom:12px;}.fl a{font-size:13px;color:var(--text-3);transition:color .2s;}.fl a:hover{color:var(--text);}
@@ -104,7 +104,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:72px var(--
 <body>
 <a class="skip" href="#main">Skip to main content</a>
 <nav id="nav" aria-label="Main navigation">
-  <a href="index.html" class="nlogo">J<span class="dot" aria-hidden="true">·</span>MEDIA</a>
+  <a href="index.html" aria-label="JMEDIA Productions home"><img src="jmedia-logo.png" alt="JMEDIA Productions" class="nlogo-w"><img src="jmedia-logo-light.png" alt="JMEDIA Productions" class="nlogo-d"></a>
   <div class="nlinks"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html" class="cur">About</a><a href="contact.html">Contact</a></div>
   <a href="contact.html" class="ncta">Book a Free Audit</a>
 </nav>
@@ -230,12 +230,9 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:72px var(--
 </section>
 
 </main>
-<footer><div class="inner"><div class="fg"><div><a href="index.html" class="flogo">J<span class="dot" aria-hidden="true">·</span>MEDIA</a><p class="ftagl">Ongoing cinematic content for hotels, resorts, and experience-driven brands. Orlando, FL.</p></div><div><p class="fch">Navigate</p><ul class="fl"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div><div><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div><div><p class="fch">Contact</p><ul class="fl"><li><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>Orlando, FL</span></li></ul></div></div><div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC.</span><span>Privacy &middot; Terms</span></div></div></footer>
-<script>
+<footer><div class="inner"><div class="fg"><div><img src="jmedia-logo.png" alt="JMEDIA Productions" class="flogo-img"><p class="ftagl">Ongoing cinematic content for hotels, resorts, and experience-driven brands. Orlando, FL.</p></div><div><p class="fch">Navigate</p><ul class="fl"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div><div><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div><div><p class="fch">Contact</p><ul class="fl"><li><a href="/cdn-cgi/l/email-protection#c4adaaa2ab84aee9a9a1a0ada5b4b6aba0b1a7b0adabaab7eaa7aba9"><span class="__cf_email__" data-cfemail="5930373f36193374343c3d3038292b363d2c3a2d3036372a773a3634">[email&#160;protected]</span></a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>Orlando, FL</span></li></ul></div></div><div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC.</span><span>Privacy &middot; Terms</span></div></div></footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('mousedown',function(){document.body.classList.add('mouse');});
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('sc',window.scrollY>60);},{passive:true});
 document.addEventListener('keydown',function(e){if(e.key==='Tab')document.body.classList.remove('mouse');});
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.1});
-document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
-</script>
-</body>
-</html>
+var obs=new Inters
