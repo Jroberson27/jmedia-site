@@ -79,11 +79,12 @@ body.mouse :focus-visible{outline:none;}
   display:flex;flex-direction:column;justify-content:flex-end;
   overflow:hidden;background:var(--bg-deep);
 }
-/* WebGL-style animated background canvas */
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
-.hbar{position:absolute;left:0;right:0;height:10%;background:var(--bg-deep);z-index:3;pointer-events:none;}
+/* Video background */
+#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+#hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.45) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.7) 100%);z-index:2;}
+.hbar{position:absolute;left:0;right:0;height:10%;background:var(--bg-deep);z-index:4;pointer-events:none;}
 .hbar.t{top:0;}.hbar.b{bottom:0;}
-.hcon{position:relative;z-index:4;padding:0 80px 100px;max-width:calc(var(--max) + 160px);}
+.hcon{position:relative;z-index:5;padding:0 80px 100px;max-width:calc(var(--max) + 160px);}
 /* Hero logo */
 .hero-logo{
   display:block;height:48px;width:auto;margin-bottom:44px;
@@ -178,17 +179,27 @@ body.mouse :focus-visible{outline:none;}
   opacity:0;transition:opacity .8s;pointer-events:none;z-index:2;
 }
 .ssi.lit .ssglow{opacity:1;}
-.sstxt{position:relative;z-index:3;text-align:center;max-width:900px;padding:0 48px;}
+.sstxt{position:relative;z-index:3;text-align:center;max-width:1100px;padding:0 48px;}
 .sl{
-  font-family:var(--Fd);font-size:clamp(48px,7vw,104px);
-  line-height:.98;letter-spacing:1px;display:block;
-  color:#fff;opacity:.06;
-  transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),color .5s;
-  transform:translateY(16px);
+  font-family:var(--Fd);font-size:clamp(64px,9vw,130px);
+  line-height:.96;letter-spacing:1px;display:block;
+  margin-bottom:4px;
 }
-.sl.on{opacity:1;transform:translateY(0);}
-.sl.cr{color:var(--coral);}
 .sl em{font-family:var(--Fs);font-style:italic;font-size:.9em;}
+/* Each word is a span — starts dim, highlights coral as scroll passes */
+.w{
+  display:inline-block;
+  color:rgba(255,255,255,.1);
+  transition:color .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);
+  transform:translateY(4px);
+}
+.w.on{
+  color:#fff;
+  transform:translateY(0);
+}
+.w.cr{
+  color:var(--coral);
+}
 .ssdots{position:absolute;right:44px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:4;}
 .sdot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,transform .3s;}
 .sdot.on{background:var(--coral);transform:scale(1.6);}
@@ -397,7 +408,10 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 
 <!-- ═══ HERO ═══ -->
 <section id="hero" aria-label="Introduction">
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <video id="hero-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="Hero Shot4.mp4" type="video/mp4">
+  </video>
+  <div id="hero-overlay" aria-hidden="true"></div>
   <div class="hbar t" aria-hidden="true"></div>
   <div class="hbar b" aria-hidden="true"></div>
   <div class="hcon">
@@ -467,9 +481,9 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
     <canvas id="ss-canvas"></canvas>
     <div class="ssglow"></div>
     <div class="sstxt">
-      <span class="sl" id="sl1">Most hotel content</span>
-      <span class="sl" id="sl2">is a one-time expense</span>
-      <span class="sl cr" id="sl3"><em>that solves nothing long term.</em></span>
+      <span class="sl" id="sl1"><span class="w" data-i="0">Most</span> <span class="w" data-i="1">hotel</span> <span class="w" data-i="2">content</span></span>
+      <span class="sl" id="sl2"><span class="w" data-i="3">is</span> <span class="w" data-i="4">a</span> <span class="w" data-i="5">one-time</span> <span class="w" data-i="6">expense</span></span>
+      <span class="sl" id="sl3"><span class="w cr" data-i="7"><em>that</em></span> <span class="w cr" data-i="8"><em>solves</em></span> <span class="w cr" data-i="9"><em>nothing</em></span> <span class="w cr" data-i="10"><em>long</em></span> <span class="w cr" data-i="11"><em>term.</em></span></span>
     </div>
     <div class="ssdots">
       <div class="sdot" id="sd1"></div>
@@ -671,13 +685,13 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
       </div>
       <div><p class="fch">Navigate</p><ul class="fl"><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div>
-      <div><p class="fch">Contact</p><ul class="fl"><li><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Ste 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
+      <div><p class="fch">Contact</p><ul class="fl"><li><a href="/cdn-cgi/l/email-protection#7e171018113e1453131b1a171f0e0c111a0b1d0a1711100d501d1113"><span class="__cf_email__" data-cfemail="f990979f96b993d4949c9d9098898b969d8c9a8d9096978ad79a9694">[email&#160;protected]</span></a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Ste 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
     </div>
     <div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC. All rights reserved.</span><span>Privacy &middot; Terms</span></div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── Mouse detection ── */
 document.addEventListener('mousedown',function(){document.body.classList.add('mouse');});
 document.addEventListener('keydown',function(e){if(e.key==='Tab')document.body.classList.remove('mouse');});
@@ -695,116 +709,11 @@ window.addEventListener('load',function(){
   setTimeout(function(){document.getElementById('hBt').classList.add('in');},760);
 });
 
-/* ══════════════════════════════════════════
-   HERO CANVAS — Animated gradient noise
-   Smooth, slow-moving light blobs with
-   cinematic grain overlay
-══════════════════════════════════════════ */
+/* ── Hero video fallback ── */
 (function(){
-  var canvas = document.getElementById('hero-canvas');
-  if(!canvas) return;
-  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-
-  if(!gl){
-    // Fallback: CSS animated gradient
-    canvas.style.display='none';
-    document.getElementById('hero').style.background =
-      'radial-gradient(ellipse 80% 60% at 55% 40%,rgba(30,12,6,.95),transparent 70%),linear-gradient(170deg,#0e0806,#080808 50%,#04040a)';
-    return;
-  }
-
-  var vs = `
-    attribute vec2 a_pos;
-    void main(){ gl_Position = vec4(a_pos,0,1); }
-  `;
-  var fs = `
-    precision mediump float;
-    uniform float u_time;
-    uniform vec2 u_res;
-
-    vec3 hash3(vec2 p){
-      vec3 q = vec3(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)),dot(p,vec2(419.2,371.9)));
-      return fract(sin(q)*43758.5453);
-    }
-    float noise(vec2 p){
-      vec2 i=floor(p), f=fract(p);
-      f=f*f*(3.-2.*f);
-      float n=dot(i,vec2(1.,57.));
-      return mix(mix(fract(sin(n)*4375.85),fract(sin(n+1.)*4375.85),f.x),
-                 mix(fract(sin(n+57.)*4375.85),fract(sin(n+58.)*4375.85),f.x),f.y);
-    }
-    float fbm(vec2 p){
-      float v=0.,a=.5;
-      for(int i=0;i<5;i++){v+=a*noise(p);p=p*2.1+u_time*.04;a*=.5;}
-      return v;
-    }
-
-    void main(){
-      vec2 uv = gl_FragCoord.xy / u_res;
-      uv.y = 1.-uv.y;
-
-      // Animated noise for organic movement
-      float t = u_time * 0.12;
-      vec2 q = vec2(fbm(uv + t*0.3), fbm(uv + vec2(1.7,9.2)));
-      vec2 r = vec2(fbm(uv + 1.0*q + vec2(1.7,9.2) + 0.15*t),
-                    fbm(uv + 1.0*q + vec2(8.3,2.8) + 0.126*t));
-      float f = fbm(uv + r);
-
-      // Deep dark base
-      vec3 col = mix(vec3(0.03,0.02,0.01), vec3(0.12,0.04,0.02), f);
-      // Coral bloom near center-right
-      vec3 coral = vec3(0.91,0.38,0.35);
-      float bloom = smoothstep(.4,.9,f) * smoothstep(.6,.2,length(uv - vec2(.65,.4)));
-      col = mix(col, coral * .5, bloom * .45);
-      // Deep amber undertone
-      col = mix(col, vec3(0.18,0.07,0.01), smoothstep(.3,.7,f)*0.3);
-      // Vignette
-      float vig = smoothstep(.0,.5,length(uv - .5)*1.2);
-      col *= (1.-vig*.7);
-      // Subtle grain
-      float grain = (fract(sin(dot(gl_FragCoord.xy,vec2(12.98,78.23)))*43758.5)*2.-1.) * .025;
-      col += grain;
-
-      gl_FragColor = vec4(clamp(col,0.,1.),1.);
-    }
-  `;
-
-  function compile(type,src){
-    var s=gl.createShader(type);
-    gl.shaderSource(s,src);gl.compileShader(s);
-    return s;
-  }
-  var prog=gl.createProgram();
-  gl.attachShader(prog,compile(gl.VERTEX_SHADER,vs));
-  gl.attachShader(prog,compile(gl.FRAGMENT_SHADER,fs));
-  gl.linkProgram(prog);gl.useProgram(prog);
-
-  var buf=gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  var loc=gl.getAttribLocation(prog,'a_pos');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-
-  var uTime=gl.getUniformLocation(prog,'u_time');
-  var uRes=gl.getUniformLocation(prog,'u_res');
-  var start=performance.now();
-
-  function resize(){
-    canvas.width=canvas.offsetWidth;
-    canvas.height=canvas.offsetHeight;
-    gl.viewport(0,0,canvas.width,canvas.height);
-  }
-  resize();
-  window.addEventListener('resize',resize,{passive:true});
-
-  function frame(){
-    gl.uniform1f(uTime,(performance.now()-start)*.001);
-    gl.uniform2f(uRes,canvas.width,canvas.height);
-    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-    requestAnimationFrame(frame);
-  }
-  frame();
+  var v = document.getElementById('hero-video');
+  if(!v) return;
+  v.play().catch(function(){});
 })();
 
 /* ══════════════════════════════════════════
@@ -898,10 +807,10 @@ window.addEventListener('load',function(){
   draw();
 
   // Track scroll progress through sticky section
-  var ssEl=document.getElementById('ss');
+  var ssSect=document.getElementById('ss');
   window.addEventListener('scroll',function(){
-    var rect=ssEl.getBoundingClientRect();
-    var total=ssEl.offsetHeight-window.innerHeight;
+    var rect=ssSect.getBoundingClientRect();
+    var total=ssSect.offsetHeight-window.innerHeight;
     scrollProgress=Math.max(0,Math.min(1,-rect.top/total));
   },{passive:true});
 })();
@@ -914,26 +823,40 @@ var obs=new IntersectionObserver(function(entries){
 },{threshold:0.1});
 document.querySelectorAll('.rv,.rv-l,.rv-s,.stbox,.hws,.vc').forEach(function(el){obs.observe(el);});
 
-/* ── Sticky statement ── */
-var ssEl=document.getElementById('ss'),ssI=document.getElementById('ssI');
-var sls=[document.getElementById('sl1'),document.getElementById('sl2'),document.getElementById('sl3')];
-var sds=[document.getElementById('sd1'),document.getElementById('sd2'),document.getElementById('sd3')];
-window.addEventListener('scroll',function(){
-  var rect=ssEl.getBoundingClientRect(),total=ssEl.offsetHeight-window.innerHeight;
-  var prog=Math.max(0,Math.min(1,-rect.top/total)),step=Math.floor(prog*4);
-  sls.forEach(function(l,i){l.classList.toggle('on',i<=step-1||step>=3);});
-  sds.forEach(function(d,i){d.classList.toggle('on',i===Math.min(step-1,2));});
-  ssI.classList.toggle('lit',step>=3);
-},{passive:true});
+/* ── Sticky statement — word by word ── */
+(function(){
+  var ssEl = document.getElementById('ss');
+  var ssI  = document.getElementById('ssI');
+  var words = Array.from(document.querySelectorAll('.w'));
+  var dots  = [document.getElementById('sd1'),document.getElementById('sd2'),document.getElementById('sd3')];
+  var total = words.length; // 12 words
+
+  window.addEventListener('scroll', function(){
+    var rect  = ssEl.getBoundingClientRect();
+    var range = ssEl.offsetHeight - window.innerHeight;
+    var prog  = Math.max(0, Math.min(1, -rect.top / range));
+
+    // How many words to light up — spread across 0–85% of scroll
+    var lit = Math.round(prog / 0.85 * total);
+    lit = Math.min(lit, total);
+
+    words.forEach(function(w, i){
+      w.classList.toggle('on', i < lit);
+    });
+
+    // Glow kicks in when all words are lit
+    ssI.classList.toggle('lit', lit >= total);
+
+    // Dots: 3 dots mapped to thirds of words
+    dots.forEach(function(d, i){
+      var threshold = Math.round((i + 1) / dots.length * total);
+      d.classList.toggle('on', lit >= threshold);
+    });
+  }, {passive:true});
+})();
 
 /* ── FAQ ── */
 document.querySelectorAll('.fi').forEach(function(item){
   item.querySelector('.fibtn').addEventListener('click',function(){
     var open=item.hasAttribute('data-open');
-    if(open){item.removeAttribute('data-open');item.querySelector('.fibtn').setAttribute('aria-expanded','false');}
-    else{item.setAttribute('data-open','');item.querySelector('.fibtn').setAttribute('aria-expanded','true');}
-  });
-});
-</script>
-</body>
-</html>
+    
