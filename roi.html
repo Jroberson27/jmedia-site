@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROI Calculator — JMEDIA Productions</title>
+<meta name="description" content="See exactly how much JMEDIA content partnerships could recover in OTA commission and grow direct bookings for your property.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--bg-alt:#f5f5f7;--bg-deep:#080808;--bg-card:#fff;--bg-card2:#f5f5f7;
+  --text:#1d1d1f;--text-2:#424245;--text-3:#6e6e73;
+  --text-inv:#f5f5f7;--text-inv2:rgba(255,255,255,.72);
+  --coral:#E8625A;--coral-dk:#c94e47;--coral-bg:rgba(232,98,90,.08);--coral-brd:rgba(232,98,90,.25);
+  --line:rgba(0,0,0,.08);--line-inv:rgba(255,255,255,.10);
+  --nav-bg:rgba(255,255,255,.88);
+  --sh-sm:0 2px 16px rgba(0,0,0,.06);--sh-md:0 16px 56px rgba(0,0,0,.14);
+  --Fd:'Bebas Neue',sans-serif;--Fs:'Cormorant Garamond',serif;--Fb:'DM Sans',sans-serif;
+  --max:1200px;--pad:80px;
+  --green:#34d399;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#000;--bg-alt:#111;--bg-deep:#000;--bg-card:#1c1c1e;--bg-card2:#2c2c2e;
+  --text:#f5f5f7;--text-2:#aeaeb2;--text-3:#6e6e73;
+  --line:rgba(255,255,255,.10);--nav-bg:rgba(0,0,0,.88);
+  --sh-sm:0 2px 16px rgba(0,0,0,.4);--sh-md:0 16px 56px rgba(0,0,0,.6);
+}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);color:var(--text);font-family:var(--Fb);font-weight:300;overflow-x:hidden;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);}
+.nlogo-w{height:32px;width:auto;display:none;}
+.nlogo-d{height:32px;width:auto;display:block;}
+@media(prefers-color-scheme:dark){.nlogo-w{display:block;}.nlogo-d{display:none;}}
+.nlinks{display:flex;gap:32px;position:absolute;left:50%;transform:translateX(-50%);}
+.nlinks a{font-size:12px;letter-spacing:.5px;color:var(--text-3);transition:color .2s;}.nlinks a:hover,.nlinks a.cur{color:var(--text);}
+.ncta{font-size:12px;font-weight:500;padding:9px 20px;background:var(--coral);color:#fff;border-radius:980px;transition:background .2s,transform .15s;}
+.ncta:hover{background:var(--coral-dk);transform:translateY(-1px);}
+
+/* PAGE HERO */
+.pg-hero{padding:140px var(--pad) 80px;background:var(--bg-deep);position:relative;overflow:hidden;}
+.pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 15% 80%,rgba(232,98,90,.10),transparent 55%);pointer-events:none;}
+.ph-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:flex-end;}
+.ph-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:16px;}
+.ph-h{font-family:var(--Fd);font-size:clamp(52px,7vw,110px);line-height:.9;letter-spacing:1px;color:#fff;margin-bottom:0;}
+.ph-h em{font-family:var(--Fs);font-style:italic;color:var(--coral);font-size:.88em;}
+.ph-sub{font-size:16px;line-height:1.75;color:rgba(255,255,255,.6);}.ph-sub strong{color:#fff;font-weight:400;}
+
+/* CALC LAYOUT */
+.calc-wrap{max-width:var(--max);margin:0 auto;padding:80px var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+
+/* INPUTS PANEL */
+.inputs-panel{background:var(--bg-card);border:1px solid var(--line);border-radius:24px;padding:48px;box-shadow:var(--sh-sm);position:sticky;top:80px;}
+.panel-title{font-family:var(--Fd);font-size:28px;letter-spacing:1px;color:var(--text);margin-bottom:8px;}
+.panel-sub{font-size:13px;color:var(--text-3);margin-bottom:40px;line-height:1.6;}
+.field-group{margin-bottom:32px;}
+.field-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.fl-name{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2);}
+.fl-value{font-family:var(--Fd);font-size:22px;letter-spacing:1px;color:var(--coral);}
+/* Sliders */
+input[type=range]{
+  width:100%;-webkit-appearance:none;appearance:none;
+  height:4px;border-radius:4px;outline:none;cursor:pointer;
+  background:linear-gradient(to right,var(--coral) 0%,var(--coral) var(--val,50%),var(--line) var(--val,50%),var(--line) 100%);
+  transition:background .1s;
+}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--coral);box-shadow:0 2px 8px rgba(232,98,90,.4);transition:transform .2s,box-shadow .2s;}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);box-shadow:0 4px 16px rgba(232,98,90,.5);}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:none;border-radius:50%;background:var(--coral);box-shadow:0 2px 8px rgba(232,98,90,.4);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:var(--text-3);letter-spacing:.5px;}
+
+/* RESULTS PANEL */
+.results-panel{display:flex;flex-direction:column;gap:20px;}
+
+/* Summary cards */
+.res-card{background:var(--bg-card);border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:var(--sh-sm);transition:transform .3s cubic-bezier(.16,1,.3,1);}
+.res-card:hover{transform:translateY(-4px);}
+.res-card.highlight{background:var(--bg-deep);border-color:rgba(232,98,90,.3);}
+.res-card.highlight::before{content:'';display:block;width:40px;height:3px;background:var(--coral);border-radius:2px;margin-bottom:20px;}
+.rc-label{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.res-card.highlight .rc-label{color:rgba(255,255,255,.4);}
+.rc-value{font-family:var(--Fd);font-size:clamp(40px,4vw,64px);letter-spacing:-1px;line-height:1;color:var(--coral);margin-bottom:6px;}
+.rc-sub{font-size:13px;color:var(--text-3);line-height:1.5;}
+.res-card.highlight .rc-sub{color:rgba(255,255,255,.5);}
+.rc-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);border-radius:980px;padding:4px 12px;font-size:11px;font-weight:500;color:var(--green);margin-top:10px;}
+
+/* Visualization */
+.viz-card{background:var(--bg-card);border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:var(--sh-sm);}
+.viz-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:24px;}
+.viz-bars{display:flex;flex-direction:column;gap:16px;}
+.vbar-row{display:flex;flex-direction:column;gap:6px;}
+.vbar-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--text-2);}
+.vbar-labels span:last-child{font-weight:500;color:var(--text);}
+.vbar-track{height:10px;background:var(--bg-alt);border-radius:10px;overflow:hidden;}
+.vbar-fill{height:100%;border-radius:10px;transition:width .8s cubic-bezier(.16,1,.3,1);}
+.vbar-fill.coral{background:var(--coral);}
+.vbar-fill.green{background:var(--green);}
+.vbar-fill.blue{background:#60a5fa;}
+
+/* Projection table */
+.proj-card{background:var(--bg-card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--sh-sm);}
+.proj-head{padding:20px 28px;background:var(--bg-alt);border-bottom:1px solid var(--line);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);}
+.proj-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:16px 28px;border-bottom:1px solid var(--line);align-items:center;transition:background .2s;}
+.proj-row:last-child{border-bottom:none;}
+.proj-row:hover{background:var(--bg-alt);}
+.proj-row.header{background:var(--bg-alt);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);}
+.proj-row.total{background:var(--coral-bg);border-top:2px solid var(--coral-brd);}
+.pr-period{font-size:13px;color:var(--text-2);}
+.pr-current{font-size:13px;color:var(--text-3);}
+.pr-projected{font-family:var(--Fd);font-size:18px;letter-spacing:.5px;color:var(--coral);}
+.proj-row.total .pr-projected{font-size:22px;}
+
+/* CTA bottom */
+.roi-cta{background:var(--bg-deep);border-radius:24px;padding:56px;text-align:center;position:relative;overflow:hidden;margin-top:0;}
+.roi-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(232,98,90,.12),transparent);pointer-events:none;}
+.roi-cta-h{font-family:var(--Fd);font-size:clamp(36px,4vw,56px);letter-spacing:1px;color:#fff;margin-bottom:12px;position:relative;z-index:1;}
+.roi-cta-h em{font-family:var(--Fs);font-style:italic;color:var(--coral);}
+.roi-cta-sub{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:28px;position:relative;z-index:1;}
+.roi-cta-sub strong{color:#fff;font-weight:400;}
+.btn-pill{display:inline-flex;align-items:center;font-size:13px;font-weight:500;padding:14px 32px;border-radius:980px;background:var(--coral);color:#fff;transition:background .2s,transform .2s,box-shadow .2s;position:relative;z-index:1;}
+.btn-pill:hover{background:var(--coral-dk);transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,98,90,.4);}
+
+/* Disclaimer */
+.disclaimer{max-width:var(--max);margin:0 auto;padding:0 var(--pad) 80px;font-size:12px;color:var(--text-3);line-height:1.6;text-align:center;}
+
+footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padding:72px var(--pad) 48px;}
+.inner{max-width:var(--max);margin:0 auto;}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
+.flogo-img{height:30px;width:auto;display:block;margin-bottom:16px;}
+.ftagl{font-size:13px;line-height:1.75;color:rgba(255,255,255,.45);max-width:260px;margin-bottom:24px;}
+.fsocs{display:flex;gap:8px;}
+.fsoc{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:rgba(255,255,255,.4);transition:border-color .2s,color .2s;}
+.fsoc:hover{border-color:var(--coral);color:var(--coral);}
+.fch{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px;}
+.fl{list-style:none;}.fl li{margin-bottom:12px;}
+.fl a{font-size:13px;color:rgba(255,255,255,.45);transition:color .2s;}
+.fl a:hover{color:rgba(255,255,255,.9);}
+.fbot{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:12px;}
+
+@keyframes countUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.counting{animation:countUp .3s ease both;}
+
+@media(max-width:960px){
+  :root{--pad:24px;}
+  #nav{padding:0 20px;}.nlinks{display:none;}
+  .ph-inner,.calc-wrap,.fg{grid-template-columns:1fr;}
+  .proj-row{grid-template-columns:1fr 1fr;}
+  .proj-row .pr-current{display:none;}
+  .proj-row.header .pr-current{display:none;}
+  .inputs-panel{position:static;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Main navigation">
+  <a href="index.html" aria-label="JMEDIA Productions home">
+    <img src="jmedia-logo.png" alt="JMEDIA Productions" class="nlogo-w">
+    <img src="jmedia-logo-light.png" alt="JMEDIA Productions" class="nlogo-d">
+  </a>
+  <div class="nlinks">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="ncta">Book a Free Audit</a>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="pg-hero">
+  <div class="ph-inner">
+    <div>
+      <span class="ph-eyebrow">ROI Calculator</span>
+      <h1 class="ph-h">See Your<br>Numbers <em>Before</em><br>You Commit.</h1>
+    </div>
+    <p class="ph-sub">Adjust your property details and see exactly what a content partnership could return &mdash; in OTA commission recovered, direct booking revenue, and ADR lift. <strong>All estimates are based on industry benchmarks.</strong></p>
+  </div>
+</header>
+
+<main>
+<div class="calc-wrap">
+
+  <!-- INPUTS -->
+  <aside class="inputs-panel" aria-label="Calculator inputs">
+    <h2 class="panel-title">Your Property</h2>
+    <p class="panel-sub">Drag the sliders to match your property. Results update instantly.</p>
+
+    <div class="field-group">
+      <div class="field-label">
+        <span class="fl-name">Number of Rooms</span>
+        <span class="fl-value" id="v-rooms">120</span>
+      </div>
+      <input type="range" id="s-rooms" min="20" max="500" value="120" step="5" aria-label="Number of rooms">
+      <div class="range-labels"><span>20</span><span>500</span></div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">
+        <span class="fl-name">Average Daily Rate</span>
+        <span class="fl-value" id="v-adr">$185</span>
+      </div>
+      <input type="range" id="s-adr" min="80" max="800" value="185" step="5" aria-label="Average daily rate in dollars">
+      <div class="range-labels"><span>$80</span><span>$800</span></div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">
+        <span class="fl-name">Current OTA Dependency</span>
+        <span class="fl-value" id="v-ota">55%</span>
+      </div>
+      <input type="range" id="s-ota" min="10" max="90" value="55" step="1" aria-label="Percentage of bookings from OTAs">
+      <div class="range-labels"><span>10%</span><span>90%</span></div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">
+        <span class="fl-name">OTA Commission Rate</span>
+        <span class="fl-value" id="v-comm">18%</span>
+      </div>
+      <input type="range" id="s-comm" min="12" max="28" value="18" step="1" aria-label="OTA commission rate percentage">
+      <div class="range-labels"><span>12%</span><span>28%</span></div>
+    </div>
+
+    <div class="field-group" style="margin-bottom:0;">
+      <div class="field-label">
+        <span class="fl-name">Avg Occupancy Rate</span>
+        <span class="fl-value" id="v-occ">68%</span>
+      </div>
+      <input type="range" id="s-occ" min="30" max="95" value="68" step="1" aria-label="Average occupancy rate percentage">
+      <div class="range-labels"><span>30%</span><span>95%</span></div>
+    </div>
+  </aside>
+
+  <!-- RESULTS -->
+  <div class="results-panel" aria-live="polite" aria-label="Calculator results">
+
+    <!-- Top 3 metric cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="res-card highlight">
+        <div class="rc-label">Annual OTA Commission</div>
+        <div class="rc-value" id="r-ota-cost">$0</div>
+        <div class="rc-sub">Currently paid to Expedia & Booking.com</div>
+      </div>
+      <div class="res-card highlight">
+        <div class="rc-label">Recoverable Per Year</div>
+        <div class="rc-value" id="r-recoverable">$0</div>
+        <div class="rc-sub">If 25% of OTA bookings shift to direct</div>
+        <div class="rc-badge" id="r-badge">&#8593; Est. recovery</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div class="res-card">
+        <div class="rc-label">ADR Lift Potential</div>
+        <div class="rc-value" id="r-adr-lift" style="font-size:40px;">$0</div>
+        <div class="rc-sub">Per room per night with premium positioning</div>
+      </div>
+      <div class="res-card">
+        <div class="rc-label">Monthly OTA Cost</div>
+        <div class="rc-value" id="r-monthly" style="font-size:40px;">$0</div>
+        <div class="rc-sub">Commission leaving the property monthly</div>
+      </div>
+      <div class="res-card">
+        <div class="rc-label">Content ROI</div>
+        <div class="rc-value" id="r-roi" style="font-size:40px;">0x</div>
+        <div class="rc-sub">Estimated return vs. partnership cost</div>
+      </div>
+    </div>
+
+    <!-- Bar chart visualization -->
+    <div class="viz-card">
+      <div class="viz-title">Revenue Breakdown — Direct vs OTA vs Potential</div>
+      <div class="viz-bars">
+        <div class="vbar-row">
+          <div class="vbar-labels"><span>Current Direct Revenue (Annual)</span><span id="vl-direct">$0</span></div>
+          <div class="vbar-track"><div class="vbar-fill green" id="vb-direct" style="width:0%"></div></div>
+        </div>
+        <div class="vbar-row">
+          <div class="vbar-labels"><span>OTA Channel Revenue (Annual)</span><span id="vl-ota">$0</span></div>
+          <div class="vbar-track"><div class="vbar-fill coral" id="vb-ota" style="width:0%"></div></div>
+        </div>
+        <div class="vbar-row">
+          <div class="vbar-labels"><span>Projected Direct After JMEDIA</span><span id="vl-projected">$0</span></div>
+          <div class="vbar-track"><div class="vbar-fill blue" id="vb-projected" style="width:0%"></div></div>
+        </div>
+        <div class="vbar-row">
+          <div class="vbar-labels"><span>OTA Commission Paid Out</span><span id="vl-commission">$0</span></div>
+          <div class="vbar-track"><div class="vbar-fill" id="vb-commission" style="width:0%;background:rgba(232,98,90,.4);"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projection table -->
+    <div class="proj-card">
+      <div class="proj-head">12-Month Recovery Projection</div>
+      <div class="proj-row header">
+        <div class="pr-period">Period</div>
+        <div class="pr-current">Current OTA Cost</div>
+        <div class="pr-projected">With JMEDIA</div>
+      </div>
+      <div class="proj-row"><div class="pr-period">Month 1&ndash;3</div><div class="pr-current" id="pt-q1-curr">$0</div><div class="pr-projected" id="pt-q1-proj">$0</div></div>
+      <div class="proj-row"><div class="pr-period">Month 4&ndash;6</div><div class="pr-current" id="pt-q2-curr">$0</div><div class="pr-projected" id="pt-q2-proj">$0</div></div>
+      <div class="proj-row"><div class="pr-period">Month 7&ndash;9</div><div class="pr-current" id="pt-q3-curr">$0</div><div class="pr-projected" id="pt-q3-proj">$0</div></div>
+      <div class="proj-row"><div class="pr-period">Month 10&ndash;12</div><div class="pr-current" id="pt-q4-curr">$0</div><div class="pr-projected" id="pt-q4-proj">$0</div></div>
+      <div class="proj-row total"><div class="pr-period" style="font-weight:500;color:var(--text);">Full Year Total</div><div class="pr-current" id="pt-total-curr">$0</div><div class="pr-projected" id="pt-total-proj">$0</div></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="roi-cta">
+      <h3 class="roi-cta-h">Ready to Recover<br>Your <em>Margin?</em></h3>
+      <p class="roi-cta-sub">These are industry estimates. <strong>Your actual audit will be specific to your property and comp set.</strong></p>
+      <a href="contact.html" class="btn-pill">Book a Free Audit &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+<p class="disclaimer">All figures are estimates based on hospitality industry benchmarks. Actual results vary by property, market, and content strategy. Direct booking shift assumes 25% conversion of current OTA volume over 12 months. ADR lift assumes 6&ndash;12% premium positioning uplift based on visual content quality improvements. JMEDIA partnership cost estimated at $5,000/month for calculation purposes.</p>
+</main>
+
+<footer>
+  <div class="inner">
+    <div class="fg">
+      <div>
+        <img src="jmedia-logo.png" alt="JMEDIA Productions" class="flogo-img">
+        <p class="ftagl">Ongoing cinematic content for hotels, resorts, and experience-driven brands. Based in Orlando, FL.</p>
+        <div class="fsocs"><a href="#" class="fsoc" aria-label="Instagram">IG</a><a href="#" class="fsoc" aria-label="YouTube">YT</a><a href="#" class="fsoc" aria-label="LinkedIn">LI</a></div>
+      </div>
+      <div><p class="fch">Navigate</p><ul class="fl"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div>
+      <div><p class="fch">Contact</p><ul class="fl"><li><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Suite 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
+    </div>
+    <div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC. All rights reserved.</span><span>Privacy &middot; Terms</span></div>
+  </div>
+</footer>
+
+<script>
+/* ── Helpers ── */
+function fmt(n){ return '$'+Math.round(n).toLocaleString(); }
+function fmtPct(n){ return Math.round(n)+'%'; }
+function animate(el,val,isMoney,isMult){
+  el.classList.remove('counting');
+  void el.offsetWidth;
+  el.classList.add('counting');
+  if(isMult){ el.textContent = Math.round(val)+'x'; return; }
+  el.textContent = isMoney ? fmt(val) : fmtPct(val);
+}
+
+/* ── Slider fill update ── */
+function updateSlider(el){
+  var min=+el.min,max=+el.max,val=+el.value;
+  var pct=((val-min)/(max-min)*100).toFixed(1)+'%';
+  el.style.setProperty('--val',pct);
+}
+
+/* ── Core calculation ── */
+function calc(){
+  var rooms = +document.getElementById('s-rooms').value;
+  var adr   = +document.getElementById('s-adr').value;
+  var ota   = +document.getElementById('s-ota').value / 100;
+  var comm  = +document.getElementById('s-comm').value / 100;
+  var occ   = +document.getElementById('s-occ').value / 100;
+
+  var daysYear = 365;
+  var totalRevYear = rooms * adr * occ * daysYear;
+
+  // Current breakdown
+  var otaRevYear    = totalRevYear * ota;
+  var directRevYear = totalRevYear * (1 - ota);
+  var otaCommYear   = otaRevYear * comm;
+  var otaCommMonth  = otaCommYear / 12;
+
+  // Projected: 25% of OTA shifts to direct over 12 months
+  var shiftRate     = 0.25;
+  var shiftedRev    = otaRevYear * shiftRate;
+  var savedComm     = shiftedRev * comm;
+  var projDirectRev = directRevYear + shiftedRev;
+
+  // ADR lift: premium content = 8% ADR increase
+  var adrLift = adr * 0.08;
+  var adrLiftRevYear = rooms * adrLift * occ * daysYear;
+
+  // Total recovery
+  var totalRecovery = savedComm;
+
+  // ROI: total recovery vs $60k/year partnership cost
+  var partnerCostYear = 60000;
+  var roi = (totalRecovery + adrLiftRevYear * 0.5) / partnerCostYear;
+
+  // Quarterly projection
+  var qCurr = otaCommYear / 4;
+  // Q1: 5% shift, Q2: 12%, Q3: 20%, Q4: 25%
+  var qShifts = [0.05, 0.12, 0.20, 0.25];
+  var qProj = qShifts.map(function(s){
+    return (otaRevYear * s * comm) / 4 * -1 + qCurr; // commission saved
+    // Actually show: quarterly comm AFTER reduction
+  });
+  // Better: show quarterly OTA cost with progressive reduction
+  var qCosts = qShifts.map(function(s){
+    return otaCommYear * (1 - s) / 4;
+  });
+
+  // Bar chart max
+  var barMax = Math.max(otaRevYear, projDirectRev, directRevYear) * 1.05;
+  function barWidth(v){ return Math.min(100, v/barMax*100).toFixed(1)+'%'; }
+
+  /* Update display values */
+  document.getElementById('v-rooms').textContent = rooms;
+  document.getElementById('v-adr').textContent   = '$'+adr;
+  document.getElementById('v-ota').textContent   = Math.round(ota*100)+'%';
+  document.getElementById('v-comm').textContent  = Math.round(comm*100)+'%';
+  document.getElementById('v-occ').textContent   = Math.round(occ*100)+'%';
+
+  animate(document.getElementById('r-ota-cost'),    otaCommYear,    true);
+  animate(document.getElementById('r-recoverable'),  totalRecovery,  true);
+  animate(document.getElementById('r-adr-lift'),     adrLift,        true);
+  animate(document.getElementById('r-monthly'),      otaCommMonth,   true);
+  animate(document.getElementById('r-roi'),          roi,            false, true);
+
+  document.getElementById('r-badge').textContent = '↑ ' + fmt(totalRecovery) + ' / yr';
+
+  /* Bars */
+  document.getElementById('vl-direct').textContent     = fmt(directRevYear);
+  document.getElementById('vl-ota').textContent        = fmt(otaRevYear);
+  document.getElementById('vl-projected').textContent  = fmt(projDirectRev);
+  document.getElementById('vl-commission').textContent = fmt(otaCommYear);
+  document.getElementById('vb-direct').style.width     = barWidth(directRevYear);
+  document.getElementById('vb-ota').style.width        = barWidth(otaRevYear);
+  document.getElementById('vb-projected').style.width  = barWidth(projDirectRev);
+  document.getElementById('vb-commission').style.width = barWidth(otaCommYear);
+
+  /* Projection table */
+  var qtrs = ['q1','q2','q3','q4'];
+  qtrs.forEach(function(q,i){
+    document.getElementById('pt-'+q+'-curr').textContent = fmt(qCurr);
+    document.getElementById('pt-'+q+'-proj').textContent = fmt(qCosts[i]);
+  });
+  document.getElementById('pt-total-curr').textContent = fmt(otaCommYear);
+  document.getElementById('pt-total-proj').textContent = fmt(qCosts.reduce(function(a,b){return a+b;},0)*4/4);
+}
+
+/* ── Wire sliders ── */
+['s-rooms','s-adr','s-ota','s-comm','s-occ'].forEach(function(id){
+  var el = document.getElementById(id);
+  updateSlider(el);
+  el.addEventListener('input', function(){
+    updateSlider(this);
+    calc();
+  });
+});
+
+/* ── Initial calculation ── */
+calc();
+</script>
+</body>
+</html>
