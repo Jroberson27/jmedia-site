@@ -411,6 +411,65 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25);}
 .roi-cta-link::after{content:'→';}
 @media(max-width:960px){.roi-wrap{grid-template-columns:1fr;}.roi-top-cards{grid-template-columns:1fr 1fr;}}
 
+/* ─── ROI CALCULATOR ─── */
+.roi-sec{background:var(--bg-deep);padding:100px var(--pad);position:relative;overflow:hidden;}
+.roi-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(232,98,90,.07),transparent 55%);pointer-events:none;}
+.roi-inner{max-width:var(--max);margin:0 auto;}
+.roi-head{text-align:center;max-width:680px;margin:0 auto 64px;}
+.roi-head .hl{color:#fff;}
+.roi-head p{font-size:15px;color:rgba(255,255,255,.5);margin-top:16px;line-height:1.7;}
+.roi-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:start;}
+/* Inputs panel */
+.roi-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px;}
+.roi-panel-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:28px;}
+.roi-field{margin-bottom:26px;}
+.roi-field:last-child{margin-bottom:0;}
+.roi-frow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.roi-fname{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);}
+.roi-fval{font-family:var(--Fd);font-size:22px;letter-spacing:1px;color:var(--coral);min-width:70px;text-align:right;transition:all .15s;}
+/* Range slider */
+.roi-slider{width:100%;height:4px;-webkit-appearance:none;appearance:none;border-radius:4px;outline:none;cursor:pointer;background:rgba(255,255,255,.12);position:relative;}
+.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--coral);border:3px solid rgba(255,255,255,.2);box-shadow:0 2px 12px rgba(232,98,90,.5);transition:transform .2s,box-shadow .2s;cursor:grab;}
+.roi-slider:active::-webkit-slider-thumb{cursor:grabbing;transform:scale(1.3);box-shadow:0 4px 20px rgba(232,98,90,.7);}
+.roi-slider::-moz-range-thumb{width:22px;height:22px;border:3px solid rgba(255,255,255,.2);border-radius:50%;background:var(--coral);box-shadow:0 2px 12px rgba(232,98,90,.5);cursor:grab;}
+.roi-slider-track{position:relative;margin-bottom:6px;}
+.roi-slider-fill{position:absolute;top:50%;left:0;height:4px;background:var(--coral);border-radius:4px;transform:translateY(-50%);pointer-events:none;transition:width .05s;}
+.roi-range-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.5px;}
+/* Grade badge */
+.roi-grade-wrap{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;margin-bottom:16px;}
+.roi-grade-badge{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--Fd);font-size:36px;letter-spacing:1px;flex-shrink:0;transition:background .4s,color .4s;}
+.roi-grade-info{}
+.roi-grade-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.roi-grade-title{font-size:16px;font-weight:500;color:#fff;transition:color .4s;}
+.roi-grade-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;}
+/* Achievements */
+.roi-achievements{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.roi-ach{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:980px;font-size:11px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.35);transition:background .4s,border-color .4s,color .4s;}
+.roi-ach.unlocked{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:#34d399;}
+.roi-ach .ach-icon{font-size:14px;}
+/* Result cards */
+.roi-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.roi-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 22px;transition:border-color .4s;}
+.roi-card.hot{border-color:rgba(232,98,90,.3);background:rgba(232,98,90,.08);}
+.roi-clabel{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px;}
+.roi-cvalue{font-family:var(--Fd);font-size:clamp(28px,3vw,36px);letter-spacing:-1px;line-height:1;color:var(--coral);transition:all .2s;}
+.roi-csub{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px;line-height:1.4;}
+/* Bar chart */
+.roi-chart{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;}
+.roi-chart-title{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px;}
+.roi-bars{display:flex;flex-direction:column;gap:12px;}
+.roi-brow{display:flex;flex-direction:column;gap:5px;}
+.roi-blabels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.4);}
+.roi-blabels span:last-child{color:rgba(255,255,255,.75);font-weight:500;}
+.roi-btrack{height:8px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;}
+.roi-bfill{height:100%;border-radius:8px;transition:width .6s cubic-bezier(.16,1,.3,1);}
+.roi-link{text-align:center;margin-top:12px;}
+.roi-cta-link{font-size:13px;font-weight:500;color:var(--coral);display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.roi-cta-link:hover{gap:10px;}
+.roi-cta-link::after{content:'→';}
+@keyframes roiPop{0%{transform:scale(1);}50%{transform:scale(1.12);}100%{transform:scale(1);}}
+.roi-cvalue.pop{animation:roiPop .3s ease;}
+@media(max-width:960px){.roi-layout{grid-template-columns:1fr;}.roi-cards{grid-template-columns:1fr 1fr;}}
 /* ─── CTA ─── */
 .ctasec{padding:160px var(--pad);text-align:center;background:var(--bg-alt);position:relative;overflow:hidden;}
 .ctasec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(232,98,90,.08),transparent);pointer-events:none;animation:bgBreath 6s ease-in-out infinite;}
@@ -669,87 +728,123 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 
 <!-- ROI CALCULATOR -->
 <section class="roi-sec" aria-labelledby="roi-h">
-  <div class="roi-intro">
-    <span class="eyebrow ax ax-fade-down" style="color:rgba(232,98,90,.9);">ROI Calculator</span>
-    <h2 class="hl ax ax-scale-up axd1" id="roi-h" style="color:#fff;">See Your Numbers<br><em>Before You Commit.</em></h2>
-    <p class="ax ax-fade-up axd2" style="font-size:15px;color:rgba(255,255,255,.55);margin-top:16px;line-height:1.7;">Drag the sliders to match your property. See exactly what a content partnership could return in recovered margin and direct booking growth.</p>
-  </div>
-  <div class="roi-wrap">
-    <!-- Inputs -->
-    <div class="roi-inputs ax ax-fade-left">
-      <div class="roi-field">
-        <div class="roi-fl"><span class="roi-fl-name">Number of Rooms</span><span class="roi-fl-val" id="ri-rooms">120</span></div>
-        <input type="range" id="rs-rooms" min="20" max="500" value="120" step="5" aria-label="Number of rooms">
-        <div class="roi-range-labels"><span>20</span><span>500</span></div>
-      </div>
-      <div class="roi-field">
-        <div class="roi-fl"><span class="roi-fl-name">Average Daily Rate</span><span class="roi-fl-val" id="ri-adr">$185</span></div>
-        <input type="range" id="rs-adr" min="80" max="800" value="185" step="5" aria-label="Average daily rate">
-        <div class="roi-range-labels"><span>$80</span><span>$800</span></div>
-      </div>
-      <div class="roi-field">
-        <div class="roi-fl"><span class="roi-fl-name">OTA Dependency</span><span class="roi-fl-val" id="ri-ota">55%</span></div>
-        <input type="range" id="rs-ota" min="10" max="90" value="55" step="1" aria-label="OTA dependency percentage">
-        <div class="roi-range-labels"><span>10%</span><span>90%</span></div>
-      </div>
-      <div class="roi-field">
-        <div class="roi-fl"><span class="roi-fl-name">Commission Rate</span><span class="roi-fl-val" id="ri-comm">18%</span></div>
-        <input type="range" id="rs-comm" min="12" max="28" value="18" step="1" aria-label="OTA commission rate">
-        <div class="roi-range-labels"><span>12%</span><span>28%</span></div>
-      </div>
-      <div class="roi-field">
-        <div class="roi-fl"><span class="roi-fl-name">Occupancy Rate</span><span class="roi-fl-val" id="ri-occ">68%</span></div>
-        <input type="range" id="rs-occ" min="30" max="95" value="68" step="1" aria-label="Occupancy rate">
-        <div class="roi-range-labels"><span>30%</span><span>95%</span></div>
-      </div>
+  <div class="roi-inner">
+    <div class="roi-head ax ax-fade-up">
+      <span class="eyebrow" style="color:rgba(232,98,90,.9);">ROI Calculator</span>
+      <h2 class="hl ax ax-scale-up axd1" id="roi-h">See Your Numbers<br><em>Before You Commit.</em></h2>
+      <p class="ax ax-fade-up axd2">Drag the sliders to match your property. Results update live — and your OTA dependency gets graded.</p>
     </div>
-    <!-- Results -->
-    <div class="roi-results ax ax-fade-right">
-      <div class="roi-top-cards">
-        <div class="roi-card-sm featured">
-          <div class="rcs-label">Annual OTA Commission</div>
-          <div class="rcs-value" id="rr-otacost">$0</div>
-          <div class="rcs-sub">Currently leaving your property</div>
+    <div class="roi-layout">
+      <!-- Inputs -->
+      <div class="roi-panel ax ax-fade-left">
+        <div class="roi-panel-title">Your Property</div>
+        <div class="roi-field">
+          <div class="roi-frow"><span class="roi-fname">Number of Rooms</span><span class="roi-fval" id="ri-rooms">120</span></div>
+          <div class="roi-slider-track">
+            <div class="roi-slider-fill" id="rf-rooms" style="width:21%"></div>
+            <input class="roi-slider" type="range" id="rs-rooms" min="20" max="500" value="120" step="5" aria-label="Number of rooms">
+          </div>
+          <div class="roi-range-labels"><span>20 rooms</span><span>500 rooms</span></div>
         </div>
-        <div class="roi-card-sm featured">
-          <div class="rcs-label">Recoverable / Year</div>
-          <div class="rcs-value" id="rr-recover">$0</div>
-          <div class="rcs-sub">If 25% of OTA shifts to direct</div>
+        <div class="roi-field">
+          <div class="roi-frow"><span class="roi-fname">Average Daily Rate</span><span class="roi-fval" id="ri-adr">$185</span></div>
+          <div class="roi-slider-track">
+            <div class="roi-slider-fill" id="rf-adr" style="width:15%"></div>
+            <input class="roi-slider" type="range" id="rs-adr" min="80" max="800" value="185" step="5" aria-label="Average daily rate">
+          </div>
+          <div class="roi-range-labels"><span>$80</span><span>$800</span></div>
         </div>
-        <div class="roi-card-sm">
-          <div class="rcs-label">ADR Lift Potential</div>
-          <div class="rcs-value" id="rr-adr">$0</div>
-          <div class="rcs-sub">Per room per night</div>
+        <div class="roi-field">
+          <div class="roi-frow"><span class="roi-fname">OTA Dependency</span><span class="roi-fval" id="ri-ota">55%</span></div>
+          <div class="roi-slider-track">
+            <div class="roi-slider-fill" id="rf-ota" style="width:56%"></div>
+            <input class="roi-slider" type="range" id="rs-ota" min="10" max="90" value="55" step="1" aria-label="OTA dependency">
+          </div>
+          <div class="roi-range-labels"><span>10% — healthy</span><span>90% — critical</span></div>
         </div>
-        <div class="roi-card-sm">
-          <div class="rcs-label">Content ROI</div>
-          <div class="rcs-value" id="rr-roi">0x</div>
-          <div class="rcs-sub">Return vs. partnership cost</div>
+        <div class="roi-field">
+          <div class="roi-frow"><span class="roi-fname">Commission Rate</span><span class="roi-fval" id="ri-comm">18%</span></div>
+          <div class="roi-slider-track">
+            <div class="roi-slider-fill" id="rf-comm" style="width:38%"></div>
+            <input class="roi-slider" type="range" id="rs-comm" min="12" max="28" value="18" step="1" aria-label="OTA commission rate">
+          </div>
+          <div class="roi-range-labels"><span>12%</span><span>28%</span></div>
+        </div>
+        <div class="roi-field">
+          <div class="roi-frow"><span class="roi-fname">Occupancy Rate</span><span class="roi-fval" id="ri-occ">68%</span></div>
+          <div class="roi-slider-track">
+            <div class="roi-slider-fill" id="rf-occ" style="width:58%"></div>
+            <input class="roi-slider" type="range" id="rs-occ" min="30" max="95" value="68" step="1" aria-label="Occupancy rate">
+          </div>
+          <div class="roi-range-labels"><span>30%</span><span>95%</span></div>
         </div>
       </div>
-      <div class="roi-chart">
-        <div class="roi-chart-title">Revenue Breakdown</div>
-        <div class="roi-bars">
-          <div class="roi-bar-row">
-            <div class="roi-bar-labels"><span>Current Direct Revenue</span><span id="rl-direct">$0</span></div>
-            <div class="roi-bar-track"><div class="roi-bar-fill" id="rb-direct" style="width:0%;background:#34d399;"></div></div>
-          </div>
-          <div class="roi-bar-row">
-            <div class="roi-bar-labels"><span>OTA Channel Revenue</span><span id="rl-ota">$0</span></div>
-            <div class="roi-bar-track"><div class="roi-bar-fill" id="rb-ota" style="width:0%;background:var(--coral);"></div></div>
-          </div>
-          <div class="roi-bar-row">
-            <div class="roi-bar-labels"><span>Projected Direct After JMEDIA</span><span id="rl-proj">$0</span></div>
-            <div class="roi-bar-track"><div class="roi-bar-fill" id="rb-proj" style="width:0%;background:#60a5fa;"></div></div>
-          </div>
-          <div class="roi-bar-row">
-            <div class="roi-bar-labels"><span>OTA Commission Paid Out</span><span id="rl-comm">$0</span></div>
-            <div class="roi-bar-track"><div class="roi-bar-fill" id="rb-comm" style="width:0%;background:rgba(232,98,90,.4);"></div></div>
+      <!-- Results -->
+      <div class="ax ax-fade-right" style="display:flex;flex-direction:column;gap:14px;">
+        <!-- Grade badge -->
+        <div class="roi-grade-wrap">
+          <div class="roi-grade-badge" id="rg-badge" style="background:rgba(251,191,36,.15);color:#fbbf24;">C</div>
+          <div class="roi-grade-info">
+            <div class="roi-grade-label">OTA Dependency Grade</div>
+            <div class="roi-grade-title" id="rg-title">At Risk</div>
+            <div class="roi-grade-sub" id="rg-sub">55% of bookings via OTA — significant margin exposure</div>
           </div>
         </div>
-      </div>
-      <div class="roi-link-row">
-        <a href="roi.html" class="roi-cta-link">Full ROI breakdown &amp; 12-month projection</a>
+        <!-- Achievements -->
+        <div class="roi-achievements" id="roi-achs">
+          <span class="roi-ach" id="ach-100k"><span class="ach-icon">🔒</span> $100k+ Recovery</span>
+          <span class="roi-ach" id="ach-5x"><span class="ach-icon">🔒</span> 5x+ ROI</span>
+          <span class="roi-ach" id="ach-grade-a"><span class="ach-icon">🔒</span> Grade A</span>
+          <span class="roi-ach" id="ach-margin"><span class="ach-icon">🔒</span> Direct Majority</span>
+        </div>
+        <!-- Metric cards -->
+        <div class="roi-cards">
+          <div class="roi-card hot">
+            <div class="roi-clabel">Annual OTA Commission</div>
+            <div class="roi-cvalue" id="rr-ota">$545,494</div>
+            <div class="roi-csub">Currently leaving your property</div>
+          </div>
+          <div class="roi-card hot">
+            <div class="roi-clabel">Recoverable / Year</div>
+            <div class="roi-cvalue" id="rr-recover">$136,373</div>
+            <div class="roi-csub">At 25% direct shift</div>
+          </div>
+          <div class="roi-card">
+            <div class="roi-clabel">ADR Lift Potential</div>
+            <div class="roi-cvalue" id="rr-adr">$15/night</div>
+            <div class="roi-csub">With premium positioning</div>
+          </div>
+          <div class="roi-card">
+            <div class="roi-clabel">Content ROI</div>
+            <div class="roi-cvalue" id="rr-roi">6x</div>
+            <div class="roi-csub">Return vs. $5k/mo investment</div>
+          </div>
+        </div>
+        <!-- Bar chart -->
+        <div class="roi-chart">
+          <div class="roi-chart-title">Revenue Breakdown (Annual)</div>
+          <div class="roi-bars">
+            <div class="roi-brow">
+              <div class="roi-blabels"><span>Current Direct</span><span id="rl-direct">$2,479,518</span></div>
+              <div class="roi-btrack"><div class="roi-bfill" id="rb-direct" style="width:72.9%;background:#34d399;"></div></div>
+            </div>
+            <div class="roi-brow">
+              <div class="roi-blabels"><span>OTA Channel Revenue</span><span id="rl-ota">$3,030,522</span></div>
+              <div class="roi-btrack"><div class="roi-bfill" id="rb-ota" style="width:89.2%;background:var(--coral);"></div></div>
+            </div>
+            <div class="roi-brow">
+              <div class="roi-blabels"><span>Projected Direct After JMEDIA</span><span id="rl-proj">$3,237,148</span></div>
+              <div class="roi-btrack"><div class="roi-bfill" id="rb-proj" style="width:95.2%;background:#60a5fa;"></div></div>
+            </div>
+            <div class="roi-brow">
+              <div class="roi-blabels"><span>Commission Paid Out</span><span id="rl-comm">$545,494</span></div>
+              <div class="roi-btrack"><div class="roi-bfill" id="rb-comm" style="width:16%;background:rgba(232,98,90,.5);"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="roi-link">
+          <a href="roi.html" class="roi-cta-link">Full 12-month projection</a>
+        </div>
       </div>
     </div>
   </div>
@@ -783,58 +878,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-/* ── ROI Calculator ── */
-(function(){
-  function fmt(n){return '$'+Math.round(n).toLocaleString();}
-  function setSl(el){
-    var min=+el.min,max=+el.max,val=+el.value;
-    el.style.setProperty('--val',((val-min)/(max-min)*100).toFixed(1)+'%');
-  }
-  function calcROI(){
-    var rooms=+document.getElementById('rs-rooms').value;
-    var adr=+document.getElementById('rs-adr').value;
-    var ota=+document.getElementById('rs-ota').value/100;
-    var comm=+document.getElementById('rs-comm').value/100;
-    var occ=+document.getElementById('rs-occ').value/100;
-    var totalRev=rooms*adr*occ*365;
-    var otaRev=totalRev*ota;
-    var dirRev=totalRev*(1-ota);
-    var otaComm=otaRev*comm;
-    var recover=otaRev*0.25*comm;
-    var adrLift=adr*0.08;
-    var projDir=dirRev+otaRev*0.25;
-    var roi=(recover+adrLift*rooms*occ*365*0.5)/60000;
-    var barMax=Math.max(otaRev,projDir,dirRev)*1.05;
-    function bw(v){return Math.min(100,v/barMax*100).toFixed(1)+'%';}
-    document.getElementById('rr-otacost').textContent=fmt(otaComm);
-    document.getElementById('rr-recover').textContent=fmt(recover);
-    document.getElementById('rr-adr').textContent='$'+Math.round(adrLift);
-    document.getElementById('rr-roi').textContent=Math.round(roi)+'x';
-    document.getElementById('rl-direct').textContent=fmt(dirRev);
-    document.getElementById('rl-ota').textContent=fmt(otaRev);
-    document.getElementById('rl-proj').textContent=fmt(projDir);
-    document.getElementById('rl-comm').textContent=fmt(otaComm);
-    document.getElementById('rb-direct').style.width=bw(dirRev);
-    document.getElementById('rb-ota').style.width=bw(otaRev);
-    document.getElementById('rb-proj').style.width=bw(projDir);
-    document.getElementById('rb-comm').style.width=bw(otaComm);
-    document.getElementById('ri-rooms').textContent=rooms;
-    document.getElementById('ri-adr').textContent='$'+adr;
-    document.getElementById('ri-ota').textContent=Math.round(ota*100)+'%';
-    document.getElementById('ri-comm').textContent=Math.round(comm*100)+'%';
-    document.getElementById('ri-occ').textContent=Math.round(occ*100)+'%';
-  }
-  ['rs-rooms','rs-adr','rs-ota','rs-comm','rs-occ'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(!el) return;
-    setSl(el);
-    el.addEventListener('input',function(){setSl(this);calcROI();});
-  });
-  calcROI();
-})();
-
-</script><script>
+<script>
 /* ─── CRITICAL: Add 'animated' class immediately ─── */
 document.body.classList.add('animated');
 
@@ -1049,11 +1093,147 @@ window.addEventListener('scroll',function(){
 })();
 
 /* ─── FAQ accordion ─── */
+document./* ── FAQ accordion ── */
 document.querySelectorAll('.fi').forEach(function(item){
   item.querySelector('.fibtn').addEventListener('click',function(){
     var open = item.hasAttribute('data-open');
+    if(open){
+      item.removeAttribute('data-open');
+      item.querySelector('.fibtn').setAttribute('aria-expanded','false');
+    } else {
+      item.setAttribute('data-open','');
+      item.querySelector('.fibtn').setAttribute('aria-expanded','true');
+    }
   });
 });
+
+/* ════════════════════════════════════════
+   ROI CALCULATOR — inline in main script
+   All DOM refs verified present above
+════════════════════════════════════════ */
+(function(){
+  var FIELDS = {
+    rooms: {id:'rs-rooms', displayId:'ri-rooms', fillId:'rf-rooms', min:20,  max:500, fmt:function(v){return v;}},
+    adr:   {id:'rs-adr',   displayId:'ri-adr',   fillId:'rf-adr',   min:80,  max:800, fmt:function(v){return '$'+v;}},
+    ota:   {id:'rs-ota',   displayId:'ri-ota',   fillId:'rf-ota',   min:10,  max:90,  fmt:function(v){return v+'%';}},
+    comm:  {id:'rs-comm',  displayId:'ri-comm',  fillId:'rf-comm',  min:12,  max:28,  fmt:function(v){return v+'%';}},
+    occ:   {id:'rs-occ',   displayId:'ri-occ',   fillId:'rf-occ',   min:30,  max:95,  fmt:function(v){return v+'%';}}
+  };
+
+  function fmt(n){ return '$'+Math.round(n).toLocaleString(); }
+
+  function updateFill(field, val){
+    var pct = ((val - field.min) / (field.max - field.min) * 100).toFixed(1) + '%';
+    var fill = document.getElementById(field.fillId);
+    if(fill) fill.style.width = pct;
+  }
+
+  function getGrade(otaPct){
+    if(otaPct <= 20) return {grade:'A+', title:'Exceptional', sub:'Under 20% OTA — excellent direct booking health', color:'#34d399', bg:'rgba(52,211,153,.15)'};
+    if(otaPct <= 35) return {grade:'A',  title:'Strong',      sub:'Low OTA dependency — strong margin position',     color:'#34d399', bg:'rgba(52,211,153,.12)'};
+    if(otaPct <= 50) return {grade:'B',  title:'Average',     sub:'Moderate OTA use — room for improvement',        color:'#60a5fa', bg:'rgba(96,165,250,.15)'};
+    if(otaPct <= 65) return {grade:'C',  title:'At Risk',     sub:otaPct+'% via OTA — significant margin exposure',  color:'#fbbf24', bg:'rgba(251,191,36,.15)'};
+    if(otaPct <= 75) return {grade:'D',  title:'Exposed',     sub:'High OTA dependency — margin heavily impacted',   color:'#f97316', bg:'rgba(249,115,22,.15)'};
+    return               {grade:'F',  title:'Critical',    sub:'OTA controls your bookings — urgent action needed',color:'#E8625A', bg:'rgba(232,98,90,.2)'};
+  }
+
+  function popAnimate(el){
+    el.classList.remove('pop');
+    void el.offsetWidth;
+    el.classList.add('pop');
+  }
+
+  function calcROI(){
+    var rooms = +document.getElementById('rs-rooms').value;
+    var adr   = +document.getElementById('rs-adr').value;
+    var ota   = +document.getElementById('rs-ota').value / 100;
+    var comm  = +document.getElementById('rs-comm').value / 100;
+    var occ   = +document.getElementById('rs-occ').value / 100;
+
+    var totalRev = rooms * adr * occ * 365;
+    var otaRev   = totalRev * ota;
+    var dirRev   = totalRev * (1 - ota);
+    var otaComm  = otaRev * comm;
+    var recover  = otaRev * 0.25 * comm;
+    var adrLift  = adr * 0.08;
+    var projDir  = dirRev + otaRev * 0.25;
+    var roi      = (recover + adrLift * rooms * occ * 365 * 0.5) / 60000;
+    var barMax   = Math.max(otaRev, projDir, dirRev) * 1.05;
+    function bw(v){ return Math.min(100, v / barMax * 100).toFixed(1) + '%'; }
+
+    /* ── Update metric cards ── */
+    var otaEl     = document.getElementById('rr-ota');
+    var recEl     = document.getElementById('rr-recover');
+    var adrEl     = document.getElementById('rr-adr');
+    var roiEl     = document.getElementById('rr-roi');
+
+    if(otaEl){ popAnimate(otaEl); otaEl.textContent = fmt(otaComm); }
+    if(recEl){ popAnimate(recEl); recEl.textContent = fmt(recover); }
+    if(adrEl){ adrEl.textContent = '$' + Math.round(adrLift) + '/night'; }
+    if(roiEl){ roiEl.textContent = Math.round(roi) + 'x'; }
+
+    /* ── Bar chart ── */
+    var setBar = function(id, val, labelId, labelVal){
+      var b = document.getElementById(id); if(b) b.style.width = bw(val);
+      var l = document.getElementById(labelId); if(l) l.textContent = fmt(labelVal);
+    };
+    setBar('rb-direct', dirRev,   'rl-direct', dirRev);
+    setBar('rb-ota',    otaRev,   'rl-ota',    otaRev);
+    setBar('rb-proj',   projDir,  'rl-proj',   projDir);
+    setBar('rb-comm',   otaComm,  'rl-comm',   otaComm);
+
+    /* ── Grade system ── */
+    var otaPct = Math.round(ota * 100);
+    var g = getGrade(otaPct);
+    var badge = document.getElementById('rg-badge');
+    var titleEl = document.getElementById('rg-title');
+    var subEl = document.getElementById('rg-sub');
+    if(badge){ badge.textContent = g.grade; badge.style.color = g.color; badge.style.background = g.bg; }
+    if(titleEl){ titleEl.textContent = g.title; titleEl.style.color = g.color; }
+    if(subEl){ subEl.textContent = g.sub; }
+
+    /* ── Achievements ── */
+    function setAch(id, icon, label, unlocked){
+      var el = document.getElementById(id);
+      if(!el) return;
+      if(unlocked){
+        el.classList.add('unlocked');
+        el.innerHTML = '<span class="ach-icon">'+icon+'</span> '+label;
+      } else {
+        el.classList.remove('unlocked');
+        el.innerHTML = '<span class="ach-icon">🔒</span> '+label;
+      }
+    }
+    setAch('ach-100k',  '💰', '$100k+ Recovery',  recover >= 100000);
+    setAch('ach-5x',    '🚀', '5x+ ROI',          roi >= 5);
+    setAch('ach-grade-a','⭐', 'Grade A',           otaPct <= 35);
+    setAch('ach-margin', '🎯', 'Direct Majority',   ota < 0.5);
+  }
+
+  /* ── Wire sliders ── */
+  Object.keys(FIELDS).forEach(function(key){
+    var f   = FIELDS[key];
+    var sl  = document.getElementById(f.id);
+    var dsp = document.getElementById(f.displayId);
+    if(!sl) return;
+
+    function update(){
+      var val = +sl.value;
+      updateFill(f, val);
+      if(dsp) dsp.textContent = f.fmt(val);
+      calcROI();
+    }
+
+    // Set initial fill
+    updateFill(f, +sl.value);
+
+    sl.addEventListener('input',  update);
+    sl.addEventListener('change', update); // fallback for some mobile browsers
+  });
+
+  /* ── Initial render ── */
+  calcROI();
+})();
 </script>
 </body>
 </html>
