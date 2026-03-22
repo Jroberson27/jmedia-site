@@ -412,34 +412,39 @@ document.getElementById('submit-btn').addEventListener('click', function(){
   btn.innerHTML = 'Sending...';
 
   /* Build fields array — only include non-empty values */
+  /* Only send guaranteed standard HubSpot contact properties */
   var fields = [
     { name: 'firstname', value: $v('f-fname') },
     { name: 'lastname',  value: $v('f-lname') },
     { name: 'email',     value: $v('f-email') },
     { name: 'company',   value: $v('f-prop')  }
   ];
-  /* Optional fields — only add if filled */
   var phone = $v('f-phone');
-  if(phone) fields.push({ name: 'phone', value: phone });
-  var msg = buildMessage();
-  if(msg)   fields.push({ name: 'message', value: msg });
+  if(phone){ fields.push({ name: 'phone', value: phone }); }
+
+  /* Pack all extra context into jobtitle field which always exists in HubSpot */
+  var extra = [];
+  var title = $v('f-title');
+  var loc   = $v('f-loc');
+  var ftype = document.getElementById('f-type').value;
+  var frooms= document.getElementById('f-rooms').value;
+  var notes = $v('f-notes');
+  var pain  = getPainPoints();
+  var tl    = getTimeline();
+  if(title)  extra.push('Title: ' + title);
+  if(loc)    extra.push('Location: ' + loc);
+  if(ftype)  extra.push('Property Type: ' + ftype);
+  if(frooms) extra.push('Rooms: ' + frooms);
+  if(tl)     extra.push('Timeline: ' + tl);
+  if(pain)   extra.push('Pain Points: ' + pain);
+  if(notes)  extra.push('Notes: ' + notes);
+  if(extra.length){ fields.push({ name: 'jobtitle', value: extra.join(' | ') }); }
 
   var body = {
     fields: fields,
     context: {
       pageUri:  window.location.href,
       pageName: 'JMEDIA Contact'
-    },
-    legalConsentOptions: {
-      consent: {
-        consentToProcess: true,
-        text: 'I agree to allow JMEDIA Productions to store and process my personal data.',
-        communications: [{
-          value: true,
-          subscriptionTypeId: 999,
-          text: 'I agree to receive communications from JMEDIA Productions.'
-        }]
-      }
     }
   };
 
