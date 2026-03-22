@@ -411,18 +411,35 @@ document.getElementById('submit-btn').addEventListener('click', function(){
   btn.disabled = true;
   btn.innerHTML = 'Sending...';
 
+  /* Build fields array — only include non-empty values */
+  var fields = [
+    { name: 'firstname', value: $v('f-fname') },
+    { name: 'lastname',  value: $v('f-lname') },
+    { name: 'email',     value: $v('f-email') },
+    { name: 'company',   value: $v('f-prop')  }
+  ];
+  /* Optional fields — only add if filled */
+  var phone = $v('f-phone');
+  if(phone) fields.push({ name: 'phone', value: phone });
+  var msg = buildMessage();
+  if(msg)   fields.push({ name: 'message', value: msg });
+
   var body = {
-    fields: [
-      { objectTypeId: '0-1', name: 'firstname', value: $v('f-fname') },
-      { objectTypeId: '0-1', name: 'lastname',  value: $v('f-lname') },
-      { objectTypeId: '0-1', name: 'email',     value: $v('f-email') },
-      { objectTypeId: '0-1', name: 'phone',     value: $v('f-phone') },
-      { objectTypeId: '0-1', name: 'company',   value: $v('f-prop')  },
-      { objectTypeId: '0-1', name: 'message',   value: buildMessage() }
-    ],
+    fields: fields,
     context: {
       pageUri:  window.location.href,
       pageName: 'JMEDIA Contact'
+    },
+    legalConsentOptions: {
+      consent: {
+        consentToProcess: true,
+        text: 'I agree to allow JMEDIA Productions to store and process my personal data.',
+        communications: [{
+          value: true,
+          subscriptionTypeId: 999,
+          text: 'I agree to receive communications from JMEDIA Productions.'
+        }]
+      }
     }
   };
 
@@ -436,13 +453,26 @@ document.getElementById('submit-btn').addEventListener('click', function(){
       document.getElementById('form-wrap').style.display     = 'none';
       document.getElementById('success-state').style.display = 'block';
     } else {
-      return res.json().then(function(data){
-        throw new Error(data.message || ('HTTP ' + res.status));
+      return res.text().then(function(text){
+        console.error('HubSpot API error response:', res.status, text);
+        try {
+          var data = JSON.parse(text);
+          var msg = data.message || data.error || ('Server error ' + res.status);
+          throw new Error(msg);
+        } catch(e) {
+          throw new Error('Server error ' + res.status);
+        }
       });
     }
   })
   .catch(function(err){
-    console.error('HubSpot error:', err);
+    console.error('HubSpot submission error:', err);
+    /* Show specific error if available */
+    var msg = 'Something went wrong submitting the form. Please email us directly at info@j-mediaproductions.com';
+    if(err && err.message && err.message.length < 200) {
+      console.error('Detail:', err.message);
+    }
+    errBanner.textContent = msg;
     errBanner.classList.add('show');
     btn.disabled   = false;
     btn.innerHTML  = 'Send Project Brief &#8594;';
