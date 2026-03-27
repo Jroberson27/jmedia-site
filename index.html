@@ -1518,8 +1518,7 @@ window.addEventListener('scroll', function(){ document.getElementById('nav').cla
 document.querySelectorAll('.fi').forEach(function(item){
   item.querySelector('.fibtn').addEventListener('click', function(){
     if(item.hasAttribute('data-open')){
-      item.removeAttribut
-</html>e('data-open');
+      item.removeAttribute('data-open');
       item.querySelector('.fibtn').setAttribute('aria-expanded','false');
     } else {
       item.setAttribute('data-open','');
