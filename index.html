@@ -322,15 +322,53 @@ body.animated .ax.fired{animation-play-state:running!important;}
 .sb{flex:1;border-radius:2px 2px 0 0;background:var(--coral);}
 .sb.lo{opacity:.2;}.sb.md{opacity:.5;}.sb.hi{opacity:1;}
 
-/* ── STATS ── */
-.stintro{max-width:620px;margin-bottom:80px;}
+/* ── STATS — Apple scroll-locked ── */
+/* Outer: very tall so scroll drives animation */
+#stats-scroll{position:relative;height:360vh;background:var(--bg-alt);}
+/* Inner sticky panel */
+#stats-sticky{
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;overflow:hidden;
+}
+.stats-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);width:100%;}
+/* Intro text: fades in at start of scroll range */
+.stintro{max-width:680px;margin-bottom:80px;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
+.stintro.in{opacity:1;transform:translateY(0);}
 .stintro p{font-family:var(--Fs);font-size:clamp(20px,2.5vw,30px);font-weight:300;line-height:1.6;color:var(--text-2);font-style:italic;}
 .stintro p strong{color:var(--text);font-style:normal;font-weight:400;}
+/* Stat items — stacked, each fades in as scroll beam hits it */
 .strow{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
-.stbox{background:linear-gradient(150deg,var(--bg-card) 0%,#f0f0f2 100%);border:1px solid var(--line);border-top-color:rgba(255,255,255,.9);padding:44px 36px;box-shadow:2px 4px 12px rgba(0,0,0,.07),0 1px 0 rgba(255,255,255,.7) inset;transition:transform .3s,background .2s,box-shadow .3s;}
-.stbox:hover{transform:scale(1.03) translateY(-3px);}
-.stbn{font-family:var(--Fd);font-size:80px;line-height:1;color:var(--coral);letter-spacing:-2px;margin-bottom:8px;text-shadow:0 1px 0 rgba(100,20,10,.9),0 2px 0 rgba(80,14,8,.7),0 3px 8px rgba(0,0,0,.3);}
+.stbox{
+  background:linear-gradient(150deg,var(--bg-card) 0%,#f0f0f2 100%);
+  border:1px solid var(--line);border-top-color:rgba(255,255,255,.9);
+  padding:44px 36px;
+  box-shadow:2px 4px 12px rgba(0,0,0,.07),0 1px 0 rgba(255,255,255,.7) inset;
+  opacity:0;transform:translateY(40px) scale(.95);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),box-shadow .3s;
+}
+.stbox.in{opacity:1;transform:translateY(0) scale(1);}
+.stbox.in:hover{transform:translateY(-4px) scale(1.02);box-shadow:4px 8px 24px rgba(0,0,0,.12),0 1px 0 rgba(255,255,255,.8) inset;}
+.stbn{
+  font-family:var(--Fd);font-size:80px;line-height:1;
+  color:var(--coral);letter-spacing:-2px;margin-bottom:8px;
+  text-shadow:0 1px 0 rgba(100,20,10,.9),0 2px 0 rgba(80,14,8,.7),0 3px 8px rgba(0,0,0,.3);
+}
 .stbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-3);}
+/* Progress bar at bottom of sticky panel */
+.stats-progress{
+  position:absolute;bottom:0;left:0;height:2px;
+  background:var(--coral);width:0%;
+  transition:width .1s linear;
+}
+@media(max-width:960px){
+  #stats-scroll{height:auto;}
+  #stats-sticky{position:static;height:auto;padding:80px 0;}
+  .strow{grid-template-columns:1fr 1fr;}
+  .stbox{opacity:1;transform:none;}
+  .stintro{opacity:1;transform:none;}
+  .stats-progress{display:none;}
+}
 
 /* ════════════════════════════════════════
    ROI CALCULATOR
@@ -700,17 +738,23 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 </section>
 
 <!-- STATS -->
-<section class="sec sec-alt" aria-labelledby="stats-h">
-  <div class="inner">
-    <div class="stintro ax ax-blur"><h2 class="sr" id="stats-h">About JMEDIA</h2><p>Founded in 2021, built specifically around <strong>hospitality and experience-driven brands.</strong> Every decision &mdash; how we shoot, how we scope, how we structure partnerships &mdash; is designed to work for the way hotels actually operate.</p></div>
-    <div class="strow" role="list">
-      <div class="stbox ax ax-scale" role="listitem"><div class="stbn" id="cnt-0" data-target="15">0+</div><div class="stbl">Years Experience</div></div>
-      <div class="stbox ax ax-flip d2" role="listitem"><div class="stbn" id="cnt-1" data-target="20">0+</div><div class="stbl">Repeat Clients</div></div>
-      <div class="stbox ax ax-scale d4" role="listitem"><div class="stbn" id="cnt-2" data-target="100">0+</div><div class="stbl">Projects Delivered</div></div>
-      <div class="stbox ax ax-flip d6" role="listitem"><div class="stbn" id="cnt-3" data-target="100">0+</div><div class="stbl">Happy Clients</div></div>
+<div id="stats-scroll" aria-labelledby="stats-h">
+  <div id="stats-sticky">
+    <div class="stats-inner">
+      <div class="stintro" id="stintro">
+        <h2 class="sr" id="stats-h">About JMEDIA</h2>
+        <p>Founded in 2021, built specifically around <strong>hospitality and experience-driven brands.</strong> Every decision &mdash; how we shoot, how we scope, how we structure partnerships &mdash; is designed to work for the way hotels actually operate.</p>
+      </div>
+      <div class="strow" role="list">
+        <div class="stbox" id="stbox-0" role="listitem"><div class="stbn" id="cnt-0" data-target="15">0+</div><div class="stbl">Years Experience</div></div>
+        <div class="stbox" id="stbox-1" role="listitem"><div class="stbn" id="cnt-1" data-target="20">0+</div><div class="stbl">Repeat Clients</div></div>
+        <div class="stbox" id="stbox-2" role="listitem"><div class="stbn" id="cnt-2" data-target="100">0+</div><div class="stbl">Projects Delivered</div></div>
+        <div class="stbox" id="stbox-3" role="listitem"><div class="stbn" id="cnt-3" data-target="100">0+</div><div class="stbl">Happy Clients</div></div>
+      </div>
     </div>
+    <div class="stats-progress" id="stats-progress"></div>
   </div>
-</section>
+</div>
 
 <!-- ROI CALCULATOR -->
 <section class="roi-sec" aria-labelledby="roi-h">
@@ -904,13 +948,13 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
       </div>
       <div class="ax ax-up d2"><p class="fch">Navigate</p><ul class="fl"><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="ax ax-up d4"><p class="fch">Services</p><ul class="fl"><li><a href="services.html">Content Partnerships</a></li><li><a href="services.html">Brand Films</a></li><li><a href="services.html">OTA Visuals</a></li><li><a href="services.html">Social Content</a></li></ul></div>
-      <div class="ax ax-up d6"><p class="fch">Contact</p><ul class="fl"><li>info@j-mediaproductions.com</li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Suite 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
+      <div class="ax ax-up d6"><p class="fch">Contact</p><ul class="fl"><li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0861666e67486225656d6c6169787a676c7d6b7c6167667b266b6765">[email&#160;protected]</a></li><li><a href="tel:8638878129">(863) 887-8129</a></li><li><span>4700 Millennium Blvd, Suite 175</span></li><li><span>Orlando, FL 32839</span></li></ul></div>
     </div>
     <div class="fbot"><span>&copy; 2026 JMEDIA Productions LLC. All rights reserved.</span><span>Privacy &middot; Terms</span></div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
 /* ═══════════════════════════════════════
    ALL JS IN ONE BLOCK — NO PATCHES
@@ -1338,29 +1382,77 @@ window.addEventListener('scroll', function(){ document.getElementById('nav').cla
   raf = requestAnimationFrame(draw);
 })();
 
-/* ── Stat + Portal number animations ── */
+/* ══════════════════════════════════════════════
+   APPLE-STYLE SCROLL-LOCKED STATS
+   Scroll progress through #stats-scroll drives:
+   1. Intro text fades in
+   2. Each stat box reveals + counts up sequentially
+   3. Progress bar sweeps across the bottom
+══════════════════════════════════════════════ */
 (function(){
+  var scrollEl  = document.getElementById('stats-scroll');
+  var introEl   = document.getElementById('stintro');
+  var progressEl= document.getElementById('stats-progress');
+  var boxes     = [0,1,2,3].map(function(i){ return document.getElementById('stbox-'+i); });
+  var numEls    = [0,1,2,3].map(function(i){ return document.getElementById('cnt-'+i); });
+  var targets   = [15, 20, 100, 100];
+  var countDone = [false,false,false,false];
 
-  /* ── Generic stat boxes: integer count-up ── */
-  var boxes = Array.from(document.querySelectorAll('.stbn[data-target]'));
-  var boxDone = [];
-  function countUpInt(el, target){
+  if(!scrollEl) return;
+
+  function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+  function easeOut(t){ return 1-Math.pow(1-t,3); }
+
+  function countUp(el, target){
     var start = performance.now();
-    var dur = 1400;
+    var dur = 1200;
     (function step(now){
-      var p = Math.min(1, (now-start)/dur);
-      var ease = 1 - Math.pow(1-p, 3);
-      el.textContent = Math.round(ease*target)+'+';
+      var p = Math.min(1,(now-start)/dur);
+      el.textContent = Math.round(easeOut(p)*target)+'+';
       if(p<1) requestAnimationFrame(step);
     })(start);
   }
 
-  /* ── Portal dashboard stats: custom count-up ── */
-  /* +34%, 2.1x, +$28 */
+  function update(){
+    var rect  = scrollEl.getBoundingClientRect();
+    var range = scrollEl.offsetHeight - window.innerHeight;
+    var prog  = clamp(-rect.top / range, 0, 1);
+
+    /* Progress bar */
+    if(progressEl) progressEl.style.width = (prog*100).toFixed(1)+'%';
+
+    /* Intro: fades in during first 15% of scroll */
+    if(introEl){
+      if(prog > 0.05) introEl.classList.add('in');
+    }
+
+    /* Each box occupies a slice of progress 0.15 → 1.0
+       Box 0: 0.15-0.35, Box 1: 0.35-0.55, Box 2: 0.55-0.75, Box 3: 0.75-0.95 */
+    var slices = [[0.15,0.35],[0.35,0.55],[0.55,0.75],[0.75,0.95]];
+    boxes.forEach(function(box, i){
+      if(!box) return;
+      var s = slices[i];
+      var p = clamp((prog - s[0]) / (s[1] - s[0]), 0, 1);
+      if(p > 0.05){
+        box.classList.add('in');
+        if(!countDone[i]){
+          countDone[i] = true;
+          countUp(numEls[i], targets[i]);
+        }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+
+/* ── Portal dashboard count-up ── */
+(function(){
   var portalStats = [
-    { sel: '.psm:nth-child(1) .psmv', from: 0,  to: 34,  fmt: function(v){ return '+' + Math.round(v) + '%'; } },
-    { sel: '.psm:nth-child(2) .psmv', from: 0,  to: 2.1, fmt: function(v){ return v.toFixed(1) + 'x'; }, step: 0.01 },
-    { sel: '.psm:nth-child(3) .psmv', from: 0,  to: 28,  fmt: function(v){ return '+$' + Math.round(v); } }
+    { sel: '.psm:nth-child(1) .psmv', to: 34,  fmt: function(v){ return '+' + Math.round(v) + '%'; } },
+    { sel: '.psm:nth-child(2) .psmv', to: 2.1, fmt: function(v){ return v.toFixed(1) + 'x'; } },
+    { sel: '.psm:nth-child(3) .psmv', to: 28,  fmt: function(v){ return '+$' + Math.round(v); } }
   ];
   var portalDone = false;
   var portalEl   = document.querySelector('.puisum');
@@ -1371,38 +1463,24 @@ window.addEventListener('scroll', function(){ document.getElementById('nav').cla
     var start = performance.now();
     var dur = 1600;
     (function step(now){
-      var p = Math.min(1, (now-start)/dur);
-      var ease = 1 - Math.pow(1-p, 3);
-      var val = stat.from + (stat.to - stat.from) * ease;
-      el.textContent = stat.fmt(val);
+      var p = Math.min(1,(now-start)/dur);
+      var ease = 1-Math.pow(1-p,3);
+      el.textContent = stat.fmt(stat.to * ease);
       if(p<1) requestAnimationFrame(step);
     })(start);
   }
 
-  /* ── Section scroll checks ── */
   function check(){
-    /* Stat boxes */
-    boxes.forEach(function(el, i){
-      if(boxDone[i]) return;
-      var r = el.getBoundingClientRect();
-      if(r.top < window.innerHeight * 0.88){
-        boxDone[i] = true;
-        setTimeout(function(){ countUpInt(el, +el.getAttribute('data-target')); }, i * 100);
-      }
-    });
-
-    /* Portal stats */
     if(!portalDone && portalEl){
       var r = portalEl.getBoundingClientRect();
       if(r.top < window.innerHeight * 0.88){
         portalDone = true;
-        portalStats.forEach(function(stat, i){
-          setTimeout(function(){ countUpPortal(stat); }, i * 200);
+        portalStats.forEach(function(stat,i){
+          setTimeout(function(){ countUpPortal(stat); }, i*200);
         });
       }
     }
   }
-
   window.addEventListener('scroll', check, {passive:true});
   check();
 })();
@@ -1525,7 +1603,7 @@ window.addEventListener('scroll', function(){ document.getElementById('nav').cla
 document.querySelectorAll('.fi').forEach(function(item){
   item.querySelector('.fibtn').addEventListener('click', function(){
     if(item.hasAttribute('data-open')){
-      item.removeAttribute('data-open');
+      item.removeAttribute('data-open');e('data-open');
       item.querySelector('.fibtn').setAttribute('aria-expanded','false');
     } else {
       item.setAttribute('data-open','');
