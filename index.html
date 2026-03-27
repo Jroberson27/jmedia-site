@@ -223,6 +223,18 @@ body.animated .ax-blur  {animation:axBlur   1s cubic-bezier(.16,1,.3,1) both pau
 body.animated .ax-flip  {animation:axFlip   .9s cubic-bezier(.16,1,.3,1) both paused;}
 body.animated .ax-spin  {animation:axSpin   .85s cubic-bezier(.16,1,.3,1) both paused;}
 body.animated .ax-spring{animation:axSpring .9s cubic-bezier(.16,1,.3,1) both paused;}
+/* Extra animation types for section-specific effects */
+@keyframes axSlideLeft{from{opacity:0;transform:translateX(-64px);}to{opacity:1;transform:translateX(0);}}
+@keyframes axSlideRight{from{opacity:0;transform:translateX(64px);}to{opacity:1;transform:translateX(0);}}
+@keyframes axRise{from{opacity:0;transform:translateY(56px);}to{opacity:1;transform:translateY(0);}}
+@keyframes axPop{0%{opacity:0;transform:scale(.88) translateY(28px);}60%{transform:scale(1.02);}100%{opacity:1;transform:scale(1) translateY(0);}}
+@keyframes axWord{0%{opacity:0;transform:translateY(32px) scale(.92);}60%{transform:scale(1.04);}100%{opacity:1;transform:translateY(0) scale(1);}}
+body.animated .ax-slide-left {animation:axSlideLeft  .9s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-slide-right{animation:axSlideRight .9s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-rise        {animation:axRise       .85s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-pop         {animation:axPop        .9s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax-word        {animation:axWord       .55s cubic-bezier(.16,1,.3,1) both paused;}
+body.animated .ax.fired{animation-play-state:running!important;}
 body.animated .ax.fired{animation-play-state:running!important;}
 .d1{animation-delay:.06s!important;}.d2{animation-delay:.12s!important;}
 .d3{animation-delay:.18s!important;}.d4{animation-delay:.24s!important;}
@@ -648,18 +660,18 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   <div class="inner">
     <div class="vi">
       <div>
-        <span class="eyebrow ax ax-left">Why Hotels Partner With Us</span>
-        <h2 class="hl ax ax-up d1" id="val-h">Not a Vendor.<br>A <em>Partner.</em></h2>
+        <span class="eyebrow ax ax-slide-left">Why Hotels Partner With Us</span>
+        <h2 class="hl ax ax-slide-left d1" id="val-h">Not a Vendor.<br>A <em>Partner.</em></h2>
       </div>
-      <div class="ax ax-blur d2" style="padding-top:8px;">
+      <div class="ax ax-slide-left d2" style="padding-top:8px;">
         <p class="body-lg">The typical vendor relationship: you spend the budget, get a video, and six months later the content is stale and you&rsquo;re back at square one. <strong>The shoot solved the immediate problem but nothing downstream changed.</strong></p>
         <p class="body-lg" style="margin-top:16px;">JMEDIA works differently. We plug into your property on an ongoing basis &mdash; building a content library that serves your OTA listings, social channels, email campaigns, and direct booking page simultaneously.</p>
       </div>
     </div>
     <div class="vgrid" role="list">
-      <article class="vc ax ax-spin" role="listitem"><div class="vcn" aria-hidden="true">01</div><h3 class="vct">Content That Stacks</h3><p class="vcb">A single shoot produces assets across every channel &mdash; brand film, OTA cuts, social reels, stills, email headers. Your investment compounds every month.</p></article>
-      <article class="vc ax ax-flip d2" role="listitem"><div class="vcn" aria-hidden="true">02</div><h3 class="vct">Lean and Agile</h3><p class="vcb">We show up focused, move fast, and deliver cinematic results with a small footprint &mdash; so we can work consistently without disrupting operations.</p></article>
-      <article class="vc ax ax-spin d4" role="listitem"><div class="vcn" aria-hidden="true">03</div><h3 class="vct">Hospitality Is All We Do</h3><p class="vcb">We understand booking funnels, OTA dynamics, and how guests decide before they arrive. That context is built into every brief we write.</p></article>
+      <article class="vc ax ax-slide-right" role="listitem"><div class="vcn" aria-hidden="true">01</div><h3 class="vct">Content That Stacks</h3><p class="vcb">A single shoot produces assets across every channel &mdash; brand film, OTA cuts, social reels, stills, email headers. Your investment compounds every month.</p></article>
+      <article class="vc ax ax-slide-right d2" role="listitem"><div class="vcn" aria-hidden="true">02</div><h3 class="vct">Lean and Agile</h3><p class="vcb">We show up focused, move fast, and deliver cinematic results with a small footprint &mdash; so we can work consistently without disrupting operations.</p></article>
+      <article class="vc ax ax-slide-right d4" role="listitem"><div class="vcn" aria-hidden="true">03</div><h3 class="vct">Hospitality Is All We Do</h3><p class="vcb">We understand booking funnels, OTA dynamics, and how guests decide before they arrive. That context is built into every brief we write.</p></article>
     </div>
   </div>
 </section>
@@ -667,15 +679,15 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- HOW IT WORKS -->
 <section class="sec" aria-labelledby="how-h">
   <div class="inner">
-    <span class="eyebrow ax ax-right">How It Works</span>
-    <h2 class="hl ax ax-scale d1" id="how-h">The Partnership <em>Model</em></h2>
+    <span class="eyebrow ax ax-up">How It Works</span>
+    <h2 class="hl ax ax-up d1" id="how-h">The Partnership <em>Model</em></h2>
     <div class="hwgrid">
-      <div class="ax ax-left d1"><p class="hwl-p">We scope a monthly engagement around your property&rsquo;s specific needs. <strong>Most partnerships start with a free content audit</strong>, then we build a roadmap and execute from there.</p></div>
+      <div class="ax ax-slide-left d2"><p class="hwl-p">We scope a monthly engagement around your property&rsquo;s specific needs. <strong>Most partnerships start with a free content audit</strong>, then we build a roadmap and execute from there.</p></div>
       <ol class="hwsteps" aria-label="Partnership steps">
-        <li class="hws ax ax-right d1"><div class="hwsn" aria-hidden="true">01</div><div><h3 class="hwst">Free Property Audit</h3><p class="hwsb">We study your content, OTA listings, and comp set. We find the gap between what your property delivers and how it&rsquo;s presenting online. <strong>Costs you nothing.</strong></p></div></li>
-        <li class="hws ax ax-right d2"><div class="hwsn" aria-hidden="true">02</div><div><h3 class="hwst">Content Roadmap</h3><p class="hwsb">A content plan tied to your booking calendar and channel priorities. You know exactly what&rsquo;s coming and why.</p></div></li>
-        <li class="hws ax ax-right d3"><div class="hwsn" aria-hidden="true">03</div><div><h3 class="hwst">Monthly Execution</h3><p class="hwsb">We show up, capture what the roadmap calls for, and deliver formatted assets for every channel. <strong>Your content library grows every month.</strong></p></div></li>
-        <li class="hws ax ax-right d4"><div class="hwsn" aria-hidden="true">04</div><div><h3 class="hwst">Track, Review, Iterate</h3><p class="hwsb">Through your client portal, you track what each piece of content is doing. We adjust based on what&rsquo;s moving your numbers.</p></div></li>
+        <li class="hws ax ax-rise d1"><div class="hwsn" aria-hidden="true">01</div><div><h3 class="hwst">Free Property Audit</h3><p class="hwsb">We study your content, OTA listings, and comp set. We find the gap between what your property delivers and how it&rsquo;s presenting online. <strong>Costs you nothing.</strong></p></div></li>
+        <li class="hws ax ax-rise d2"><div class="hwsn" aria-hidden="true">02</div><div><h3 class="hwst">Content Roadmap</h3><p class="hwsb">A content plan tied to your booking calendar and channel priorities. You know exactly what&rsquo;s coming and why.</p></div></li>
+        <li class="hws ax ax-rise d3"><div class="hwsn" aria-hidden="true">03</div><div><h3 class="hwst">Monthly Execution</h3><p class="hwsb">We show up, capture what the roadmap calls for, and deliver formatted assets for every channel. <strong>Your content library grows every month.</strong></p></div></li>
+        <li class="hws ax ax-rise d4"><div class="hwsn" aria-hidden="true">04</div><div><h3 class="hwst">Track, Review, Iterate</h3><p class="hwsb">Through your client portal, you track what each piece of content is doing. We adjust based on what&rsquo;s moving your numbers.</p></div></li>
       </ol>
     </div>
   </div>
@@ -684,14 +696,14 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- RETAINER -->
 <section class="sec sec-alt" style="padding-top:0;" aria-labelledby="ret-h">
   <div class="inner">
-    <div class="retcard ax ax-scale">
+    <div class="retcard ax ax-pop">
       <div>
         <span class="rettag">The Partnership Model</span>
         <h2 class="reth" id="ret-h">A Monthly<br>Content Engine<br>for Your <em>Property.</em></h2>
         <p class="rets">No bloated production days. No one-and-done deliverables. A focused, ongoing engagement that keeps your content fresh, your channels active, and your brand above the comp set. <strong>Most properties start seeing traction within 60 days.</strong></p>
         <div class="retcta" style="margin-top:28px;"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-lnk">See Services</a></div>
       </div>
-      <div class="ax ax-left d2">
+      <div class="ax ax-slide-right d2">
         <p class="retil">What a Partnership Includes</p>
         <table class="ret-table" role="presentation"><tbody>
           <tr><td>Monthly Shoot Day</td><td>Targeted, pre-planned, efficient</td></tr>
@@ -711,18 +723,18 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   <div class="inner">
     <div class="pwrap">
       <div>
-        <span class="eyebrow ax ax-up">The Client Portal</span>
-        <h2 class="hl ax ax-up d1" id="portal-h" style="color:#fff;">See Exactly What<br>Your Content <em>Is Doing.</em></h2>
-        <p class="body-lg ax ax-blur d2" style="margin-top:20px;">Most production partners hand you a Dropbox link and disappear. Every JMEDIA partnership includes a dedicated portal where you access deliverables, track performance per video, and see the direct booking impact.</p>
-        <p class="body-lg ax ax-up d3" style="margin-top:12px;"><strong>We don&rsquo;t just talk about ROI. We show it to you.</strong></p>
-        <div class="pfeats ax ax-left d3">
+        <span class="eyebrow ax ax-slide-left">The Client Portal</span>
+        <h2 class="hl ax ax-slide-left d1" id="portal-h" style="color:#fff;">See Exactly What<br>Your Content <em>Is Doing.</em></h2>
+        <p class="body-lg ax ax-slide-left d2" style="margin-top:20px;">Most production partners hand you a Dropbox link and disappear. Every JMEDIA partnership includes a dedicated portal where you access deliverables, track performance per video, and see the direct booking impact.</p>
+        <p class="body-lg ax ax-slide-left d3" style="margin-top:12px;"><strong>We don&rsquo;t just talk about ROI. We show it to you.</strong></p>
+        <div class="pfeats ax ax-slide-left d4">
           <div class="pf"><div class="pfi" aria-hidden="true">&#128193;</div><div><p class="pft">Organized Asset Library</p><p class="pfd">Every deliverable sorted by channel, campaign, and date.</p></div></div>
           <div class="pf"><div class="pfi" aria-hidden="true">&#128202;</div><div><p class="pft">Per-Video Performance</p><p class="pfd">OTA click-through, direct booking lift, and social engagement per asset.</p></div></div>
           <div class="pf"><div class="pfi" aria-hidden="true">&#128279;</div><div><p class="pft">Direct Booking Attribution</p><p class="pfd">Revenue movement tied to specific content &mdash; numbers for ownership.</p></div></div>
         </div>
-        <div class="pmsbadge ax ax-spring d4"><div class="pmsdot" aria-hidden="true"></div><p class="pmstxt"><strong>PMS Integration</strong> &mdash; connects to all major property management systems.</p></div>
+        <div class="pmsbadge ax ax-rise d5"><div class="pmsdot" aria-hidden="true"></div><p class="pmstxt"><strong>PMS Integration</strong> &mdash; connects to all major property management systems.</p></div>
       </div>
-      <div class="ax ax-flip d1" aria-hidden="true">
+      <div class="ax ax-slide-right d1" aria-hidden="true">
         <div class="pui" role="img" aria-label="Sample client portal">
           <div class="puich"><div class="puidots"><div class="puid"></div><div class="puid"></div><div class="puid"></div></div><div class="puit">JMEDIA Portal &mdash; The Seaside Resort</div><div class="puil"><div class="puil-d"></div>Live</div></div>
           <div class="puisum"><div class="psm"><div class="psml">Direct Bookings</div><div class="psmv">+34%</div><div class="psmd">&#8593; vs last quarter</div></div><div class="psm"><div class="psml">OTA Click-Through</div><div class="psmv">2.1x</div><div class="psmd">&#8593; since brand film</div></div><div class="psm"><div class="psml">ADR Impact</div><div class="psmv">+$28</div><div class="psmd">&#8593; avg rate lift</div></div></div>
@@ -895,11 +907,11 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   <div class="inner">
     <div class="faqwrap">
       <div>
-        <span class="eyebrow ax ax-left">Common Questions</span>
-        <h2 class="hl ax ax-up d1" id="faq-h">Before You<br><em>Reach Out.</em></h2>
+        <span class="eyebrow ax ax-up">Common Questions</span>
+        <h2 class="hl ax ax-rise d1" id="faq-h">Before You<br><em>Reach Out.</em></h2>
         <p class="faqled ax ax-up d2">Honest answers to what most GMs and marketing directors want to know before getting on a call.</p>
       </div>
-      <div class="flist ax ax-right">
+      <div class="flist ax ax-rise d2">
         <div class="fi" data-open>
           <button class="fibtn" aria-expanded="true" aria-controls="fa1">How is this different from hiring a production company? <div class="fitog" aria-hidden="true">+</div></button>
           <div class="fans" id="fa1">A production company gives you a deliverable and moves on. We give you an ongoing content strategy tied to your booking goals &mdash; with a portal that shows exactly how each piece is performing. The work compounds month over month.</div>
@@ -928,10 +940,10 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 <!-- CTA -->
 <section class="ctasec" aria-labelledby="cta-h">
   <div class="inner">
-    <span class="ctaey ax ax-up">No Commitment Required</span>
-    <h2 class="ctah ax ax-scale d1" id="cta-h">Stop Paying<br>for <em>One-Off Shoots.</em></h2>
-    <p class="ctasub ax ax-blur d2">We&rsquo;ll audit your current content and show you exactly where the gap is &mdash; before you spend a dollar.</p>
-    <div class="ctabtns ax ax-spring d3"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-ghost-dk">See How It Works</a></div>
+    <span class="ctaey ax ax-rise">No Commitment Required</span>
+    <h2 class="ctah" id="cta-h" aria-label="Stop Paying for One-Off Shoots."><span class="ax ax-word d1">Stop&nbsp;</span><span class="ax ax-word d2">Paying</span><br><span class="ax ax-word d3">for&nbsp;</span><span class="ax ax-word" style="animation-delay:.36s!important;font-family:var(--Fs);font-style:italic;color:var(--coral);">One-Off&nbsp;</span><span class="ax ax-word" style="animation-delay:.44s!important;font-family:var(--Fs);font-style:italic;color:var(--coral);">Shoots.</span></h2>
+    <p class="ctasub ax ax-rise d3">We&rsquo;ll audit your current content and show you exactly where the gap is &mdash; before you spend a dollar.</p>
+    <div class="ctabtns ax ax-pop d4"><a href="contact.html" class="btn-pill">Book a Free Audit</a><a href="services.html" class="btn-ghost-dk">See How It Works</a></div>
   </div>
 </section>
 
