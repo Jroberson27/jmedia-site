@@ -1421,24 +1421,26 @@ window.addEventListener('scroll', function(){ document.getElementById('nav').cla
     /* Progress bar */
     if(progressEl) progressEl.style.width = (prog*100).toFixed(1)+'%';
 
-    /* Intro: fades in during first 15% of scroll */
+    /* Intro: fades in/out based on scroll */
     if(introEl){
-      if(prog > 0.05) introEl.classList.add('in');
+      introEl.classList.toggle('in', prog > 0.05);
     }
 
-    /* Each box occupies a slice of progress 0.15 → 1.0
-       Box 0: 0.15-0.35, Box 1: 0.35-0.55, Box 2: 0.55-0.75, Box 3: 0.75-0.95 */
+    /* Each box occupies a slice — adds AND removes .in for bidirectional */
     var slices = [[0.15,0.35],[0.35,0.55],[0.55,0.75],[0.75,0.95]];
     boxes.forEach(function(box, i){
       if(!box) return;
-      var s = slices[i];
-      var p = clamp((prog - s[0]) / (s[1] - s[0]), 0, 1);
-      if(p > 0.05){
-        box.classList.add('in');
-        if(!countDone[i]){
-          countDone[i] = true;
-          countUp(numEls[i], targets[i]);
-        }
+      var active = prog >= slices[i][0] - 0.02;
+      box.classList.toggle('in', active);
+      /* Count up each time box becomes visible */
+      if(active && !countDone[i]){
+        countDone[i] = true;
+        countUp(numEls[i], targets[i]);
+      }
+      /* Reset counter when box scrolls back out so it counts again on re-entry */
+      if(!active && countDone[i]){
+        countDone[i] = false;
+        if(numEls[i]) numEls[i].textContent = '0+';
       }
     });
   }
