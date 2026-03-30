@@ -50,7 +50,7 @@ a{text-decoration:none;color:inherit;}ul,ol{list-style:none;}
 
 
 /* ── HERO ── */
-#hero{position:relative;height:100svh;min-height:700px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+#hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
 .hbg{position:absolute;inset:0;z-index:0;background:#080808;overflow:hidden;}
 .hbg::before{content:'';position:absolute;inset:0;
   background:
@@ -68,9 +68,9 @@ a{text-decoration:none;color:inherit;}ul,ol{list-style:none;}
 .hgrain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.16;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
   background-size:180px;}
-.hcon{position:relative;z-index:4;padding:0 80px 110px;max-width:calc(var(--max) + 160px);}
+.hcon{position:relative;z-index:4;padding:100px 80px 90px;max-width:calc(var(--max) + 160px);}
 .hero-eyebrow{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:20px;opacity:0;transform:translateY(16px);animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .3s both;}
-.hh1{font-family:var(--Fd);font-size:clamp(64px,9vw,148px);line-height:.88;letter-spacing:1px;color:#fff;margin-bottom:32px;
+.hh1{font-family:var(--Fd);font-size:clamp(52px,7vw,128px);line-height:.88;letter-spacing:1px;color:#fff;margin-bottom:28px;
   text-shadow:0 1px 0 rgba(0,0,0,.9),0 2px 0 rgba(0,0,0,.6);
   opacity:0;animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .45s both;}
 .hh1 .ci{font-family:var(--Fs);font-style:italic;color:var(--coral);font-size:.88em;display:block;
@@ -78,7 +78,7 @@ a{text-decoration:none;color:inherit;}ul,ol{list-style:none;}
 .hsub{font-size:19px;line-height:1.75;color:rgba(255,255,255,.65);max-width:560px;margin-bottom:48px;
   opacity:0;animation:fadeUp .8s ease .8s both;}
 .hbtns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s ease 1s both;}
-.hstat-row{display:flex;gap:48px;margin-top:64px;padding-top:48px;border-top:1px solid rgba(255,255,255,.1);
+.hstat-row{display:flex;gap:40px;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1);
   opacity:0;animation:fadeUp .8s ease 1.1s both;}
 .hstat{display:flex;flex-direction:column;gap:4px;}
 .hstat-n{font-family:var(--Fd);font-size:40px;color:var(--coral);letter-spacing:-1px;line-height:1;
@@ -275,7 +275,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
 @media(max-width:960px){
   :root{--pad:24px;}
   #nav{padding:0 20px;}.nlinks{display:none;}
-  .hcon{padding:0 24px 80px;}
+  .hcon{padding:80px 24px 60px;}
   .hstat-row{gap:28px;flex-wrap:wrap;}
   .svc-grid{grid-template-columns:1fr;}
   .agent-wrap,.opp-wrap{grid-template-columns:1fr;}
@@ -299,6 +299,7 @@ footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.08);padd
   <div class="nlinks">
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
+    <a href="real-estate.html">Real Estate</a>
     <a href="contact.html">Contact</a>
   </div>
   <a href="contact.html" class="ncta">Book a Free Audit</a>
