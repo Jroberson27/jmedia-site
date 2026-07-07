@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JMEDIA Hospitality: On-Demand Content Partner for Hotels & Resorts</title>
-<meta name="description" content="JMEDIA Hospitality is the outsourced content partner for hotels, resorts, restaurants, and destination brands. Fresh photo and video assets, delivered on a schedule you can count on.">
+<title>JMEDIA Hospitality: Content Partner & Full-Service Production Studio for Hotels & Resorts</title>
+<meta name="description" content="JMEDIA Hospitality is the content partner and full-service production studio for hotels, resorts, restaurants, and destination brands: ongoing photo and video for everyday marketing, plus brand films, commercials, and campaigns when you need them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -167,44 +167,48 @@
   .solution-copy { grid-column: 1 / 8; }
   .solution-visual { grid-column: 9 / 13; }
 
-  .comparison { display: flex; flex-direction: column; align-items: stretch; height: 100%; justify-content: center; }
+  .modes { display: flex; flex-direction: column; align-items: stretch; height: 100%; justify-content: center; }
 
-  .comparison-row {
+  .mode-card {
     border-radius: 10px; padding: 1.75rem 1.6rem; position: relative; overflow: hidden;
-    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
   }
-  .comparison-row.old {
-    background: var(--color-bg-alt); border: 1px solid var(--color-border); opacity: 0.9;
+  .mode-card.partnership {
+    background: #fff; border: 1px solid var(--color-border);
   }
-  .comparison-row.old p { color: var(--color-text-muted); text-decoration: line-through; text-decoration-color: rgba(72,66,60,0.4); line-height: 1.65; font-size: 0.92rem; }
-  .comparison-row.old:hover { transform: translateY(-2px); }
+  .mode-card.partnership p { color: var(--color-text-muted); line-height: 1.65; font-size: 0.92rem; }
+  .mode-card.partnership:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--color-accent); }
 
-  .comparison-arrow {
-    text-align: center; font-size: 1.4rem; color: var(--color-accent); margin: 0.6rem 0;
-    animation: arrowBounce 1.8s ease-in-out infinite;
+  .mode-divider {
+    text-align: center; font-size: 1.4rem; font-weight: 700; color: var(--color-accent); margin: 0.6rem 0;
+    animation: dividerPulse 2.2s ease-in-out infinite;
   }
-  @keyframes arrowBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+  @keyframes dividerPulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.18); opacity: 1; } }
 
-  .comparison-row.new {
+  .mode-card.production {
     background: linear-gradient(150deg, var(--color-dark) 0%, #241f1c 100%);
     color: #fff; border: 1px solid var(--color-accent);
     box-shadow: 0 0 0 1px rgba(226,88,77,0.15), 0 24px 48px rgba(226,88,77,0.18);
   }
-  .comparison-row.new:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(226,88,77,0.25), 0 32px 60px rgba(226,88,77,0.25); }
-  .comparison-row.new::after {
+  .mode-card.production:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(226,88,77,0.25), 0 32px 60px rgba(226,88,77,0.25); }
+  .mode-card.production::after {
     content: ''; position: absolute; inset: -60% -20%;
     background: linear-gradient(115deg, transparent 30%, rgba(226,88,77,0.16) 50%, transparent 70%);
     animation: shimmerSweep 3.2s ease-in-out infinite; pointer-events: none;
   }
   @keyframes shimmerSweep { 0% { transform: translateX(-30%); } 50% { transform: translateX(10%); } 100% { transform: translateX(-30%); } }
-  .comparison-row.new p { color: #e8e4de; line-height: 1.7; font-size: 0.95rem; position: relative; z-index: 1; }
+  .mode-card.production p { color: #e8e4de; line-height: 1.7; font-size: 0.95rem; position: relative; z-index: 1; }
 
-  .comparison-icon {
+  .mode-icon {
     width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
     font-size: 1rem; font-weight: 700; margin-bottom: 1rem; position: relative; z-index: 1;
   }
-  .comparison-row.old .comparison-icon { background: rgba(72,66,60,0.12); color: var(--color-text-muted); }
-  .comparison-row.new .comparison-icon {
+  .mode-card.partnership .mode-icon {
+    background: rgba(226,88,77,0.12); color: var(--color-accent);
+    animation: iconSpin 6s linear infinite;
+  }
+  @keyframes iconSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .mode-card.production .mode-icon {
     background: var(--color-accent); color: #fff;
     animation: pulseIcon 2.2s ease-in-out infinite;
   }
@@ -213,12 +217,13 @@
     50% { box-shadow: 0 0 0 10px rgba(226,88,77,0); }
   }
 
-  .comparison-label {
+  .mode-label {
     display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 0.75rem; position: relative; z-index: 1;
+    margin-bottom: 0.5rem; position: relative; z-index: 1;
   }
-  .comparison-row.old .comparison-label { color: var(--color-text-muted); }
-  .comparison-row.new .comparison-label { color: var(--color-accent); }
+  .mode-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; position: relative; z-index: 1; }
+  .mode-card.partnership .mode-label { color: var(--color-accent); }
+  .mode-card.production .mode-label { color: var(--color-accent); }
 
   /* Portfolio */
   .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
@@ -227,8 +232,13 @@
     aspect-ratio: 4/3; background: var(--color-border); margin-bottom: 1.5rem; overflow: hidden; position: relative;
     transition: box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
   }
-  .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
-  .project-card:hover .project-image img { transform: scale(1.05); }
+  .project-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1.4s cubic-bezier(0.16,1,0.3,1), filter 1.4s ease, opacity 1.2s ease;
+    transform: scale(1.15); filter: saturate(0.6) brightness(0.96); opacity: 0;
+  }
+  .project-image img.revealed { transform: scale(1); filter: saturate(1) brightness(1); opacity: 1; }
+  .project-card:hover .project-image img.revealed { transform: scale(1.06); }
   .project-card:hover .project-image { box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
   .project-number { position: absolute; top: 1rem; left: 1rem; font-size: 0.75rem; font-weight: 600; color: #fff; background: rgba(13,13,13,0.55); padding: 0.2rem 0.55rem; border-radius: 999px; }
   .project-tag { position: absolute; top: 1rem; right: 1rem; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: rgba(226,88,77,0.85); padding: 0.25rem 0.6rem; border-radius: 999px; }
@@ -253,6 +263,37 @@
   }
   .phone-label { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 1rem; }
   .phone-label strong { color: var(--color-text); font-weight: 600; }
+
+  /* Statement break */
+  .statement { background: var(--color-dark); padding: 110px 0; text-align: center; position: relative; overflow: hidden; }
+  .statement-texture {
+    position: absolute; inset: -20%;
+    background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 26px 26px;
+    animation: textureDrift 22s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes textureDrift {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-26px, -26px); }
+  }
+  .statement-glow {
+    position: absolute; width: 560px; height: 560px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(226,88,77,0.35), transparent 70%);
+    filter: blur(70px); top: 50%; left: 50%;
+    animation: glowDrift 14s ease-in-out infinite; pointer-events: none;
+  }
+  @keyframes glowDrift {
+    0%, 100% { transform: translate(-70%, -60%) scale(1); }
+    50% { transform: translate(-30%, -45%) scale(1.2); }
+  }
+  .statement .container { position: relative; z-index: 1; }
+  .statement-text {
+    font-family: var(--font-display); color: #fff; text-transform: uppercase;
+    font-size: clamp(2rem, 5.5vw, 4.25rem); letter-spacing: 0.01em; line-height: 1.1;
+    max-width: 900px; margin: 0 auto;
+  }
+  .statement-text::after { content: '.'; color: var(--color-accent); }
 
   /* Trust band */
   .trust-band { padding: 90px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
@@ -392,6 +433,8 @@
 
   .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
   .reveal.revealed { opacity: 1; transform: translateY(0); }
+  .reveal-scale.reveal { transform: scale(0.9); }
+  .reveal-scale.reveal.revealed { transform: scale(1); }
   .stagger-1 { transition-delay: 0.08s; } .stagger-2 { transition-delay: 0.16s; } .stagger-3 { transition-delay: 0.24s; } .stagger-4 { transition-delay: 0.32s; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -428,9 +471,9 @@
   <section class="hero">
     <div class="container grid-12">
       <div class="hero-content">
-        <span class="overline">Content Partner for Hotels &amp; Resorts</span>
-        <h1>Your hotel never runs out of content again.</h1>
-        <p class="hero-description">JMEDIA Hospitality is the outsourced content team behind fresh photo and video for hotels, resorts, restaurants, and destination brands, delivered on a schedule you can actually plan around.</p>
+        <span class="overline">Content Partner &amp; Production Studio for Hospitality Brands</span>
+        <h1>Your hotel never runs out of content, or production power.</h1>
+        <p class="hero-description">JMEDIA Hospitality is the content team and production studio behind hotels, resorts, restaurants, and destination brands: recurring photo and video that keeps guest-facing channels fresh, plus full-service production when you need a brand film, commercial, or campaign built from the ground up. One partner for direct bookings, guest experience, and everything your property needs to stay top of mind.</p>
         <div class="hero-ctas">
           <a href="https://meetings.hubspot.com/jmedia/production-booking" class="btn btn-primary">Schedule a Discovery Call</a>
           <a href="#work" class="btn btn-ghost">See Our Work</a>
@@ -453,7 +496,7 @@
       <div class="section-header reveal">
         <h2 class="section-title">Your property never slows down. Your content can't either.</h2>
       </div>
-      <p class="section-intro reveal">Every department at your property needs new visuals, constantly, and most teams are already stretched too thin to keep up. Hiring a full-time content creator is expensive. Booking a production company for a one-off shoot leaves you empty-handed again in six weeks.</p>
+      <p class="section-intro reveal">Every department at your property needs new visuals, constantly. Guest expectations shift with the seasons, OTAs and paid ads reward whoever has the freshest creative, and a single shoot a quarter can't keep pace with how often social, web, and F&amp;B need something new. Most hospitality teams are stretched too thin to close that gap alone, and hiring a full-time content creator is expensive.</p>
       <div class="problem-grid">
         <div class="problem-item reveal">
           <span class="problem-number">01</span>
@@ -463,12 +506,12 @@
         <div class="problem-item reveal stagger-1">
           <span class="problem-number">02</span>
           <h3 class="problem-title">Website &amp; Paid Ads</h3>
-          <p class="problem-desc">Stale creative quietly kills ad performance and booking conversion.</p>
+          <p class="problem-desc">Stale creative drags down ad performance and nudges guests back toward OTAs instead of booking direct.</p>
         </div>
         <div class="problem-item reveal stagger-2">
           <span class="problem-number">03</span>
           <h3 class="problem-title">Seasonal Campaigns</h3>
-          <p class="problem-desc">Every holiday, festival, and shoulder season deserves its own visual push.</p>
+          <p class="problem-desc">Every holiday, festival, and shoulder season shifts occupancy, and each one deserves its own visual push.</p>
         </div>
         <div class="problem-item reveal">
           <span class="problem-number">04</span>
@@ -483,7 +526,7 @@
         <div class="problem-item reveal stagger-2">
           <span class="problem-number">06</span>
           <h3 class="problem-title">Meetings, Renovations &amp; Recruitment</h3>
-          <p class="problem-desc">New meeting spaces, property updates, and hiring campaigns all need visuals too.</p>
+          <p class="problem-desc">New meeting and MICE spaces, property renovations, and recruitment campaigns all need visuals too.</p>
         </div>
       </div>
     </div>
@@ -494,27 +537,29 @@
     <div class="container grid-12">
       <div class="solution-copy reveal-left reveal">
         <span class="overline">The JMEDIA Model</span>
-        <h2 class="section-title" style="margin-bottom:1.5rem;">A content partner, not a one-time production crew.</h2>
-        <p class="section-intro" style="margin-bottom:2rem;">Instead of booking a production company for a single shoot, you get a dedicated partner who shows up on a recurring schedule, already knows your brand, and delivers ready-to-post assets fast, every time.</p>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">One partner for everyday content and full-scale production.</h2>
+        <p class="section-intro" style="margin-bottom:2rem;">JMEDIA Hospitality works two ways. As your recurring content partner, we show up on a schedule to keep social, web, and paid channels stocked with fresh photo and video. As your full-service production company, the same crew handles brand films, commercials, and campaigns built from the ground up, whenever your property needs to make a bigger statement.</p>
         <div class="pillars">
-          <div class="pillar"><div class="pillar-index">01</div><div class="pillar-title">Consistency</div><p class="pillar-desc">Content arrives on a predictable cadence, not whenever a crew happens to be available.</p></div>
+          <div class="pillar"><div class="pillar-index">01</div><div class="pillar-title">Consistency</div><p class="pillar-desc">Content arrives on a predictable cadence your team can build a calendar around.</p></div>
           <div class="pillar"><div class="pillar-index">02</div><div class="pillar-title">Speed</div><p class="pillar-desc">Assets are edited and delivered in days, built for how fast social and campaigns move.</p></div>
-          <div class="pillar"><div class="pillar-index">03</div><div class="pillar-title">Flexibility</div><p class="pillar-desc">One partner covers social, web, ads, F&amp;B, weddings, and property updates, without re-briefing a new vendor each time.</p></div>
-          <div class="pillar"><div class="pillar-index">04</div><div class="pillar-title">Brand Fluency</div><p class="pillar-desc">We learn your property once and carry that knowledge into every shoot after.</p></div>
+          <div class="pillar"><div class="pillar-index">03</div><div class="pillar-title">Flexibility</div><p class="pillar-desc">One partner covers social, web, ads, F&amp;B, weddings, and property updates, so nothing falls in the gap between projects.</p></div>
+          <div class="pillar"><div class="pillar-index">04</div><div class="pillar-title">Full Production Capability</div><p class="pillar-desc">Need a brand film or commercial? The same team scopes, shoots, and posts it, no outside crew required.</p></div>
         </div>
       </div>
       <div class="solution-visual reveal-right reveal stagger-1">
-        <div class="comparison">
-          <div class="comparison-row old">
-            <span class="comparison-icon">✕</span>
-            <span class="comparison-label">Old Way</span>
-            <p>Book a production company. Wait weeks for a quote, a crew, and a ninety second brand film. Post it once. Start over.</p>
+        <div class="modes">
+          <div class="mode-card partnership">
+            <span class="mode-icon">↻</span>
+            <span class="mode-label">Ongoing</span>
+            <h3 class="mode-title">Content Partnership</h3>
+            <p>Recurring on-site visits keep social, web, and paid channels stocked with fresh, ready-to-post photo and video, on a schedule your team can plan around.</p>
           </div>
-          <div class="comparison-arrow">↓</div>
-          <div class="comparison-row new">
-            <span class="comparison-icon">✓</span>
-            <span class="comparison-label">JMEDIA Way</span>
-            <p>Recurring visits. A steady stream of ready to post photo and video. One team that already knows your property, your seasons, and your brand voice.</p>
+          <div class="mode-divider">+</div>
+          <div class="mode-card production">
+            <span class="mode-icon">✓</span>
+            <span class="mode-label">On Demand</span>
+            <h3 class="mode-title">Full-Service Production</h3>
+            <p>Need a brand film, commercial, or a campaign built from the ground up? The same crew handles concept, production, and post, start to finish.</p>
           </div>
         </div>
       </div>
@@ -594,11 +639,21 @@
     </div>
   </section>
 
+  <!-- STATEMENT -->
+  <section class="statement">
+    <div class="statement-texture"></div>
+    <div class="statement-glow"></div>
+    <div class="container">
+      <p class="statement-text reveal-scale reveal">One team. Every department. Every season</p>
+    </div>
+  </section>
+
   <!-- TRUST -->
   <section class="trust-band section-alt">
     <div class="container grid-12">
       <div class="trust-content reveal">
-        <p class="trust-quote">The same production standards used on Universal Orlando campaigns, applied to your property's everyday content.</p>
+        <span class="overline" style="justify-content:center; display:flex; align-items:center;">Full-Service Production Pedigree</span>
+        <p class="trust-quote">Universal Orlando production standards, now available for your property's everyday content.</p>
         <p class="trust-sub">Production background: <span>Universal Orlando</span> · <span>National commercial sets</span> · <span>15+ years on set</span> · Proud partner of <span>Orlando Informer</span></p>
         <div class="trust-logos">
           <div class="trust-logos-track">
@@ -673,6 +728,7 @@
           <a href="https://meetings.hubspot.com/jmedia/production-booking" class="package-cta">Ask About Pricing</a>
         </div>
       </div>
+      <p class="section-intro reveal" style="margin-top:3rem; margin-bottom:0; max-width:100%; text-align:center;">Prefer a stand-alone project over an ongoing retainer? We also take on full-service production work, brand films, commercials, and campaign shoots, scoped and priced project by project.</p>
     </div>
   </section>
 
@@ -680,8 +736,8 @@
   <section class="cta-banner" id="contact">
     <div class="container">
       <span class="overline">Let's Talk</span>
-      <h2>Ready to keep your hotel stocked with content?</h2>
-      <p>Schedule a 20-minute discovery call and we'll map out a content partnership built around your property's calendar: social, seasonal, F&amp;B, and everything in between.</p>
+      <h2>Ready for a content partner who can also produce it all?</h2>
+      <p>Schedule a 20-minute discovery call. Whether you need a recurring content partnership to keep your channels fresh or full-service production for your next brand film or campaign, we'll map out what fits your property's calendar.</p>
       <a href="https://meetings.hubspot.com/jmedia/production-booking" class="btn btn-on-dark">Schedule a Discovery Call</a>
     </div>
   </section>
@@ -721,6 +777,18 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   revealElements.forEach(el => revealObserver.observe(el));
+
+  // Ken Burns image reveal: photos ease in from a soft zoom/desaturated state
+  const kenBurnsImages = document.querySelectorAll('.project-image img');
+  const kenBurnsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('revealed'), i * 60);
+        kenBurnsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  kenBurnsImages.forEach(img => kenBurnsObserver.observe(img));
 
   const style = document.createElement('style');
   style.textContent = `
