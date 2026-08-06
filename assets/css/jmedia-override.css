@@ -1,0 +1,222 @@
+/* JMEDIA brand override — loaded after eston.css / eston-responsive.css */
+
+:root {
+  --eston-base: #EF5A5A;
+  --eston-base-rgb: 239, 90, 90;
+}
+
+/* ---------- Nav logo sizing (real JMEDIA lockup is wide) ---------- */
+.main-menu__logo img,
+.mobile-nav__wrapper .logo-box img,
+.footer-widget__logo img,
+.xs-sidebar-group .logo img {
+  height: 34px;
+  width: auto;
+  max-width: none;
+}
+
+/* ---------- Placeholder flag (visible only on stock/placeholder assets) ---------- */
+.jmedia-flag {
+  display: inline-block;
+  font-family: var(--eston-font);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--eston-white);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--eston-base);
+  padding: 4px 10px;
+  position: absolute;
+  z-index: 5;
+  top: 14px;
+  left: 14px;
+}
+
+/* ---------- Trust bar (real credits, text-based — no logo files available yet) ---------- */
+.jmedia-trustbar {
+  background-color: var(--eston-black);
+  padding: 42px 0;
+}
+
+.jmedia-trustbar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 46px;
+}
+
+.jmedia-trustbar__inner span {
+  font-family: var(--eston-font);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--eston-white);
+  opacity: 0.75;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------- Credential badges (About / Team repurpose) ---------- */
+.jmedia-badge {
+  position: relative;
+  display: block;
+  background-color: var(--eston-primary);
+  padding: 30px 26px;
+  height: 100%;
+}
+
+.jmedia-badge__num {
+  font-family: var(--eston-font);
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--eston-base);
+  line-height: 1;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.jmedia-badge__label {
+  font-family: var(--eston-font);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--eston-black);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ---------- Packages section ---------- */
+.jmedia-packages {
+  position: relative;
+  display: block;
+  padding: 120px 0;
+  background-color: var(--eston-primary);
+}
+
+.jmedia-packages__note {
+  font-family: var(--eston-font);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--eston-base);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.jmedia-pilot {
+  position: relative;
+  background-color: var(--eston-white);
+  border: 1px solid rgba(34, 34, 34, 0.08);
+  padding: 40px 44px;
+  margin: 10px 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.jmedia-pilot::before {
+  content: 'Start here';
+  position: absolute;
+  top: -13px;
+  left: 40px;
+  background-color: var(--eston-base);
+  color: var(--eston-white);
+  font-family: var(--eston-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+}
+
+.jmedia-pilot__title {
+  font-family: var(--eston-font);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--eston-black);
+  margin-bottom: 10px;
+}
+
+.jmedia-pilot__text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--eston-gray);
+  max-width: 480px;
+  margin: 0;
+}
+
+.jmedia-pilot__price {
+  font-family: var(--eston-font);
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--eston-base);
+  white-space: nowrap;
+}
+
+.jmedia-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.jmedia-tier {
+  position: relative;
+  background-color: var(--eston-white);
+  border: 1px solid rgba(34, 34, 34, 0.08);
+  padding: 36px 30px 30px;
+}
+
+.jmedia-tier--feat {
+  border: 2px solid var(--eston-base);
+}
+
+.jmedia-tier__badge {
+  position: absolute;
+  top: -13px;
+  right: 24px;
+  background-color: var(--eston-base);
+  color: var(--eston-white);
+  font-family: var(--eston-font);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+
+.jmedia-tier__name {
+  font-family: var(--eston-font);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--eston-black);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.jmedia-tier__price {
+  font-family: var(--eston-font);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--eston-base);
+  display: block;
+  margin-bottom: 18px;
+}
+
+.jmedia-tier__text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--eston-gray);
+}
+
+@media (max-width: 991px) {
+  .jmedia-tier-grid {
+    grid-template-columns: 1fr;
+  }
+  .jmedia-pilot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
