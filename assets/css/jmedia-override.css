@@ -742,3 +742,59 @@ a:hover { color: var(--jm-coral); }
   .jm-phone { margin: 0 auto; width: 220px; transform: none; }
 }
 .jm-phone__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── Animated ember field ─────────────────────────────────────────
+   Snack Media runs a drifting starfield behind the whole page. Same
+   device here, but embers rising on near-black rather than stars,
+   which sits with the red-smoke photography. Pure CSS box-shadow
+   layers, no library, three depths at different speeds. */
+.jm-stars {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.jm-stars i {
+  position: absolute; top: 0; left: 0; border-radius: 50%;
+  background: transparent;
+}
+.jm-stars i:nth-child(1) {
+  width: 1px; height: 1px; box-shadow: 1941px 308px #F3A08C, 1333px 98px #FFFFFF, 1681px 1097px #EF5A5A, 748px 1193px #EF5A5A, 1863px 1039px #EF5A5A, 76px 176px #EF5A5A, 856px 143px #FFFFFF, 185px 1128px #EF5A5A, 121px 1693px #FFFFFF, 253px 1940px #FFE9E2, 1291px 1284px #EF5A5A, 1940px 126px #FFE9E2, 1199px 812px #FFE9E2, 1999px 452px #EF5A5A, 1140px 1758px #EF5A5A, 593px 858px #EF5A5A, 1107px 241px #EF5A5A, 631px 1147px #FFE9E2, 211px 1191px #EF5A5A, 1308px 384px #FFE9E2, 199px 1121px #F3A08C, 1155px 122px #EF5A5A, 421px 1016px #FFE9E2, 875px 1591px #FFE9E2, 953px 1199px #F3A08C, 740px 613px #FFFFFF, 1626px 368px #EF5A5A, 167px 1176px #EF5A5A, 1075px 1013px #F3A08C, 1493px 919px #F3A08C, 1247px 149px #F3A08C, 1048px 856px #EF5A5A, 1550px 700px #EF5A5A, 1911px 1001px #EF5A5A, 80px 1970px #FFFFFF, 1565px 1142px #EF5A5A, 1616px 1792px #FFE9E2, 696px 1423px #F3A08C, 1217px 1017px #F3A08C, 1632px 934px #FFE9E2, 1720px 191px #EF5A5A, 970px 1427px #F3A08C, 124px 1497px #EF5A5A, 1325px 1183px #F3A08C, 582px 1467px #FFFFFF, 1816px 1369px #FFFFFF, 46px 1926px #F3A08C, 727px 344px #FFFFFF, 239px 1011px #FFE9E2, 446px 1573px #EF5A5A, 264px 1512px #F3A08C, 814px 800px #EF5A5A, 165px 340px #FFFFFF, 822px 1125px #FFFFFF, 1809px 280px #F3A08C, 1769px 1126px #FFFFFF, 1446px 850px #F3A08C, 1398px 1810px #F3A08C, 1961px 472px #FFFFFF, 169px 360px #EF5A5A, 475px 1348px #EF5A5A, 24px 993px #EF5A5A, 373px 538px #FFE9E2, 8px 298px #F3A08C, 1094px 756px #FFFFFF, 1159px 652px #FFE9E2, 1414px 1759px #EF5A5A, 1946px 1264px #FFE9E2, 935px 1842px #EF5A5A, 803px 815px #FFE9E2, 807px 212px #FFFFFF, 1299px 820px #FFFFFF, 390px 137px #EF5A5A, 902px 332px #EF5A5A, 696px 1230px #EF5A5A, 209px 0px #EF5A5A, 309px 1098px #FFE9E2, 1943px 744px #EF5A5A, 52px 144px #FFE9E2, 1257px 770px #EF5A5A, 1299px 516px #EF5A5A, 1233px 745px #F3A08C, 251px 236px #FFFFFF, 954px 983px #FFFFFF, 638px 175px #FFFFFF, 209px 1535px #EF5A5A, 1516px 542px #F3A08C, 1697px 1417px #FFFFFF, 1057px 47px #EF5A5A, 1947px 1949px #EF5A5A;
+  animation: jm-rise 90s linear infinite; opacity: .55;
+}
+.jm-stars i:nth-child(2) {
+  width: 2px; height: 2px; box-shadow: 740px 300px #FFE9E2, 1872px 55px #FFE9E2, 610px 1316px #FFE9E2, 1425px 1731px #EF5A5A, 1061px 751px #F3A08C, 728px 1580px #EF5A5A, 1090px 1109px #EF5A5A, 675px 1303px #FFE9E2, 1255px 1661px #EF5A5A, 1650px 490px #EF5A5A, 1515px 1645px #FFFFFF, 409px 1060px #EF5A5A, 728px 1497px #FFFFFF, 57px 1618px #EF5A5A, 967px 530px #F3A08C, 1418px 1239px #EF5A5A, 915px 1655px #F3A08C, 1955px 1995px #F3A08C, 164px 451px #F3A08C, 464px 962px #EF5A5A, 691px 418px #EF5A5A, 1278px 1843px #FFFFFF, 1721px 3px #FFE9E2, 1862px 1337px #FFFFFF, 1637px 1317px #F3A08C, 1709px 1352px #EF5A5A, 1863px 795px #EF5A5A, 979px 1820px #EF5A5A, 888px 1616px #EF5A5A, 177px 1640px #F3A08C, 948px 822px #FFFFFF, 1484px 325px #EF5A5A, 260px 56px #EF5A5A, 1209px 1853px #EF5A5A, 1651px 1343px #FFFFFF, 1252px 1692px #EF5A5A, 971px 1346px #FFE9E2, 319px 1123px #F3A08C, 268px 43px #FFE9E2, 1637px 1988px #EF5A5A, 1078px 1534px #EF5A5A, 888px 1785px #EF5A5A, 1691px 1789px #EF5A5A, 57px 515px #EF5A5A, 599px 1026px #EF5A5A;
+  animation: jm-rise 140s linear infinite; opacity: .40;
+}
+.jm-stars i:nth-child(3) {
+  width: 3px; height: 3px; box-shadow: 1564px 1201px #EF5A5A, 531px 1114px #F3A08C, 1708px 268px #FFFFFF, 1863px 1515px #EF5A5A, 1838px 938px #F3A08C, 1669px 1851px #FFE9E2, 861px 1693px #FFE9E2, 267px 1089px #FFE9E2, 1072px 1045px #EF5A5A, 1787px 901px #EF5A5A, 1246px 8px #EF5A5A, 352px 289px #EF5A5A, 1267px 1485px #FFFFFF, 1139px 126px #EF5A5A, 1397px 1061px #F3A08C, 1137px 988px #FFE9E2, 1808px 1147px #EF5A5A, 508px 391px #EF5A5A;
+  animation: jm-rise 200s linear infinite; opacity: .28;
+}
+@keyframes jm-rise {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2000px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jm-stars i { animation: none; }
+}
+/* content must sit above the field */
+body > * { position: relative; z-index: 1; }
+.jm-stars { z-index: 0 !important; }
+
+/* ── Colour-block cards, the "creative recipe" grid ──────────────── */
+.jm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 48px; }
+.jm-card {
+  border-radius: 14px; padding: 42px 40px; min-height: 260px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  border: 1px solid var(--jm-line);
+}
+.jm-card h3 { font-size: 21px; margin: 0 0 10px; color: #fff !important; }
+.jm-card p  { font-size: 14px; line-height: 1.7; margin: 0; color: rgba(255,255,255,0.72) !important; }
+.jm-card--ink   { background: #17171B; }
+.jm-card--coral { background: var(--jm-coral); border-color: var(--jm-coral); }
+.jm-card--coral p { color: rgba(255,255,255,0.92) !important; }
+.jm-card--deep  { background: #241014; }
+.jm-card--bone  { background: #E8E2DC; }
+.jm-card--bone h3, .jm-card--bone p { color: #16161A !important; }
+.jm-card__num {
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: auto; opacity: .6;
+}
+@media (max-width: 991px) { .jm-cards { grid-template-columns: 1fr; } }
