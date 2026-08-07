@@ -370,3 +370,8 @@
 @media (max-width: 575px) {
   .jmedia-process__grid { grid-template-columns: 1fr; }
 }
+
+/* Single hero slide, so the carousel's prev/next controls have nothing
+   to move between. */
+.main-slider-two .owl-nav,
+.main-slider-two__nav { display: none !important; }
