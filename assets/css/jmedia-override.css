@@ -696,3 +696,9 @@ a:hover { color: var(--jm-coral); }
 html { background: #0E0E0F; }
 .main-slider-two { background-color: #0E0E0F; overflow-x: hidden; }
 .main-slider-two__contact-info { right: 14px; left: auto; }
+
+/* The rail sat on the template's white hero background, so its text was dark.
+   With the section now painted in ink it needs light text to stay readable. */
+.main-slider-two__contact-info,
+.main-slider-two__contact-info a { color: #EDEDEE; }
+.main-slider-two__contact-info a:hover { color: #EF5A5A; }
