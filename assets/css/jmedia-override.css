@@ -312,3 +312,13 @@
   height: auto;
   display: block;
 }
+
+/* The homepage carousel card uses two white 'curtain' bands (::before and
+   ::after on the img-box) that frame the image top and bottom. They are
+   hard-coded to 100px each, which assumed the template's tall portrait
+   card. At 16:9 the card is shorter than the 200px of combined curtain,
+   so the image collapsed to a sliver. Make them proportional instead. */
+.project-two__img-box::before,
+.project-two__img-box::after {
+  height: 18%;
+}
