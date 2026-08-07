@@ -700,5 +700,6 @@ html { background: #0E0E0F; }
 /* The rail sat on the template's white hero background, so its text was dark.
    With the section now painted in ink it needs light text to stay readable. */
 .main-slider-two__contact-info,
-.main-slider-two__contact-info a { color: #EDEDEE; }
-.main-slider-two__contact-info a:hover { color: #EF5A5A; }
+.main-slider-two__contact-info li,
+.main-slider-two__contact-info li a { color: #EDEDEE; }
+.main-slider-two__contact-info li a:hover { color: #EF5A5A; }
