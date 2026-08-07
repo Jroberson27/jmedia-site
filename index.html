@@ -1,537 +1,915 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JMEDIA · Ongoing Video Production For Brands</title>
-<meta name="description" content="Commercial quality video on a monthly partnership. Campaigns, brand stories and social content, planned and delivered on schedule. Orlando and Central Florida." />
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --jm-coral:#EF5A5A;
-  --jm-ink:#0E0E0F;
-  --jm-ink-2:#161618;
-  --jm-line:#26262A;
-  --jm-muted:#9A9AA0;
-  --jm-text:#EDEDEE;
-  --jm-font:'Space Grotesk',system-ui,-apple-system,sans-serif;
-  --jm-font-two:'Playfair Display',Georgia,serif;
-  --jm-max:1180px;
-}
-*,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{
-  margin:0;background:var(--jm-ink);color:var(--jm-text);
-  font-family:var(--jm-font);font-size:17px;line-height:1.65;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
-img{max-width:100%;height:auto;display:block;}
-a{color:inherit;text-decoration:none;}
-.wrap{width:100%;max-width:var(--jm-max);margin:0 auto;padding:0 24px;}
-section{padding:96px 0;border-top:1px solid var(--jm-line);}
-section:first-of-type{border-top:0;}
-.eyebrow{
-  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--jm-coral);font-weight:600;margin:0 0 18px;
-}
-h1,h2,h3{font-weight:600;line-height:1.12;margin:0 0 18px;letter-spacing:-.02em;}
-h1{font-size:clamp(2.3rem,6vw,4.1rem);}
-h2{font-size:clamp(1.8rem,4vw,2.7rem);}
-h3{font-size:1.16rem;letter-spacing:-.01em;}
-p{margin:0 0 18px;color:var(--jm-muted);}
-.lead{font-size:clamp(1.05rem,2vw,1.24rem);color:var(--jm-text);max-width:62ch;}
-.hl{color:var(--jm-text);}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JMEDIA · Ongoing Video Production For Brands In Orlando</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="assets/images/favicons/site.webmanifest" />
+    <meta name="description" content="A creative partner for brands that need more than a one-time video. Ongoing video and photo content for Orlando and Central Florida businesses." />
 
-/* buttons */
-.btn{
-  display:inline-block;padding:15px 30px;border-radius:2px;font-weight:600;
-  font-size:15px;letter-spacing:.01em;transition:.2s ease;border:1px solid transparent;
-  cursor:pointer;
-}
-.btn-primary{background:var(--jm-coral);color:#fff;}
-.btn-primary:hover{background:#f47272;transform:translateY(-1px);}
-.btn-ghost{border-color:var(--jm-line);color:var(--jm-text);}
-.btn-ghost:hover{border-color:var(--jm-coral);color:var(--jm-coral);}
-.btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-/* header */
-header{
-  position:sticky;top:0;z-index:60;background:rgba(14,14,15,.88);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--jm-line);
-}
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px;position:relative;}
-.menu-btn{
-  display:none;align-items:center;justify-content:center;gap:5px;flex-direction:column;
-  width:44px;height:44px;background:none;border:1px solid var(--jm-line);
-  border-radius:2px;cursor:pointer;padding:0;
-}
-.menu-btn span{display:block;width:18px;height:1.5px;background:var(--jm-text);transition:.2s;}
-.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
-.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.nav img{height:30px;width:auto;}
-.nav nav{display:flex;gap:30px;align-items:center;}
-.nav nav a{font-size:14.5px;color:var(--jm-muted);transition:color .2s;}
-.nav nav a:hover{color:var(--jm-text);}
-.nav .btn{padding:11px 20px;font-size:14px;}
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
+    <link rel="stylesheet" href="assets/vendors/animate/custom-animate.css" />
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/vendors/odometer/odometer.min.css" />
+    <link rel="stylesheet" href="assets/vendors/swiper/swiper.min.css" />
+    <link rel="stylesheet" href="assets/vendors/eston-icons/style.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/vendors/bootstrap-select/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-ui/jquery-ui.css" />
 
-/* hero */
-.hero{padding:112px 0 92px;position:relative;overflow:hidden;}
-.hero::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(700px 380px at 78% 12%,rgba(239,90,90,.10),transparent 70%);
-}
-.hero .wrap{position:relative;z-index:2;}
-.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:64px;align-items:center;}
-.hero h1{margin-bottom:24px;}
-.hero-media{
-  position:relative;border:1px solid var(--jm-line);border-radius:3px;overflow:hidden;
-  background:var(--jm-ink-2);
-}
-.hero-media img{width:100%;aspect-ratio:4/5;object-fit:cover;opacity:.92;}
-.hero-media figcaption{
-  position:absolute;left:0;right:0;bottom:0;padding:34px 18px 16px;
-  background:linear-gradient(to top,rgba(14,14,15,.97) 0%,rgba(14,14,15,.85) 45%,transparent 100%);
-  font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--jm-text);
-}
-
-/* trust */
-.trust{padding:40px 0;background:var(--jm-ink-2);}
-.trust p{
-  font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--jm-muted);margin:0 0 18px;
-}
-.trust ul{
-  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
-  gap:14px 38px;align-items:center;
-}
-.trust li{font-size:15.5px;font-weight:500;color:var(--jm-text);opacity:.82;}
-
-/* why */
-.why-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;}
-.why-body p:last-child{
-  color:var(--jm-text);border-left:2px solid var(--jm-coral);
-  padding-left:20px;margin-top:26px;
-}
-
-/* services */
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--jm-line);
-  border:1px solid var(--jm-line);margin-top:44px;}
-.card{background:var(--jm-ink);padding:38px 34px;transition:background .2s;}
-.card:hover{background:var(--jm-ink-2);}
-.card .num{font-size:12px;color:var(--jm-coral);font-weight:600;letter-spacing:.1em;display:block;margin-bottom:14px;}
-.card p{margin:0;font-size:15.5px;}
-
-/* work */
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin:36px 0 30px;}
-.filters button{
-  background:none;border:1px solid var(--jm-line);color:var(--jm-muted);
-  padding:9px 17px;border-radius:2px;font-family:inherit;font-size:13.5px;
-  cursor:pointer;transition:.2s;
-}
-.filters button:hover{color:var(--jm-text);border-color:#3a3a40;}
-.filters button[aria-pressed="true"]{background:var(--jm-coral);border-color:var(--jm-coral);color:#fff;}
-.work{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.work a{display:block;border:1px solid var(--jm-line);background:var(--jm-ink-2);transition:.2s;}
-.work a:hover{border-color:var(--jm-coral);transform:translateY(-2px);}
-.thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#1c1c20;}
-.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
-.work a:hover .thumb img{transform:scale(1.03);}
-.play{
-  position:absolute;left:14px;bottom:14px;width:38px;height:38px;border-radius:50%;
-  background:rgba(14,14,15,.72);border:1px solid rgba(255,255,255,.28);
-  display:flex;align-items:center;justify-content:center;
-}
-.play::after{
-  content:"";border-left:9px solid #fff;border-top:6px solid transparent;
-  border-bottom:6px solid transparent;margin-left:3px;
-}
-.work .meta{padding:17px 18px 20px;}
-.work h3{font-size:15.5px;margin:0 0 6px;line-height:1.35;}
-.work .client{font-size:12.5px;color:var(--jm-muted);margin:0;letter-spacing:.02em;}
-
-/* process */
-.steps{counter-reset:s;margin-top:44px;display:grid;gap:1px;background:var(--jm-line);
-  border:1px solid var(--jm-line);grid-template-columns:repeat(4,1fr);}
-.step{background:var(--jm-ink);padding:34px 28px;}
-.step .n{
-  display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;
-  border:1px solid var(--jm-coral);color:var(--jm-coral);border-radius:50%;
-  font-size:13px;font-weight:600;margin-bottom:18px;
-}
-.step p{margin:0;font-size:15px;}
-
-/* pricing */
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;}
-.tier{border:1px solid var(--jm-line);padding:34px 30px;background:var(--jm-ink-2);display:flex;flex-direction:column;}
-.tier.feature{border-color:var(--jm-coral);}
-.tier .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--jm-coral);font-weight:600;margin-bottom:14px;display:block;min-height:16px;}
-.tier .price{font-family:var(--jm-font-two);font-size:1.9rem;color:var(--jm-text);margin:6px 0 18px;line-height:1.1;}
-.tier .price span{font-size:.92rem;font-family:var(--jm-font);color:var(--jm-muted);}
-.tier ul{list-style:none;margin:0 0 26px;padding:0;flex:1;}
-.tier li{font-size:15px;color:var(--jm-muted);padding:9px 0 9px 22px;position:relative;border-top:1px solid var(--jm-line);}
-.tier li:first-child{border-top:0;}
-.tier li::before{content:"";position:absolute;left:0;top:17px;width:7px;height:7px;background:var(--jm-coral);border-radius:50%;}
-.note{margin-top:26px;font-size:14.5px;}
-
-/* about */
-.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start;}
-.about-grid img{border:1px solid var(--jm-line);aspect-ratio:4/5;object-fit:cover;width:100%;}
-
-/* cta */
-.cta{text-align:center;background:var(--jm-ink-2);}
-.cta .lead{margin:0 auto;}
-.cta .btns{justify-content:center;}
-.cta .direct{margin-top:30px;font-size:14.5px;}
-.cta .direct a{color:var(--jm-coral);border-bottom:1px solid rgba(239,90,90,.4);}
-
-/* footer */
-footer{background:var(--jm-ink);border-top:1px solid var(--jm-line);padding:52px 0 34px;}
-.foot{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start;}
-.foot img{height:28px;margin-bottom:14px;}
-.foot p{font-size:14.5px;margin:0;max-width:36ch;}
-.foot nav{display:flex;gap:28px;flex-wrap:wrap;}
-.foot nav a{font-size:14.5px;color:var(--jm-muted);}
-.foot nav a:hover{color:var(--jm-coral);}
-.copy{margin-top:38px;padding-top:22px;border-top:1px solid var(--jm-line);font-size:13.5px;color:var(--jm-muted);}
-
-/* responsive */
-@media (max-width:980px){
-  .hero-grid,.why-grid,.about-grid{grid-template-columns:1fr;gap:40px;}
-  .hero-media{max-width:420px;}
-  .work{grid-template-columns:repeat(2,1fr);}
-  .steps{grid-template-columns:repeat(2,1fr);}
-  .tiers{grid-template-columns:1fr;}
-  .menu-btn{display:flex;}
-  .nav nav{
-    display:none;position:absolute;top:72px;left:0;right:0;
-    background:var(--jm-ink-2);border-bottom:1px solid var(--jm-line);
-    flex-direction:column;gap:0;padding:8px 24px 16px;
-  }
-  .nav nav.open{display:flex;}
-  .nav nav a{padding:13px 0;border-top:1px solid var(--jm-line);font-size:16px;}
-  .nav nav a:first-child{border-top:0;}
-  .nav > .btn{display:none;}
-}
-@media (max-width:640px){
-  body{font-size:16px;}
-  section{padding:64px 0;}
-  .hero{padding:72px 0 60px;}
-  .wrap{padding:0 20px;}
-  .cards,.work,.steps{grid-template-columns:1fr;}
-  .card{padding:30px 26px;}
-  .btns .btn{width:100%;text-align:center;}
-  .foot{flex-direction:column;gap:24px;}
-  .foot nav{gap:18px;}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
-}
-</style>
+    <link rel="stylesheet" href="assets/css/eston.css" />
+    <link rel="stylesheet" href="assets/css/eston-responsive.css" />
+    <link rel="stylesheet" href="assets/css/jmedia-override.css" />
 </head>
+
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a href="index.html"><img src="assets/images/jmedia/jmedia-logo.png" alt="JMEDIA" /></a>
-    <nav id="mainNav">
-      <a href="#why">Why monthly</a>
-      <a href="#services">What we do</a>
-      <a href="#work">Work</a>
-      <a href="#partnership">Partnership</a>
-      <a href="#about">About</a>
-      <a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener" style="color:var(--jm-coral);font-weight:600;">Start a conversation</a>
-    </nav>
-    <a class="btn btn-primary" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
-    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<!-- 1. HERO -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow">Ongoing video production</p>
-      <h1>Stop starting from scratch every time.</h1>
-      <p class="lead">Most brands rebuild their entire video process with every project. New brief, new crew, new explanation of who you are. JMEDIA builds it once, then keeps it running month after month.</p>
-      <div class="btns">
-        <a class="btn btn-primary" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Build your content plan</a>
-        <a class="btn btn-ghost" href="#work">See the work</a>
-      </div>
+    <div class="preloader">
+        <div class="preloader__image"></div>
     </div>
-    <figure class="hero-media" style="margin:0;">
-      <img src="assets/images/jmedia/real/onset-epic.jpg" alt="Jordan Roberson on a professional production set" />
-      <figcaption>On set · Central Florida</figcaption>
-    </figure>
-  </div>
-</section>
 
-<!-- 2. TRUST -->
-<div class="trust">
-  <div class="wrap">
-    <p>Production experience includes</p>
-    <ul>
-      <li>Universal Orlando</li>
-      <li>Florida Lottery</li>
-      <li>Carvana</li>
-      <li>Whistle</li>
-      <li>UDX</li>
-    </ul>
-  </div>
+    <!-- Start sidebar widget content -->
+    <div class="xs-sidebar-group info-group info-sidebar">
+        <div class="xs-overlay xs-bg-black"></div>
+        <div class="xs-sidebar-widget">
+            <div class="sidebar-widget-container">
+                <div class="widget-heading">
+                    <a href="#" class="close-side-widget">X</a>
+                </div>
+                <div class="sidebar-textwidget">
+                    <div class="sidebar-info-contents">
+                        <div class="content-inner">
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/images/jmedia/jmedia-logo.png" alt="JMEDIA" /></a>
+                            </div>
+                            <div class="content-box">
+                                <h4>About Jordan</h4>
+                                <p>15+ years on set across theme parks, broadcast, and national commercials, plus stories of my own. Ongoing content production for brands that want to show up every month.</p>
+                            </div>
+                            <div class="form-inner">
+                                <h4>Get a free quote</h4>
+                                <p>Tell me what you need and I will tell you what it takes and what it costs.</p>
+                                <div class="form-group message-btn">
+                                    <a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener" class="thm-btn form-inner__btn">Start A Conversation</a>
+                                </div>
+                                <p><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></p>
+                                <div class="result"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End sidebar widget content -->
+
+    <div class="page-wrapper">
+        <header class="main-header-two">
+            <nav class="main-menu main-menu-two">
+                <div class="main-menu-two__wrapper">
+                    <div class="main-menu-two__wrapper-inner">
+                        <div class="main-menu-two__logo">
+                            <a href="index.html"><img src="assets/images/jmedia/jmedia-logo.png" alt="JMEDIA"></a>
+                        </div>
+                        <div class="main-menu-two__main-menu-box">
+                            <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                            <ul class="main-menu__list">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="index.html#about">About</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Work</a>
+                                    <ul>
+                                        <li><a href="project.html">Featured Work</a></li>
+                                        <li><a href="project-details.html">Project Details</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Services</a>
+                                    <ul>
+                                        <li><a href="film-production.html">Brand Campaigns</a></li>
+                                        <li><a href="content-production.html">Ongoing Content Partnerships</a></li>
+                                        <li><a href="creative-direction.html">Content Strategy</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="retainers.html">Retainers</a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="main-menu-two__right">
+                            <div class="main-menu-two__btn-box">
+                                <a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener" class="main-menu-two__btn thm-btn">
+                                    <span class="fas fa-long-arrow-alt-right"></span>Start a conversation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="stricky-header stricked-menu main-menu main-menu-two">
+            <div class="sticky-header__content"></div>
+        </div>
+
+        <!-- Main Slider Two Start -->
+        <!-- Main Slider Two End -->
+
+        <!--Counter One Start-->
+        <!--Counter One End-->
+
+        <!--About Start-->
+        <!--About End-->
+
+        <!--Services Two Start-->
+        <!--Services Two End-->
+
+        <!--Sliding Text Start -->
+        <!--Sliding Text End -->
+
+        <!--Project Two Start -->
+        <!--Project Two End -->
+
+        <!--Video Two Start-->
+        <!--Video Two End-->
+
+        <!--Trust bar (real clients, replaces stock "sponsors")-->
+        <!--Trust bar End-->
+
+        <!--Operator Start-->
+        <!--Operator End-->
+
+        <!--News Two / Behind The Lens Start-->
+        <!--News Two End-->
+
+        <!--Process Start-->
+        <!--Process End-->
+
+        <!--Packages Start-->
+        <!--Packages End-->
+
+        <!--Site Footer Start-->
+
+
+        <!--Retainer Teaser Start-->
+        <!--Retainer Teaser End-->
+
+
+
+
+
+
+
+
+
+        <section class="main-slider-two">
+            <div class="main-slider-two__social-box">
+                <h4 class="main-slider-two__social-title">Follow Along</h4>
+                <div class="main-slider-two__social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <ul class="list-unstyled main-slider-two__contact-info">
+                <li><a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a></li>
+            </ul>
+            <div class="main-slider-two__carousel owl-carousel owl-theme thm-owl__carousel"
+                data-owl-options='{"loop": true, "items": 1, "navText": ["<span class=\"fas fa-long-arrow-alt-right\"></span>","<span class=\"fas fa-long-arrow-alt-left\"></span>"], "margin": 0, "dots": false, "dotsData": false, "nav": true, "animateOut": "slideOutDown", "animateIn": "fadeIn", "active": true, "smartSpeed": 1000, "autoplay": true, "autoplayTimeout": 7000, "autoplayHoverPause": false}'>
+
+                <div class="item main-slider-two__slide-1">
+                    <div class="main-slider-two__bg" style="background-image: url(assets/images/jmedia/real/hero-poster.jpg);"></div>
+                    <div class="container">
+                        <div class="main-slider-two__content">
+                            <h2 class="main-slider-two__title">A Creative Partner For Brands <br> That Need More Than A One-Time Video.</h2>
+                            <p class="main-slider-two__text">JMEDIA creates commercial-quality video content through ongoing partnerships, helping brands consistently tell their story without managing another production project every time.</p>
+                            <div class="main-slider-two__btn-box">
+                                <a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener" class="main-slider-two__btn thm-btn">
+                                    <span class="fas fa-long-arrow-alt-right"></span>Start a conversation</a>
+                                <a href="index.html#work" class="main-slider-two__btn-two thm-btn">View our work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="brand-two">
+            <div class="brand-two__bg-text">
+                <p>Clients</p>
+            </div>
+            <div class="container">
+                <p class="jmedia-trustbar__label">Trusted by teams at</p>
+                <div class="jmedia-trustbar__inner">
+                    <span>Universal Orlando</span>
+                    <span>Carvana</span>
+                    <span>Florida Lottery</span>
+                    <span>Heinz</span>
+                    <span>Adidas</span>
+                </div>
+            </div>
+        </section>
+
+        <!--Why This Model Exists-->
+        <section class="jmedia-why-model">
+            <div class="container">
+                <div class="jmedia-why-model__grid">
+                    <div class="jmedia-why-model__col">
+                        <p class="section-title__tagline">The Challenge</p>
+                        <h2 class="jmedia-why-model__h">Companies need more content than ever, and producing it internally is expensive.</h2>
+                        <ul class="jmedia-why-model__list">
+                            <li>Finding a creator</li>
+                            <li>Explaining the brand again</li>
+                            <li>Planning from scratch</li>
+                            <li>Managing timelines</li>
+                            <li>Starting over every time</li>
+                        </ul>
+                    </div>
+                    <div class="jmedia-why-model__col">
+                        <p class="section-title__tagline">The JMEDIA Approach</p>
+                        <h2 class="jmedia-why-model__h">Instead of hiring production one project at a time, brands gain an ongoing creative partner.</h2>
+                        <ul class="jmedia-why-model__list jmedia-why-model__list--on">
+                            <li>Creative planning</li>
+                            <li>Production</li>
+                            <li>Editing</li>
+                            <li>Content delivery</li>
+                        </ul>
+                        <p class="jmedia-why-model__note">A consistent pipeline of professional content, without building an internal production team.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-two">
+            <div class="container">
+                <div class="services-two__top">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-8">
+                            <div class="services-two__top-left">
+                                <div class="section-title text-left">
+                                    <p class="section-title__tagline">What I Do</p>
+                                    <div class="section-title__title-box">
+                                        <h2 class="section-title__title">What we create</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-4">
+                            <div class="services-two__top-right">
+                                <div class="services-two__btn-box">
+                                    <a href="services.html" class="services-two__btn thm-btn"><span class="fas fa-long-arrow-alt-right"></span>More Services</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-two__bottom">
+                    <ul class="services-two__list list-unstyled">
+                        <li>
+                            <div class="services-two__single">
+                                <div class="services-two__icon">
+                                    <img src="assets/images/icon/services-two-icon-2.png" alt="">
+                                    <div class="services-two__hover-icon">
+                                        <img src="assets/images/icon/services-two-hover-icon-2.png" alt="">
+                                    </div>
+                                </div>
+                                <h3 class="services-two__title"><a href="film-production.html">Brand Campaigns</a></h3>
+                                <p class="services-two__text">Concept development, production, editing and final deliverables for campaign work.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="services-two__single">
+                                <div class="services-two__icon">
+                                    <img src="assets/images/icon/services-two-icon-1.png" alt="">
+                                    <div class="services-two__hover-icon">
+                                        <img src="assets/images/icon/services-two-hover-icon-1.png" alt="">
+                                    </div>
+                                </div>
+                                <h3 class="services-two__title"><a href="content-production.html">Ongoing Content Partnerships</a></h3>
+                                <p class="services-two__text">Monthly production, editing and content library development for consistent brand storytelling.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="services-two__single">
+                                <div class="services-two__icon">
+                                    <img src="assets/images/icon/services-two-icon-3.png" alt="">
+                                    <div class="services-two__hover-icon">
+                                        <img src="assets/images/icon/services-two-hover-icon-3.png" alt="">
+                                    </div>
+                                </div>
+                                <h3 class="services-two__title"><a href="project.html">Personal Films</a></h3>
+                                <p class="services-two__text">Short films made without a client brief, including Crysis.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="services-two__single">
+                                <div class="services-two__icon">
+                                    <img src="assets/images/icon/services-two-icon-4.png" alt="">
+                                    <div class="services-two__hover-icon">
+                                        <img src="assets/images/icon/services-two-hover-icon-4.png" alt="">
+                                    </div>
+                                </div>
+                                <h3 class="services-two__title"><a href="creative-direction.html">Content Strategy</a></h3>
+                                <p class="services-two__text">Content planning, story development and a production roadmap built around your calendar.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-two" id="work">
+            <div class="container">
+                <div class="section-title text-center">
+                    <p class="section-title__tagline">Recent Work</p>
+                    <div class="section-title__title-box">
+                        <h2 class="section-title__title">Recent video work in Orlando and Central Florida</h2>
+                    </div>
+                </div>
+                <div class="project-two__carousel-box">
+                    <div class="project-two__carousel owl-carousel owl-theme thm-owl__carousel" data-owl-options='{
+                        "loop": true,
+                        "autoplay": true,
+                        "margin": 105,
+                        "nav": false,
+                        "dots": false,
+                        "smartSpeed": 500,
+                        "autoplayTimeout": 10000,
+                        "navText": ["<span class=\"fas fa-long-arrow-alt-left\"></span>","<span class=\"fas fa-long-arrow-alt-right\"></span>"],
+                        "responsive": {
+                            "0": { "items": 1 },
+                            "768": { "items": 1 },
+                            "992": { "items": 1 },
+                            "1290": { "items": 1 }
+                        }
+                    }'>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="assets/images/jmedia/real/hero-poster.jpg" loading="lazy" alt="Jordan Roberson on a cinematic set in Orlando, Florida">
+                                    </div>
+                                    <a href="https://vimeo.com/1197914099" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">JMEDIA</p>
+                                    <h3 class="project-two__title"><a href="https://vimeo.com/1197914099">Showreel</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="https://img.youtube.com/vi/e4UFOFvvBSI/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/e4UFOFvvBSI/hqdefault.jpg'" alt="Let Fear Consume You, Halloween Horror Nights 2026, Universal Orlando">
+                                    </div>
+                                    <a href="https://www.youtube.com/watch?v=e4UFOFvvBSI" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">Universal Orlando / UDX</p>
+                                    <h3 class="project-two__title"><a href="https://www.youtube.com/watch?v=e4UFOFvvBSI">Let Fear Consume You: HHN 2026</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="https://img.youtube.com/vi/gZewvE_YRB8/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/gZewvE_YRB8/hqdefault.jpg'" alt="Epic Universe Takeover, Universal Orlando and Whistle">
+                                    </div>
+                                    <a href="https://www.youtube.com/watch?v=gZewvE_YRB8" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">Universal Orlando · Whistle</p>
+                                    <h3 class="project-two__title"><a href="https://www.youtube.com/watch?v=gZewvE_YRB8">Epic Universe Takeover</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="https://img.youtube.com/vi/fM7eKHu6V3Y/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/fM7eKHu6V3Y/hqdefault.jpg'" alt="Intro to Shaqvana, Carvana commercial">
+                                    </div>
+                                    <a href="https://www.youtube.com/watch?v=fM7eKHu6V3Y" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">Carvana</p>
+                                    <h3 class="project-two__title"><a href="https://www.youtube.com/watch?v=fM7eKHu6V3Y">Intro to Shaqvana, Carvana</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="https://img.youtube.com/vi/Nh6IDt22-vU/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/Nh6IDt22-vU/hqdefault.jpg'" alt="Find Your Fun, Florida Lottery commercial">
+                                    </div>
+                                    <a href="https://www.youtube.com/watch?v=Nh6IDt22-vU" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">Florida Lottery</p>
+                                    <h3 class="project-two__title"><a href="https://www.youtube.com/watch?v=Nh6IDt22-vU">Find Your Fun, Florida Lottery</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="https://img.youtube.com/vi/WEV_wDMTCq0/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/WEV_wDMTCq0/hqdefault.jpg'" alt="Lil Bro spot for Universal Orlando">
+                                    </div>
+                                    <a href="https://www.youtube.com/watch?v=WEV_wDMTCq0" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">Universal Orlando</p>
+                                    <h3 class="project-two__title"><a href="https://www.youtube.com/watch?v=WEV_wDMTCq0">Lil' Bro Spot, Universal Orlando</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="https://img.youtube.com/vi/TJWJgZUryKQ/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/TJWJgZUryKQ/hqdefault.jpg'" alt="Crysis, a JMEDIA original short film">
+                                    </div>
+                                    <a href="https://www.youtube.com/watch?v=TJWJgZUryKQ" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">JMEDIA Original</p>
+                                    <h3 class="project-two__title"><a href="https://www.youtube.com/watch?v=TJWJgZUryKQ">Crysis: Short Film</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="assets/images/jmedia/real/cam-red-1.jpg" loading="lazy" alt="Sony camera on a gimbal, Orlando video production gear">
+                                    </div>
+                                    <a href="https://vimeo.com/1197918769" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">JMEDIA</p>
+                                    <h3 class="project-two__title"><a href="https://vimeo.com/1197918769">Event Hype Reel</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="project-two__single">
+                                <div class="project-two__img-box">
+                                    <div class="project-two__img">
+                                        <img src="assets/images/jmedia/real/cam-red-2.jpg" loading="lazy" alt="JMEDIA on location in Orlando">
+                                    </div>
+                                    <a href="https://vimeo.com/1202297658" class="project-two__play video-popup">Play</a>
+                                    <p class="project-two__sub-title">JMEDIA</p>
+                                    <h3 class="project-two__title"><a href="https://vimeo.com/1202297658">Sunset Walk Reel</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-two__bottom">
+                    <h3 class="project-two__bottom-title">See More Work</h3>
+                    <a href="project.html" class="thm-btn project-two__bottom-btn">See all work</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-two">
+            <div class="video-two__bg" style="background-image: url(assets/images/jmedia/real/cam-red-2.jpg);"></div>
+            <div class="container">
+                <div class="video-two__video-link">
+                    <a href="https://vimeo.com/1197914099" class="video-popup">
+                        <div class="video-two__text">
+                            <p>Play</p>
+                            <i class="ripple"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="jmedia-process">
+            <div class="container">
+                <div class="section-title text-left">
+                    <p class="section-title__tagline">How It Works</p>
+                    <div class="section-title__title-box">
+                        <h2 class="section-title__title">How a monthly video shoot actually runs</h2>
+                    </div>
+                </div>
+                <div class="jmedia-process__grid">
+                    <div class="jmedia-process__step">
+                        <span class="jmedia-process__num">01</span>
+                        <h3 class="jmedia-process__title">Plan</h3>
+                        <p class="jmedia-process__text">We get on a call at the start of the month and work out what to shoot and where.</p>
+                    </div>
+                    <div class="jmedia-process__step">
+                        <span class="jmedia-process__num">02</span>
+                        <h3 class="jmedia-process__title">Shoot</h3>
+                        <p class="jmedia-process__text">I show up with my own camera, audio and lighting and shoot the day.</p>
+                    </div>
+                    <div class="jmedia-process__step">
+                        <span class="jmedia-process__num">03</span>
+                        <h3 class="jmedia-process__title">Edit</h3>
+                        <p class="jmedia-process__text">I do the editing, color and sound myself, so it looks the same every month.</p>
+                    </div>
+                    <div class="jmedia-process__step">
+                        <span class="jmedia-process__num">04</span>
+                        <h3 class="jmedia-process__title">Deliver</h3>
+                        <p class="jmedia-process__text">You get the files sized for Instagram, TikTok and your website, ready to post.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="jmedia-retainer-teaser">
+            <div class="container">
+                <div class="section-title text-left">
+                    <p class="section-title__tagline">Partnership Model</p>
+                    <div class="section-title__title-box">
+                        <h2 class="section-title__title">The JMEDIA partnership model</h2>
+                    </div>
+                </div>
+                <div class="jmedia-retainer-teaser__grid">
+                    <div class="jmedia-retainer-teaser__item">
+                        <h3>Consistent output</h3>
+                        <p>Every brand needs different content through the year. JMEDIA works as an extension of your team, creating the video, photography and creative assets that keep your audience engaged.</p>
+                    </div>
+                    <div class="jmedia-retainer-teaser__item">
+                        <h3>Priority on the calendar</h3>
+                        <p>Retainer clients get first pick of shoot dates each month.</p>
+                    </div>
+                    <div class="jmedia-retainer-teaser__item">
+                        <h3>One person, start to finish</h3>
+                        <p>I shoot it, edit it and send it. You are not re explaining your business to someone new.</p>
+                    </div>
+                </div>
+                <a href="retainers.html" class="thm-btn jmedia-retainer-teaser__btn">See partnership options</a>
+            </div>
+        </section>
+
+        <section class="jmedia-packages" id="partner">
+            <div class="container">
+                <div class="section-title text-left">
+                    <p class="section-title__tagline">Partner With JMEDIA</p>
+                    <div class="section-title__title-box">
+                        <h2 class="section-title__title">Monthly video and photo content for Orlando businesses</h2>
+                    </div>
+                </div>
+
+                <p class="jmedia-packages__note">Introductory pilot offer</p>
+                <div class="jmedia-pilot">
+                    <div>
+                        <h3 class="jmedia-pilot__title">One location, one session</h3>
+                        <p class="jmedia-pilot__text">2 to 3 finished short-form videos plus a handful of photos. A content sample fee that covers time and gear. Not a discounted retainer.</p>
+                    </div>
+                    <div class="jmedia-pilot__price">$150 to $250</div>
+                </div>
+
+                <p class="jmedia-packages__note">Monthly retainer tiers</p>
+                <div class="jmedia-tier-grid">
+                    <div class="jmedia-tier">
+                        <span class="jmedia-tier__name">Content Partner</span>
+                        <span class="jmedia-tier__price">$1,200 to $1,500/mo</span>
+                        <p class="jmedia-tier__text">2 to 4 short-form videos plus photo content monthly. Single location.</p>
+                    </div>
+                    <div class="jmedia-tier jmedia-tier--feat">
+                        <span class="jmedia-tier__badge">Most chosen</span>
+                        <span class="jmedia-tier__name">Creative Partner</span>
+                        <span class="jmedia-tier__price">$2,200 to $2,800/mo</span>
+                        <p class="jmedia-tier__text">Everything in Content Partner, plus testimonial content, guaranteed editing turnaround, and multi-location content rotation.</p>
+                    </div>
+                    <div class="jmedia-tier">
+                        <span class="jmedia-tier__name">Brand Partner</span>
+                        <span class="jmedia-tier__price">$3,500+/mo</span>
+                        <p class="jmedia-tier__text">Everything in Creative Partner, plus full social media management support and posting strategy guidance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-one" id="about">
+            <div class="about-one__shape-2">
+                <img src="assets/images/shapes/about-one-shape-2.png" alt="">
+            </div>
+            <div class="about-one__shape-3">
+                <img src="assets/images/shapes/about-one-shape-3.png" alt="">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="about-one__left">
+                            <div class="about-one__img-box">
+                                <div class="about-one__img">
+                                    <img src="assets/images/jmedia/real/about-portrait.jpg" alt="Jordan Roberson of JMEDIA, Orlando video production, studio portrait">
+                                    <div class="about-one__shape-1 float-bob-y">
+                                        <img src="assets/images/shapes/about-one-shape-1.png" alt="">
+                                    </div>
+                                </div>
 </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="about-one__right">
+                            <div class="section-title text-left">
+                                <p class="section-title__tagline">Origin</p>
+                                <div class="section-title__title-box">
+                                    <h2 class="section-title__title">Why JMEDIA exists</h2>
+                                </div>
+                            </div>
+                            <p class="about-one__text">After years on professional productions I kept seeing the same problem. Brands needed good content consistently, and the traditional production model made that hard. Every project meant finding someone new, explaining the brand again, and starting the planning from scratch.</p><p class="about-one__text">JMEDIA exists to give a business the creative expertise of a production team with the flexibility of a long term partner. Fifteen years of commercial and broadcast work, applied to your calendar instead of one shoot at a time.</p>
+                            <div class="about-one__btn-box">
+                                <a href="retainers.html" class="about-one__btn thm-btn"><span class="fas fa-long-arrow-alt-right"></span>see the packages</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- 3. WHY -->
-<section id="why">
-  <div class="wrap why-grid">
-    <div>
-      <p class="eyebrow">The model</p>
-      <h2>Why we work monthly</h2>
+        <section class="team-two">
+            <div class="container">
+                <div class="section-title text-left">
+                    <p class="section-title__tagline">Who You Work With</p>
+                    <div class="section-title__title-box">
+                        <h2 class="section-title__title">You work with me, not a rotating crew</h2>
+                    </div>
+                </div>
+                <div class="team-two__bottom">
+                    <div class="team-two__carousel owl-carousel owl-theme thm-owl__carousel" data-owl-options='{
+                        "loop": true,
+                        "autoplay": true,
+                        "margin": 70,
+                        "nav": true,
+                        "dots": false,
+                        "smartSpeed": 500,
+                        "autoplayTimeout": 10000,
+                        "navText": ["<span class=\"fas fa-long-arrow-alt-left\"></span>","<span class=\"fas fa-long-arrow-alt-right\"></span>"],
+                        "responsive": {
+                            "0": { "items": 1 },
+                            "768": { "items": 1 },
+                            "992": { "items": 2 },
+                            "1200": { "items": 2 }
+                        }
+                    }'>
+                        <div class="item">
+                            <div class="team-two__single">
+                                <div class="team-two__img-box">
+                                    <div class="team-two__img">
+                                        <img src="assets/images/jmedia/real/about-portrait.jpg" alt="Jordan Roberson of JMEDIA, Orlando video production, studio portrait">
+                                    </div>
+                                </div>
+                                <div class="team-two__content">
+                                    <p>Founder</p>
+                                    <h3><a href="index.html#about">Jordan Roberson</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="team-two__single">
+                                <div class="team-two__img-box">
+                                    <div class="team-two__img">
+                                        <img src="assets/images/jmedia/real/cam-red-2.jpg" alt="Sony FX camera on a Ronin gimbal used for Orlando video shoots">
+                                    </div>
+                                </div>
+                                <div class="team-two__content">
+                                    <p>Start a conversation</p>
+                                    <h3><a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start A Project</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-two__btn-box">
+                    <a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener" class="team-two__btn thm-btn"><span class="fas fa-long-arrow-alt-right"></span>Start a conversation</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="news-two">
+            <div class="container">
+                <div class="section-title text-center">
+                    <p class="section-title__tagline">Behind The Lens</p>
+                    <div class="section-title__title-box">
+                        <h2 class="section-title__title">On location</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="news-two__single">
+                            <div class="news-two__img-box">
+                                <div class="news-two__img">
+                                    <img src="assets/images/jmedia/real/cam-red-1.jpg" alt="Sony camera on a gimbal, Orlando video production gear">
+                                    <div class="overlay-icon">
+                                        <a href="#"><span class="icon-plus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="news-two__content">
+                                <div class="news-two__sub-title">
+                                    <p>The Rig</p>
+                                </div>
+                                <h3 class="news-two__title"><a href="#">Sony Alpha, ready to roll</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="news-two__single">
+                            <div class="news-two__img-box">
+                                <div class="news-two__img">
+                                    <img src="assets/images/jmedia/real/onset-epic.jpg" alt="JMEDIA on location at a theme park production in Orlando">
+                                    <div class="overlay-icon">
+                                        <a href="#"><span class="icon-plus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="news-two__content">
+                                <div class="news-two__sub-title">
+                                    <p>On Location</p>
+                                </div>
+                                <h3 class="news-two__title"><a href="#">Theme park production days</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="news-two__single">
+                            <div class="news-two__img-box">
+                                <div class="news-two__img">
+                                    <img src="assets/images/jmedia/real/cam-red-2.jpg" alt="Sony FX camera on a Ronin gimbal used for Orlando video shoots">
+                                    <div class="overlay-icon">
+                                        <a href="#"><span class="icon-plus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="news-two__content">
+                                <div class="news-two__sub-title">
+                                    <p>Ronin Build</p>
+                                </div>
+                                <h3 class="news-two__title"><a href="#">Ready to roll</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer-two">
+            <div class="container">
+                <h3 class="site-footer-two__title">Video production and monthly content for businesses
+                    <br> across Orlando and Central Florida.</h3>
+                <div class="site-footer-two__top">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                            <div class="footer-widget-two__column footer-widget-two__services">
+                                <div class="footer-widget-two__title-box">
+                                    <h3 class="footer-widget-two__title">Services</h3>
+                                </div>
+                                <ul class="footer-widget-two__services-list list-unstyled">
+                                    <li><a href="film-production.html">Brand Campaigns</a></li>
+                                    <li><a href="content-production.html">Ongoing Content Partnerships</a></li>
+                                    <li><a href="creative-direction.html">Content Strategy</a></li>
+                                    <li><a href="project.html">Personal Films</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                            <div class="footer-widget-two__column footer-widget-two__pages">
+                                <div class="footer-widget-two__title-box">
+                                    <h3 class="footer-widget-two__title">Pages</h3>
+                                </div>
+                                <div class="footer-widget-two__pages-box">
+                                    <ul class="footer-widget-two__pages-list list-unstyled">
+                                        <li><a href="index.html#about">About</a></li>
+                                        <li><a href="index.html#work">Work</a></li>
+                                        <li><a href="retainers.html">Retainers</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="footer-widget-two__column footer-widget-two__get-in-touch">
+                                <div class="footer-widget-two__title-box">
+                                    <h3 class="footer-widget-two__title">Get In Touch</h3>
+                                </div>
+                                <p class="footer-widget-two__get-in-touch-text">Orlando, FL</p>
+                                <div class="footer-widget-two__contact">
+                                    <p><a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></p>
+                                    <p><a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a></p>
+                                </div>
+                                <div class="site-footer-two__social">
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
+                            <div class="footer-widget-two__column footer-widget-two__newsletter">
+                                <div class="footer-widget-two__title-box">
+                                    <h3 class="footer-widget-two__title">Stay In The Loop</h3>
+                                </div>
+                                <form class="footer-widget-two__email-box" data-url="MC_FORM_URL">
+                                    <div class="footer-widget-two__email-input-box">
+                                        <input type="email" placeholder="Email address" name="email">
+                                    </div>
+                                    <button type="submit" class="footer-widget-two__btn">Subscribe</button>
+                                </form>
+                                <div class="mc-form__response"></div>
+                                <p class="footer-widget-two__newsletter-text">One email when there is new work to show.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="site-footer-two__bottom">
+                    <div class="site-footer-two__bottom-inner">
+                        <p class="site-footer-two__bottom-text">© 2026 JMEDIA Production and Design · Orlando, FL</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--Site Footer End-->
+
+    </div><!-- /.page-wrapper -->
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/jmedia/jmedia-logo.png" width="130" alt="JMEDIA" /></a>
+            </div>
+            <div class="mobile-nav__container"></div>
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-calendar"></i>
+                    <a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
+                </li>
+            </ul>
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-youtube"></a>
+                    <a href="#" class="fab fa-vimeo-v"></a>
+                    <a href="#" class="fab fa-linkedin-in"></a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="why-body">
-      <p class="lead">Most companies do not have a video problem. They have a volume problem.</p>
-      <p>You need a campaign this quarter, social cutdowns every week, something for the trade show, a customer story for the sales team. Handled as separate projects, every one of them starts over. New brief, new crew, new explanation of what you do and how you sound.</p>
-      <p>That is where the budget goes. Not into the work. Into the restarting.</p>
-      <p>A monthly partnership removes that. I learn your brand once. After that every shoot is faster, every edit sounds more like you, and you stop paying for the ramp up.</p>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label>
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
     </div>
-  </div>
-</section>
+    <!-- /.search-popup -->
 
-<!-- 4. SERVICES -->
-<section id="services">
-  <div class="wrap">
-    <p class="eyebrow">What we do</p>
-    <h2>Four ways brands work with JMEDIA</h2>
-    <div class="cards">
-      <div class="card">
-        <span class="num">01</span>
-        <h3>Brand Campaigns</h3>
-        <p>Concept development, production, editing and final deliverables for campaign work. Built around a specific goal and a specific date.</p>
-      </div>
-      <div class="card">
-        <span class="num">02</span>
-        <h3>Ongoing Content Partnerships</h3>
-        <p>Monthly production, editing and content library development. A planned slate of work you can build a marketing calendar around.</p>
-      </div>
-      <div class="card">
-        <span class="num">03</span>
-        <h3>Content Strategy</h3>
-        <p>Content planning, story development and a production roadmap built around your calendar rather than around one shoot.</p>
-      </div>
-      <div class="card">
-        <span class="num">04</span>
-        <h3>Personal Films</h3>
-        <p>Short films made without a client brief, including Crysis. The work that keeps the craft sharp and the ideas moving.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fas fa-arrow-up"></i></a>
 
-<!-- 5. WORK -->
-<section id="work">
-  <div class="wrap">
-    <p class="eyebrow">Selected work</p>
-    <h2>What we have shot</h2>
-    <div class="filters" role="group" aria-label="Filter work">
-      <button type="button" data-f="all" aria-pressed="true">All</button>
-      <button type="button" data-f="commercial" aria-pressed="false">Commercial</button>
-      <button type="button" data-f="experiences" aria-pressed="false">Experiences</button>
-      <button type="button" data-f="social" aria-pressed="false">Social</button>
-      <button type="button" data-f="original" aria-pressed="false">Originals</button>
-    </div>
-    <div class="work">
-      <a data-c="social" href="https://vimeo.com/1197914099" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="assets/images/jmedia/real/cam-red-1.jpg" alt="JMEDIA showreel" /><span class="play"></span></div>
-        <div class="meta"><h3>Showreel</h3><p class="client">JMEDIA</p></div>
-      </a>
-      <a data-c="experiences" href="https://www.youtube.com/watch?v=e4UFOFvvBSI" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="https://img.youtube.com/vi/e4UFOFvvBSI/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/e4UFOFvvBSI/hqdefault.jpg'" alt="Let Fear Consume You, HHN 2026" /><span class="play"></span></div>
-        <div class="meta"><h3>Let Fear Consume You: HHN 2026</h3><p class="client">Universal Orlando · UDX</p></div>
-      </a>
-      <a data-c="experiences" href="https://www.youtube.com/watch?v=gZewvE_YRB8" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="https://img.youtube.com/vi/gZewvE_YRB8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/gZewvE_YRB8/hqdefault.jpg'" alt="Epic Universe Takeover" /><span class="play"></span></div>
-        <div class="meta"><h3>Epic Universe Takeover</h3><p class="client">Universal Orlando · Whistle</p></div>
-      </a>
-      <a data-c="commercial" href="https://www.youtube.com/watch?v=fM7eKHu6V3Y" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="https://img.youtube.com/vi/fM7eKHu6V3Y/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/fM7eKHu6V3Y/hqdefault.jpg'" alt="Intro to Shaqvana, Carvana" /><span class="play"></span></div>
-        <div class="meta"><h3>Intro to Shaqvana</h3><p class="client">Carvana</p></div>
-      </a>
-      <a data-c="commercial" href="https://www.youtube.com/watch?v=Nh6IDt22-vU" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="https://img.youtube.com/vi/Nh6IDt22-vU/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Nh6IDt22-vU/hqdefault.jpg'" alt="Find Your Fun, Florida Lottery" /><span class="play"></span></div>
-        <div class="meta"><h3>Find Your Fun</h3><p class="client">Florida Lottery</p></div>
-      </a>
-      <a data-c="commercial" href="https://www.youtube.com/watch?v=WEV_wDMTCq0" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="https://img.youtube.com/vi/WEV_wDMTCq0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/WEV_wDMTCq0/hqdefault.jpg'" alt="Lil Bro Spot, Universal Orlando" /><span class="play"></span></div>
-        <div class="meta"><h3>Lil' Bro Spot</h3><p class="client">Universal Orlando</p></div>
-      </a>
-      <a data-c="original" href="https://www.youtube.com/watch?v=TJWJgZUryKQ" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="https://img.youtube.com/vi/TJWJgZUryKQ/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TJWJgZUryKQ/hqdefault.jpg'" alt="Crysis short film" /><span class="play"></span></div>
-        <div class="meta"><h3>Crysis: Short Film</h3><p class="client">JMEDIA Original</p></div>
-      </a>
-      <a data-c="social" href="https://vimeo.com/1197918769" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="assets/images/jmedia/real/hero-poster.jpg" alt="Event hype reel" /><span class="play"></span></div>
-        <div class="meta"><h3>Event Hype Reel</h3><p class="client">JMEDIA</p></div>
-      </a>
-      <a data-c="social" href="https://vimeo.com/1202297658" target="_blank" rel="noopener">
-        <div class="thumb"><img loading="lazy" src="assets/images/jmedia/real/cam-red-2.jpg" alt="Sunset Walk reel" /><span class="play"></span></div>
-        <div class="meta"><h3>Sunset Walk Reel</h3><p class="client">JMEDIA</p></div>
-      </a>
-    </div>
-  </div>
-</section>
+    <script src="assets/vendors/jquery/jquery-3.6.0.min.js"></script>
+    <script src="assets/vendors/hover-animated/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script src="assets/vendors/odometer/odometer.min.js"></script>
+    <script src="assets/vendors/swiper/swiper.min.js"></script>
+    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
+    <script src="assets/vendors/wow/wow.js"></script>
+    <script src="assets/vendors/isotope/isotope.js"></script>
+    <script src="assets/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/vendors/jquery.circle-type/jquery.circleType.js"></script>
+    <script src="assets/vendors/jquery.circle-type/jquery.lettering.min.js"></script>
+    <script src="assets/vendors/sidebar-content/jquery-sidebar-content.js"></script>
+    <script src="assets/vendors/marquee/marquee.min.js"></script>
+    <script src="assets/vendors/hover-animated/charming.min.js"></script>
+    <script src="assets/vendors/hover-animated/demo.js"></script>
+    <script src="assets/vendors/hover-animated/tweenMax.min.js"></script>
 
-<!-- 6. PARTNERSHIP -->
-<section id="partnership">
-  <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>One shoot day. A month of content.</h2>
-    <p class="lead">Every brand needs different content through the year. JMEDIA works as an extension of your team, creating the video and photo assets that keep your audience engaged.</p>
-
-    <div class="steps">
-      <div class="step">
-        <span class="n">1</span>
-        <h3>Plan</h3>
-        <p>We get on a call at the start of the month and work out what to shoot and where.</p>
-      </div>
-      <div class="step">
-        <span class="n">2</span>
-        <h3>Shoot</h3>
-        <p>I show up with my own camera, audio and lighting and shoot the day.</p>
-      </div>
-      <div class="step">
-        <span class="n">3</span>
-        <h3>Edit</h3>
-        <p>I do the editing, color and sound myself, so it looks the same every month.</p>
-      </div>
-      <div class="step">
-        <span class="n">4</span>
-        <h3>Deliver</h3>
-        <p>You get the files sized for Instagram, TikTok and your website, ready to post.</p>
-      </div>
-    </div>
-
-    <h2 style="margin-top:88px;">Become a content partner</h2>
-    <p class="lead">Every partnership includes planning, production, editing and someone who already knows your brand. The difference between levels is how much we make and how often.</p>
-
-    <div class="tiers">
-      <div class="tier">
-        <span class="tag">&nbsp;</span>
-        <h3>Content Partner</h3>
-        <div class="price">$1,200 to $1,500<span> /mo</span></div>
-        <ul>
-          <li>2 to 4 short-form videos monthly</li>
-          <li>Photo content included</li>
-          <li>Single location</li>
-          <li>Files sized for every platform</li>
-        </ul>
-        <a class="btn btn-ghost" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
-      </div>
-      <div class="tier feature">
-        <span class="tag">Most common</span>
-        <h3>Creative Partner</h3>
-        <div class="price">$2,200 to $2,800<span> /mo</span></div>
-        <ul>
-          <li>Everything in Content Partner</li>
-          <li>Testimonial content</li>
-          <li>Guaranteed editing turnaround</li>
-          <li>Multi location content rotation</li>
-        </ul>
-        <a class="btn btn-primary" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
-      </div>
-      <div class="tier">
-        <span class="tag">&nbsp;</span>
-        <h3>Brand Partner</h3>
-        <div class="price">$3,500+<span> /mo</span></div>
-        <ul>
-          <li>Everything in Creative Partner</li>
-          <li>Full social media management support</li>
-          <li>Posting strategy guidance</li>
-          <li>Priority on the calendar</li>
-        </ul>
-        <a class="btn btn-ghost" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
-      </div>
-    </div>
-    <p class="note">Not ready for a monthly commitment? A content sample runs $150 to $250 and gets you 2 to 3 finished short-form videos plus a handful of photos. It covers time and gear. It is not a discounted retainer.</p>
-  </div>
-</section>
-
-<!-- 7. ABOUT -->
-<section id="about">
-  <div class="wrap about-grid">
-    <img src="assets/images/jmedia/real/about-portrait.jpg" alt="Jordan Roberson" />
-    <div>
-      <p class="eyebrow">Who you're working with</p>
-      <h2>You work with me, not a rotating crew.</h2>
-      <p class="lead">JMEDIA is Jordan Roberson. 15+ years on set across theme parks, broadcast and national commercials, plus stories of my own.</p>
-      <p>After years on professional productions I kept seeing the same problem. Brands needed good content consistently, and the traditional production model made that hard. Every project meant finding someone new, explaining the brand again, and starting the planning from scratch.</p>
-      <p>JMEDIA exists to give a business the creative expertise of a production team with the flexibility of a long term partner. Fifteen years of commercial and broadcast work, applied to your calendar instead of one shoot at a time.</p>
-      <p>I shoot it, edit it and send it. You are not re explaining your business to someone new.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 8. CTA -->
-<section class="cta">
-  <div class="wrap">
-    <h2>Let's talk about what you need this quarter.</h2>
-    <p class="lead">Tell me what is coming up. I will tell you what it takes and what it costs. No obligation and no pitch deck.</p>
-    <div class="btns">
-      <a class="btn btn-primary" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
-      <a class="btn btn-ghost" href="mailto:info@j-mediaproductions.com?subject=Content%20partnership%20enquiry">Email instead</a>
-    </div>
-    <p class="direct">Or reach me directly at <a href="mailto:info@j-mediaproductions.com">info@j-mediaproductions.com</a></p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div>
-        <img src="assets/images/jmedia/jmedia-logo.png" alt="JMEDIA" />
-        <p>Video production and monthly content for businesses across Orlando and Central Florida.</p>
-      </div>
-      <nav>
-        <a href="#why">Why monthly</a>
-        <a href="#services">What we do</a>
-        <a href="#work">Work</a>
-        <a href="#partnership">Partnership</a>
-        <a href="mailto:info@j-mediaproductions.com">Contact</a>
-      </nav>
-    </div>
-    <div class="copy">© 2026 JMEDIA Production and Design · Orlando, FL · <a href="mailto:info@j-mediaproductions.com" style="color:var(--jm-coral);">info@j-mediaproductions.com</a></div>
-  </div>
-</footer>
-
-<script>
-(function(){
-  var mb=document.getElementById('menuBtn'), mn=document.getElementById('mainNav');
-  if(mb&&mn){
-    mb.addEventListener('click',function(){
-      var open=mn.classList.toggle('open');
-      mb.setAttribute('aria-expanded',open?'true':'false');
-    });
-    mn.addEventListener('click',function(e){
-      if(e.target.tagName==='A'){mn.classList.remove('open');mb.setAttribute('aria-expanded','false');}
-    });
-  }
-  var btns=document.querySelectorAll('.filters button');
-  var items=document.querySelectorAll('.work a');
-  btns.forEach(function(b){
-    b.addEventListener('click',function(){
-      var f=b.dataset.f;
-      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
-      items.forEach(function(i){
-        i.style.display=(f==='all'||i.dataset.c===f)?'':'none';
-      });
-    });
-  });
-})();
-</script>
+    <script src="assets/js/eston.js"></script>
 </body>
+
 </html>
