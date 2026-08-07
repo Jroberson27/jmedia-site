@@ -322,3 +322,51 @@
 .project-two__img-box::after {
   height: 18%;
 }
+
+/* Portfolio credit line: client and the role actually performed. */
+.project-two__sub-title,
+.project-three__sub-title {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--eston-gray);
+  margin: 0 0 6px;
+}
+
+/* ---------------------------------------------------------------
+   WOW.js reveal guard.
+   animate.css is not linked on this build, so the fadeIn classes do
+   nothing visually, but WOW still sets visibility:hidden inline on
+   every .wow element and only clears it on scroll-in. Anything it
+   fails to trigger stays invisible permanently. That is why the
+   footer and the Behind The Lens cards rendered as empty space.
+   The animations buy nothing here; guaranteed visibility does.
+   --------------------------------------------------------------- */
+.wow {
+  visibility: visible !important;
+  animation-name: none !important;
+}
+
+/* Process section. Four of four comparable sites publish a numbered
+   process; this build had none. It is the cheapest way to make an
+   unfamiliar monthly commitment feel predictable. */
+.jmedia-process { padding: 100px 0 40px; }
+.jmedia-process__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.jmedia-process__step { position: relative; padding-top: 22px; border-top: 2px solid var(--eston-base); }
+.jmedia-process__num {
+  display: block; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.12em; color: var(--eston-base); margin-bottom: 12px;
+}
+.jmedia-process__title { font-size: 22px; font-weight: 700; margin: 0 0 10px; }
+.jmedia-process__text { font-size: 15px; line-height: 1.75; color: var(--eston-gray); margin: 0; }
+@media (max-width: 991px) {
+  .jmedia-process__grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+}
+@media (max-width: 575px) {
+  .jmedia-process__grid { grid-template-columns: 1fr; }
+}
