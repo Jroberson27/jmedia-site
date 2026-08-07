@@ -381,3 +381,25 @@
    screen for a single Play button. */
 .video-two { padding: 150px 0 !important; }
 .project-two__bottom-btn { margin-top: 8px; }
+
+/* Streamlining pass: the template was built for a studio with far more
+   content than a solo operator has, so several sections reserved space
+   that is now empty. */
+
+/* "See all work" was wrapping onto two lines. */
+.project-two__bottom-btn { white-space: nowrap; }
+
+/* The "See More Work" block reserved room for the oversized decorative
+   photo that has been removed. */
+.project-two__bottom { padding: 40px 0 0; }
+.project-two__bottom-title { font-size: 64px; line-height: 1.05; }
+
+/* About: the left column was sized around a much larger image pair. */
+.about-one { padding: 90px 0; }
+.about-one__img-box { margin-bottom: 0; }
+
+@media (max-width: 991px) {
+  .project-two__bottom-title { font-size: 40px; }
+  .video-two { padding: 90px 0 !important; }
+  .jmedia-process { padding: 60px 0 20px; }
+}
