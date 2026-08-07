@@ -432,3 +432,226 @@
   .jmedia-retainer-teaser__grid, .jmedia-why__grid { grid-template-columns: 1fr; gap: 26px; }
   .jmedia-close-cta h2 { font-size: 28px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   CORAL ON NEAR-BLACK RESTYLE
+   From 15 rendered competitor sites. Two coherent uses of a brand
+   colour exist: spot (KN Creative, Paradise) or ground (Snack Media,
+   weareeven). Medium-density scatter is the failure case and is what
+   this site was doing. Going spot, on near-black, because the real
+   photography is red-smoke heavy: on a light ground coral competes
+   with the footage, on black the footage becomes the colour source
+   and coral reads as interface.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --jm-ink:      #0E0E0F;   /* page ground */
+  --jm-ink-2:    #161618;   /* raised band */
+  --jm-line:     #26262A;   /* hairlines */
+  --jm-text:     #EDEDEE;   /* body on dark */
+  --jm-muted:    #9A9AA0;   /* secondary text */
+  --jm-coral:    #EF5A5A;   /* unchanged brand coral */
+}
+
+/* ---- Ground ---- */
+body,
+.about-one,
+.services-two,
+.project-two,
+.jmedia-process,
+.jmedia-packages,
+.jmedia-retainer-teaser,
+.jmedia-why,
+.jmedia-terms,
+.jmedia-close-cta,
+.team-two,
+.news-two,
+.page-header {
+  background-color: var(--jm-ink) !important;
+  color: var(--jm-text);
+}
+.jmedia-retainer-teaser,
+.team-two { background-color: var(--jm-ink-2) !important; }
+
+/* ---- Type on dark ---- */
+h1, h2, h3, h4, h5,
+.section-title__title,
+.jmedia-process__title,
+.jmedia-why__item h3,
+.jmedia-retainer-teaser__item h3,
+.project-two__title a,
+.project-three__title a,
+.jmedia-tier__name,
+.site-footer-two__title,
+.counter-one__title,
+.jmedia-close-cta h2 {
+  color: var(--jm-text) !important;
+}
+p, li, .section-title__text,
+.jmedia-process__text,
+.jmedia-why__item p,
+.jmedia-retainer-teaser__item p,
+.jmedia-tier__text,
+.jmedia-terms__list li,
+.jmedia-close-cta p {
+  color: var(--jm-muted) !important;
+}
+.jmedia-terms__list strong { color: var(--jm-text) !important; }
+
+/* Eyebrows were coral. They are supporting labels, so they go muted. */
+.section-title__tagline,
+.project-two__sub-title,
+.project-three__sub-title,
+.jmedia-process__num {
+  color: var(--jm-muted) !important;
+}
+
+/* ---- Coral, reserved for action and one rule per section ---- */
+a { color: var(--jm-text); }
+a:hover { color: var(--jm-coral); }
+
+.thm-btn,
+.main-slider-two__btn,
+.jmedia-badge,
+.jmedia-tier--feat .jmedia-tier__ribbon {
+  background-color: var(--jm-coral) !important;
+  border-color: var(--jm-coral) !important;
+  color: #fff !important;
+}
+.main-slider-two__btn-two,
+.project-two__bottom-btn {
+  background: transparent !important;
+  border: 1px solid var(--jm-line) !important;
+  color: var(--jm-text) !important;
+}
+.main-slider-two__btn-two:hover,
+.project-two__bottom-btn:hover { border-color: var(--jm-coral) !important; }
+
+/* one hairline accent per section, in place of coloured headings */
+.jmedia-process__step { border-top: 2px solid var(--jm-coral); }
+.jmedia-why__item     { border-top: 1px solid var(--jm-line); padding-top: 20px; }
+
+/* ---- Chrome: thin and quiet (13 of 15 sites) ---- */
+.main-menu-two,
+.main-menu-two__wrapper,
+.main-menu,
+.main-menu__wrapper {
+  background-color: var(--jm-ink) !important;
+  border-bottom: 1px solid var(--jm-line);
+}
+.main-menu-two__wrapper-inner,
+.main-menu__wrapper-inner { padding: 0 !important; }
+.main-menu-two ul.main-menu__list > li > a,
+.main-menu ul.main-menu__list > li > a {
+  color: var(--jm-muted) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+}
+.main-menu-two ul.main-menu__list > li.current > a,
+.main-menu-two ul.main-menu__list > li:hover > a,
+.main-menu ul.main-menu__list > li.current > a,
+.main-menu ul.main-menu__list > li:hover > a { color: var(--jm-text) !important; }
+
+/* the nav CTA was the loudest object on the page: make it a quiet outline */
+.main-menu-two__right .thm-btn,
+.main-menu__right .thm-btn {
+  background: transparent !important;
+  border: 1px solid var(--jm-coral) !important;
+  color: var(--jm-coral) !important;
+  padding: 10px 20px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.10em !important;
+}
+.main-menu-two__right .thm-btn:hover,
+.main-menu__right .thm-btn:hover {
+  background: var(--jm-coral) !important;
+  color: #fff !important;
+}
+
+/* ---- Trust bar: solid coral field becomes near-black with quiet marks ---- */
+.brand-two,
+.jmedia-trustbar {
+  background-color: var(--jm-ink-2) !important;
+  border-top: 1px solid var(--jm-line);
+  border-bottom: 1px solid var(--jm-line);
+}
+.jmedia-trustbar__item,
+.brand-two__title,
+.brand-two li,
+.brand-two span {
+  color: var(--jm-muted) !important;
+  letter-spacing: 0.12em;
+}
+
+/* ---- Portfolio: edge-to-edge wall, no white curtains ---- */
+.project-two__img-box::before,
+.project-two__img-box::after { display: none !important; }
+.project-three__img,
+.project-two__img,
+.project-one__img { background-color: #000; }
+.project-three__single,
+.project-two__single { background: transparent !important; }
+
+/* ---- Packages on dark ---- */
+.jmedia-tier,
+.jmedia-pilot {
+  background-color: var(--jm-ink-2) !important;
+  border: 1px solid var(--jm-line) !important;
+}
+.jmedia-tier--feat { border-color: var(--jm-coral) !important; }
+.jmedia-tier__price, .jmedia-pilot__price { color: var(--jm-text) !important; }
+
+/* ---- Footer ---- */
+.site-footer-two { background-color: #08080A !important; border-top: 1px solid var(--jm-line); }
+.footer-widget-two__title { color: var(--jm-text) !important; }
+.footer-widget-two__column a,
+.site-footer-two__bottom-text { color: var(--jm-muted) !important; }
+.footer-widget-two__column a:hover { color: var(--jm-coral) !important; }
+
+/* ---- Rhythm: close the empty gaps ---- */
+.about-one       { padding: 70px 0 !important; }
+.services-two    { padding: 70px 0 !important; }
+.project-two     { padding: 70px 0 40px !important; }
+.jmedia-process  { padding: 70px 0 40px !important; }
+.jmedia-packages { padding: 70px 0 !important; }
+.project-two__bottom-title { font-size: 48px; }
+
+/* The trust bar rendered a huge "CLIENTS" watermark directly behind the
+   client names at similar contrast, so neither was readable. Watermark
+   removed; names get real spacing until logo files exist. */
+.brand-two__title,
+.jmedia-trustbar__watermark,
+.brand-two h2,
+.brand-two__big-text { display: none !important; }
+
+.brand-two .container,
+.jmedia-trustbar__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 14px 44px; padding: 34px 0;
+}
+.jmedia-trustbar__item,
+.brand-two li {
+  color: #C9C9CE !important;
+  font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+  opacity: 1 !important;
+}
+
+/* The watermark is .brand-two__bg-text, not the classes guessed earlier. */
+.brand-two__bg-text { display: none !important; }
+.brand-two { padding: 0 !important; }
+.jmedia-trustbar__inner {
+  display: flex !important; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 14px 46px; padding: 34px 0 !important;
+}
+.jmedia-trustbar__inner span {
+  color: #C9C9CE !important; font-size: 13px;
+  letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap;
+}
+
+/* "See More Work" heading and its button were overlapping. */
+.project-two__bottom {
+  display: flex; align-items: center; justify-content: center;
+  gap: 28px; flex-wrap: wrap;
+}
+.project-two__bottom-title { margin: 0; }
