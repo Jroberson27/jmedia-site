@@ -616,3 +616,23 @@ a:hover { color: var(--jm-coral); }
 .jmedia-process  { padding: 70px 0 40px !important; }
 .jmedia-packages { padding: 70px 0 !important; }
 .project-two__bottom-title { font-size: 48px; }
+
+/* The trust bar rendered a huge "CLIENTS" watermark directly behind the
+   client names at similar contrast, so neither was readable. Watermark
+   removed; names get real spacing until logo files exist. */
+.brand-two__title,
+.jmedia-trustbar__watermark,
+.brand-two h2,
+.brand-two__big-text { display: none !important; }
+
+.brand-two .container,
+.jmedia-trustbar__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 14px 44px; padding: 34px 0;
+}
+.jmedia-trustbar__item,
+.brand-two li {
+  color: #C9C9CE !important;
+  font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+  opacity: 1 !important;
+}
