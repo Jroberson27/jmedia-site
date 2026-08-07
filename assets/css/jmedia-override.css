@@ -230,3 +230,95 @@
     align-items: flex-start;
   }
 }
+
+/* ---------------------------------------------------------------
+   Audit fixes, Aug 2026
+   Guard rails for real full-resolution photography dropped into
+   template slots that were authored for small fixed-size demo art.
+   The Eston markup relies on `width:auto`, so a 1400px source photo
+   renders at native size and overruns the section. Same root cause
+   as the nav logo issue fixed in 3beb786.
+   --------------------------------------------------------------- */
+
+/* About section: template demo art was 400x400. */
+.about-one__img-2 > img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.about-one__img-1 > img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  /* Stop the offset inset photo overlapping body copy on narrow screens. */
+  .about-one__img-2 {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 24px;
+  }
+  .about-one__img-2 > img {
+    max-width: 260px;
+  }
+}
+
+/* Blanket safety net: no decorative template image may exceed its slot. */
+.about-one__img-1 img,
+.about-one__img-2 img,
+.counter-one__icon img,
+.services-two__single img,
+.project-one__img img {
+  max-width: 100%;
+}
+
+/* ---------------------------------------------------------------
+   Portfolio thumbnails
+   Cards now carry real 16:9 frames from the published videos
+   (YouTube serves these; Vimeo has no predictable thumbnail URL, so
+   those three use real JMEDIA stills). The template slots were cut
+   for portrait demo art, which would crop a 16:9 frame to a sliver.
+   Give the slots the aspect ratio the work is actually in.
+   --------------------------------------------------------------- */
+
+.project-three__img,
+.project-two__img,
+.project-one__img {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.project-three__img > img,
+.project-two__img > img,
+.project-one__img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Case-study hero keeps a wider cinematic crop. */
+.project-details__img {
+  overflow: hidden;
+}
+
+.project-details__img > img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* The homepage carousel card uses two white 'curtain' bands (::before and
+   ::after on the img-box) that frame the image top and bottom. They are
+   hard-coded to 100px each, which assumed the template's tall portrait
+   card. At 16:9 the card is shorter than the 200px of combined curtain,
+   so the image collapsed to a sliver. Make them proportional instead. */
+.project-two__img-box::before,
+.project-two__img-box::after {
+  height: 18%;
+}
