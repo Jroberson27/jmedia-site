@@ -64,7 +64,16 @@ header{
   position:sticky;top:0;z-index:60;background:rgba(14,14,15,.88);
   backdrop-filter:blur(10px);border-bottom:1px solid var(--jm-line);
 }
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;position:relative;}
+.menu-btn{
+  display:none;align-items:center;justify-content:center;gap:5px;flex-direction:column;
+  width:44px;height:44px;background:none;border:1px solid var(--jm-line);
+  border-radius:2px;cursor:pointer;padding:0;
+}
+.menu-btn span{display:block;width:18px;height:1.5px;background:var(--jm-text);transition:.2s;}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 .nav img{height:30px;width:auto;}
 .nav nav{display:flex;gap:30px;align-items:center;}
 .nav nav a{font-size:14.5px;color:var(--jm-muted);transition:color .2s;}
@@ -198,7 +207,16 @@ footer{background:var(--jm-ink);border-top:1px solid var(--jm-line);padding:52px
   .work{grid-template-columns:repeat(2,1fr);}
   .steps{grid-template-columns:repeat(2,1fr);}
   .tiers{grid-template-columns:1fr;}
-  .nav nav{display:none;}
+  .menu-btn{display:flex;}
+  .nav nav{
+    display:none;position:absolute;top:72px;left:0;right:0;
+    background:var(--jm-ink-2);border-bottom:1px solid var(--jm-line);
+    flex-direction:column;gap:0;padding:8px 24px 16px;
+  }
+  .nav nav.open{display:flex;}
+  .nav nav a{padding:13px 0;border-top:1px solid var(--jm-line);font-size:16px;}
+  .nav nav a:first-child{border-top:0;}
+  .nav > .btn{display:none;}
 }
 @media (max-width:640px){
   body{font-size:16px;}
@@ -221,14 +239,18 @@ footer{background:var(--jm-ink);border-top:1px solid var(--jm-line);padding:52px
 <header>
   <div class="wrap nav">
     <a href="index.html"><img src="assets/images/jmedia/jmedia-logo.png" alt="JMEDIA" /></a>
-    <nav>
+    <nav id="mainNav">
       <a href="#why">Why monthly</a>
       <a href="#services">What we do</a>
       <a href="#work">Work</a>
       <a href="#partnership">Partnership</a>
       <a href="#about">About</a>
+      <a href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener" style="color:var(--jm-coral);font-weight:600;">Start a conversation</a>
     </nav>
     <a class="btn btn-primary" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -488,6 +510,16 @@ footer{background:var(--jm-ink);border-top:1px solid var(--jm-line);padding:52px
 
 <script>
 (function(){
+  var mb=document.getElementById('menuBtn'), mn=document.getElementById('mainNav');
+  if(mb&&mn){
+    mb.addEventListener('click',function(){
+      var open=mn.classList.toggle('open');
+      mb.setAttribute('aria-expanded',open?'true':'false');
+    });
+    mn.addEventListener('click',function(e){
+      if(e.target.tagName==='A'){mn.classList.remove('open');mb.setAttribute('aria-expanded','false');}
+    });
+  }
   var btns=document.querySelectorAll('.filters button');
   var items=document.querySelectorAll('.work a');
   btns.forEach(function(b){
