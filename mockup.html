@@ -208,10 +208,13 @@ header.hidden{transform:translateY(-100%);}
 .js h2.reveal{filter:blur(7px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease);}
 h2.reveal.in{filter:blur(0);}
 
-/* sticky process: the step you are on is lit, the others recede */
+/* sticky process: the step you are on is lit, the others recede.
+   The dim only applies once JS has added .stepping to the container,
+   which it does at the same moment it lights the first step. A step
+   can therefore never sit dimmed with nothing lit. */
 .step{transition:opacity .55s var(--ease);}
-.js .step{opacity:.32;}
-.js .step.active{opacity:1;}
+.js .stepping .step{opacity:.34;}
+.js .stepping .step.active{opacity:1;}
 .step .n{transition:background .45s var(--ease),color .45s var(--ease);}
 .step.active .n{background:var(--coral);color:#fff;}
 
@@ -460,14 +463,19 @@ h2.reveal.in{filter:blur(0);}
   /* ---- sticky process: light the active step ---- */
   var steps=[].slice.call(document.querySelectorAll('.step'));
   if(steps.length){
+    var stepWrap=steps[0].parentElement;
+    steps[0].classList.add('active');
+    stepWrap.classList.add('stepping');
     var so=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          steps.forEach(function(s){s.classList.remove('active');});
-          en.target.classList.add('active');
-        }
-      });
-    },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      var hit=null;
+      entries.forEach(function(en){ if(en.isIntersecting) hit=en.target; });
+      if(hit){
+        steps.forEach(function(s){s.classList.remove('active');});
+        hit.classList.add('active');
+      }
+      // never leave every step dimmed
+      if(!document.querySelector('.step.active')) steps[0].classList.add('active');
+    },{rootMargin:'-30% 0px -30% 0px',threshold:0});
     steps.forEach(function(s){so.observe(s);});
   }
 
