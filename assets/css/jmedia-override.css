@@ -230,3 +230,46 @@
     align-items: flex-start;
   }
 }
+
+/* ---------------------------------------------------------------
+   Audit fixes, Aug 2026
+   Guard rails for real full-resolution photography dropped into
+   template slots that were authored for small fixed-size demo art.
+   The Eston markup relies on `width:auto`, so a 1400px source photo
+   renders at native size and overruns the section. Same root cause
+   as the nav logo issue fixed in 3beb786.
+   --------------------------------------------------------------- */
+
+/* About section: template demo art was 400x400. */
+.about-one__img-2 > img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.about-one__img-1 > img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  /* Stop the offset inset photo overlapping body copy on narrow screens. */
+  .about-one__img-2 {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 24px;
+  }
+  .about-one__img-2 > img {
+    max-width: 260px;
+  }
+}
+
+/* Blanket safety net: no decorative template image may exceed its slot. */
+.about-one__img-1 img,
+.about-one__img-2 img,
+.counter-one__icon img,
+.services-two__single img,
+.project-one__img img {
+  max-width: 100%;
+}
