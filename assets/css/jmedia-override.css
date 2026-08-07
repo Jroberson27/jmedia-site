@@ -636,3 +636,22 @@ a:hover { color: var(--jm-coral); }
   font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
   opacity: 1 !important;
 }
+
+/* The watermark is .brand-two__bg-text, not the classes guessed earlier. */
+.brand-two__bg-text { display: none !important; }
+.brand-two { padding: 0 !important; }
+.jmedia-trustbar__inner {
+  display: flex !important; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 14px 46px; padding: 34px 0 !important;
+}
+.jmedia-trustbar__inner span {
+  color: #C9C9CE !important; font-size: 13px;
+  letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap;
+}
+
+/* "See More Work" heading and its button were overlapping. */
+.project-two__bottom {
+  display: flex; align-items: center; justify-content: center;
+  gap: 28px; flex-wrap: wrap;
+}
+.project-two__bottom-title { margin: 0; }
