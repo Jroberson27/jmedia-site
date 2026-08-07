@@ -231,6 +231,59 @@ h2.reveal.in{filter:blur(0);}
   header.hidden{transform:none!important;}
 }
 
+
+/* ---------- interactivity ---------- */
+
+/* cursor-tracked illumination on cards */
+.glow{position:relative;isolation:isolate;}
+.glow::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:0;
+  opacity:0;transition:opacity .4s var(--ease);pointer-events:none;
+  background:radial-gradient(460px circle at var(--mx,50%) var(--my,50%),
+             rgba(239,90,90,.20), rgba(239,90,90,.06) 40%, transparent 65%);
+}
+.glow::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:2;
+  border:1px solid transparent;transition:border-color .4s var(--ease);pointer-events:none;
+}
+.glow:hover::before{opacity:1;}
+.glow:hover::after{border-color:rgba(239,90,90,.40);}
+.glow > *{position:relative;z-index:1;}
+
+/* the tile you are on stays lit, the rest step back */
+.grid:hover .tile:not(:hover),
+.tiers:hover .tier:not(:hover),
+.work-grid:hover .work-item:not(:hover){opacity:.5;}
+.tile,.tier,.work-item{transition:transform .45s var(--ease),background .3s,opacity .4s var(--ease);}
+
+/* nav underlines */
+.nav ul a{position:relative;}
+.nav ul a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:var(--coral);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .32s var(--ease);
+}
+.nav ul a:hover::after{transform:scaleX(1);}
+
+/* buttons lean toward the cursor */
+.btn{will-change:transform;}
+
+/* scroll hint drifts */
+@keyframes drift{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,7px);}}
+.scroll-hint{animation:drift 2.6s ease-in-out infinite;}
+
+@media (prefers-reduced-motion:reduce){
+  .scroll-hint{animation:none;}
+  .glow::before,.glow::after{transition:none;}
+  .grid:hover .tile:not(:hover),
+  .tiers:hover .tier:not(:hover),
+  .work-grid:hover .work-item:not(:hover){opacity:1;}
+}
+@media (hover:none){
+  .glow::before,.glow::after{display:none;}
+  .grid:hover .tile:not(:hover),
+  .tiers:hover .tier:not(:hover),
+  .work-grid:hover .work-item:not(:hover){opacity:1;}
+}
 </style>
 </head>
 <body>
@@ -255,7 +308,7 @@ h2.reveal.in{filter:blur(0);}
 <section class="hero">
   <div class="hero-bg"><img src="assets/images/jmedia/real/hero-poster.jpg" alt="JMEDIA production still" /></div>
   <div class="hero-inner">
-    <h1 class="reveal">A Creative Partner For Brands That Need More Than A One-Time Video.</h1>
+    <h1 class="reveal">More Than A One-Time Video.</h1>
     <p class="sub reveal d1">JMEDIA creates commercial-quality video content through ongoing partnerships, so you are not managing another production project every time.</p>
     <div class="btns reveal d2">
       <a class="btn btn-fill" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
@@ -279,10 +332,10 @@ h2.reveal.in{filter:blur(0);}
   <div class="wrap">
     <h2 class="reveal">What we create</h2>
     <div class="grid">
-      <div class="tile reveal"><h3>Brand Campaigns</h3><p>Concept development, production, editing and final deliverables for campaign work.</p></div>
-      <div class="tile reveal d1"><h3>Ongoing Content Partnerships</h3><p>Monthly production, editing and content library development for consistent brand storytelling.</p></div>
-      <div class="tile reveal d2"><h3>Content Strategy</h3><p>Content planning, story development and a production roadmap built around your calendar.</p></div>
-      <div class="tile reveal d3"><h3>Personal Films</h3><p>Short films made without a client brief, including Crysis.</p></div>
+      <div class="tile glow reveal"><h3>Brand Campaigns</h3><p>Concept development, production, editing and final deliverables for campaign work.</p></div>
+      <div class="tile glow reveal d1"><h3>Ongoing Content Partnerships</h3><p>Monthly production, editing and content library development for consistent brand storytelling.</p></div>
+      <div class="tile glow reveal d2"><h3>Content Strategy</h3><p>Content planning, story development and a production roadmap built around your calendar.</p></div>
+      <div class="tile glow reveal d3"><h3>Personal Films</h3><p>Short films made without a client brief, including Crysis.</p></div>
     </div>
   </div>
 </section>
@@ -298,27 +351,27 @@ h2.reveal.in{filter:blur(0);}
     <p class="kicker reveal">Selected work</p>
     <h2 class="reveal d1">Recent video work in Orlando and Central Florida</h2>
     <div class="work-grid">
-      <a class="work-item reveal" href="https://www.youtube.com/watch?v=e4UFOFvvBSI" target="_blank" rel="noopener">
+      <a class="work-item glow reveal" href="https://www.youtube.com/watch?v=e4UFOFvvBSI" target="_blank" rel="noopener">
         <div class="work-thumb"><img loading="lazy" src="https://img.youtube.com/vi/e4UFOFvvBSI/maxresdefault.jpg" alt="Let Fear Consume You, HHN 2026" /></div>
         <div class="work-meta"><h3>Let Fear Consume You: HHN 2026</h3><p>Universal Orlando · UDX</p></div>
       </a>
-      <a class="work-item reveal d1" href="https://www.youtube.com/watch?v=gZewvE_YRB8" target="_blank" rel="noopener">
+      <a class="work-item glow reveal d1" href="https://www.youtube.com/watch?v=gZewvE_YRB8" target="_blank" rel="noopener">
         <div class="work-thumb"><img loading="lazy" src="https://img.youtube.com/vi/gZewvE_YRB8/maxresdefault.jpg" alt="Epic Universe Takeover" /></div>
         <div class="work-meta"><h3>Epic Universe Takeover</h3><p>Universal Orlando · Whistle</p></div>
       </a>
-      <a class="work-item reveal d2" href="https://www.youtube.com/watch?v=fM7eKHu6V3Y" target="_blank" rel="noopener">
+      <a class="work-item glow reveal d2" href="https://www.youtube.com/watch?v=fM7eKHu6V3Y" target="_blank" rel="noopener">
         <div class="work-thumb"><img loading="lazy" src="https://img.youtube.com/vi/fM7eKHu6V3Y/maxresdefault.jpg" alt="Intro to Shaqvana, Carvana" /></div>
         <div class="work-meta"><h3>Intro to Shaqvana</h3><p>Carvana</p></div>
       </a>
-      <a class="work-item reveal" href="https://www.youtube.com/watch?v=Nh6IDt22-vU" target="_blank" rel="noopener">
+      <a class="work-item glow reveal" href="https://www.youtube.com/watch?v=Nh6IDt22-vU" target="_blank" rel="noopener">
         <div class="work-thumb"><img loading="lazy" src="https://img.youtube.com/vi/Nh6IDt22-vU/maxresdefault.jpg" alt="Find Your Fun, Florida Lottery" /></div>
         <div class="work-meta"><h3>Find Your Fun</h3><p>Florida Lottery</p></div>
       </a>
-      <a class="work-item reveal d1" href="https://www.youtube.com/watch?v=WEV_wDMTCq0" target="_blank" rel="noopener">
+      <a class="work-item glow reveal d1" href="https://www.youtube.com/watch?v=WEV_wDMTCq0" target="_blank" rel="noopener">
         <div class="work-thumb"><img loading="lazy" src="https://img.youtube.com/vi/WEV_wDMTCq0/maxresdefault.jpg" alt="Lil Bro Spot" /></div>
         <div class="work-meta"><h3>Lil' Bro Spot</h3><p>Universal Orlando</p></div>
       </a>
-      <a class="work-item reveal d2" href="https://www.youtube.com/watch?v=TJWJgZUryKQ" target="_blank" rel="noopener">
+      <a class="work-item glow reveal d2" href="https://www.youtube.com/watch?v=TJWJgZUryKQ" target="_blank" rel="noopener">
         <div class="work-thumb"><img loading="lazy" src="https://img.youtube.com/vi/TJWJgZUryKQ/maxresdefault.jpg" alt="Crysis short film" /></div>
         <div class="work-meta"><h3>Crysis: Short Film</h3><p>JMEDIA Original</p></div>
       </a>
@@ -350,7 +403,7 @@ h2.reveal.in{filter:blur(0);}
     <h2 class="reveal d1">The JMEDIA partnership model</h2>
     <p class="sub reveal d2">Every level includes planning, the shoot, the editing and the finished files. The difference is how much gets made each month.</p>
     <div class="tiers">
-      <div class="tier reveal">
+      <div class="tier glow reveal">
         <span class="name">Content Partner</span>
         <div class="price">$1,200 to $1,500<span> /mo</span></div>
         <ul>
@@ -360,7 +413,7 @@ h2.reveal.in{filter:blur(0);}
         </ul>
         <a class="btn btn-line" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
       </div>
-      <div class="tier hero-tier reveal d1">
+      <div class="tier hero-tier glow reveal d1">
         <span class="name">Creative Partner</span>
         <div class="price">$2,200 to $2,800<span> /mo</span></div>
         <ul>
@@ -371,7 +424,7 @@ h2.reveal.in{filter:blur(0);}
         </ul>
         <a class="btn btn-fill" href="https://calendar.app.google/BkgfP4EBCaa2ZVK66" target="_blank" rel="noopener">Start a conversation</a>
       </div>
-      <div class="tier reveal d2">
+      <div class="tier glow reveal d2">
         <span class="name">Brand Partner</span>
         <div class="price">$3,500+<span> /mo</span></div>
         <ul>
@@ -477,6 +530,28 @@ h2.reveal.in{filter:blur(0);}
       if(!document.querySelector('.step.active')) steps[0].classList.add('active');
     },{rootMargin:'-30% 0px -30% 0px',threshold:0});
     steps.forEach(function(s){so.observe(s);});
+  }
+
+  /* ---- cursor illumination on cards ---- */
+  if(window.matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.glow').forEach(function(el){
+      el.addEventListener('pointermove',function(e){
+        var r=el.getBoundingClientRect();
+        el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+        el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+      },{passive:true});
+    });
+
+    /* ---- buttons lean toward the cursor ---- */
+    document.querySelectorAll('.btn').forEach(function(b){
+      b.addEventListener('pointermove',function(e){
+        var r=b.getBoundingClientRect();
+        var dx=(e.clientX-(r.left+r.width/2))/r.width;
+        var dy=(e.clientY-(r.top+r.height/2))/r.height;
+        b.style.transform='translate('+(dx*7).toFixed(2)+'px,'+(dy*5).toFixed(2)+'px) scale(1.04)';
+      },{passive:true});
+      b.addEventListener('pointerleave',function(){b.style.transform='';});
+    });
   }
 
   /* ---- scroll driven: progress bar, nav state, parallax ---- */
