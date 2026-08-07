@@ -175,11 +175,66 @@ footer p{color:var(--muted);font-size:13.5px;margin:8px 0 0;}
   .tile{padding:36px 30px;}
   .statement{padding:80px 0;}
 }
+
+/* ---------- motion layer ---------- */
+
+/* thin scroll progress line */
+#progress{
+  position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;
+  background:var(--coral);transform:scaleX(0);transform-origin:0 50%;
+  will-change:transform;
+}
+
+/* nav reacts to scroll: transparent over hero, solid after, hides on scroll down */
+header{transition:transform .45s var(--ease),background .4s var(--ease),border-color .4s;}
+header.at-top{background:transparent;border-color:transparent;}
+header.hidden{transform:translateY(-100%);}
+
+/* hero image drifts slowly, and settles on load */
+.hero-bg img{
+  will-change:transform;
+  transition:transform 2.4s var(--ease);
+}
+.js .hero-bg img{transform:scale(1.14);}
+.js .hero-bg.settled img{transform:scale(1.06);}
+
+/* headline reveals word by word. Spans are only created when JS runs,
+   so with JS off the headline is plain text and fully visible. */
+.w{display:inline-block;opacity:0;transform:translateY(28px);
+   transition:opacity .85s var(--ease),transform .85s var(--ease);}
+.w.in{opacity:1;transform:none;}
+
+/* section headings sharpen as they arrive */
+.js h2.reveal{filter:blur(7px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease);}
+h2.reveal.in{filter:blur(0);}
+
+/* sticky process: the step you are on is lit, the others recede */
+.step{transition:opacity .55s var(--ease);}
+.js .step{opacity:.32;}
+.js .step.active{opacity:1;}
+.step .n{transition:background .45s var(--ease),color .45s var(--ease);}
+.step.active .n{background:var(--coral);color:#fff;}
+
+/* parallax targets */
+.bleed img{will-change:transform;}
+.sticky-media img{will-change:transform;}
+
+@media (prefers-reduced-motion:reduce){
+  #progress{display:none;}
+  .w{opacity:1!important;transform:none!important;}
+  .js h2.reveal{filter:none!important;}
+  .js .step{opacity:1!important;}
+  .js .hero-bg img,.js .hero-bg.settled img{transform:none!important;}
+  header.hidden{transform:none!important;}
+}
+
 </style>
 </head>
 <body>
 
-<header>
+<div id="progress"></div>
+
+<header class="at-top">
   <div class="nav">
     <span class="logo">JMEDIA</span>
     <ul>
@@ -363,6 +418,7 @@ footer p{color:var(--muted);font-size:13.5px;margin:8px 0 0;}
 
 <script>
 (function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els=[].slice.call(document.querySelectorAll('.reveal'));
   function showAll(){els.forEach(function(e){e.classList.add('in');});}
   // Failsafe: whatever happens, nothing stays hidden.
@@ -377,7 +433,83 @@ footer p{color:var(--muted);font-size:13.5px;margin:8px 0 0;}
   // Hero reveals immediately on load rather than waiting for a scroll.
   window.addEventListener('load',function(){
     document.querySelectorAll('.hero .reveal').forEach(function(e){e.classList.add('in');});
+    var hb=document.querySelector('.hero-bg'); if(hb) hb.classList.add('settled');
   });
+
+  if(reduce) return;
+
+  /* ---- headline split into words, staggered ---- */
+  var h1=document.querySelector('.hero h1');
+  if(h1){
+    var words=h1.textContent.trim().split(/\s+/);
+    h1.textContent='';
+    words.forEach(function(word,i){
+      var s=document.createElement('span');
+      s.className='w'; s.textContent=word;
+      s.style.transitionDelay=(i*0.045)+'s';
+      h1.appendChild(s);
+      h1.appendChild(document.createTextNode(' '));
+    });
+    // failsafe: show words no matter what
+    setTimeout(function(){h1.querySelectorAll('.w').forEach(function(s){s.classList.add('in');});},2500);
+    requestAnimationFrame(function(){
+      setTimeout(function(){h1.querySelectorAll('.w').forEach(function(s){s.classList.add('in');});},120);
+    });
+  }
+
+  /* ---- sticky process: light the active step ---- */
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  if(steps.length){
+    var so=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          steps.forEach(function(s){s.classList.remove('active');});
+          en.target.classList.add('active');
+        }
+      });
+    },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+    steps.forEach(function(s){so.observe(s);});
+  }
+
+  /* ---- scroll driven: progress bar, nav state, parallax ---- */
+  var bar=document.getElementById('progress');
+  var header=document.querySelector('header');
+  var hero=document.querySelector('.hero');
+  var heroImg=document.querySelector('.hero-bg img');
+  var bleedImg=document.querySelector('.bleed img');
+  var lastY=window.pageYOffset, ticking=false;
+
+  function frame(){
+    var y=window.pageYOffset;
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+
+    if(bar) bar.style.transform='scaleX('+(max>0? Math.min(y/max,1):0)+')';
+
+    if(header){
+      var past = hero ? y > hero.offsetHeight-80 : y>80;
+      header.classList.toggle('at-top', !past);
+      // hide when scrolling down past the hero, show on the way back up
+      if(past && y>lastY+6) header.classList.add('hidden');
+      else if(y<lastY-6 || !past) header.classList.remove('hidden');
+    }
+
+    if(heroImg && hero && y < hero.offsetHeight){
+      heroImg.style.transform='scale(1.06) translate3d(0,'+(y*0.22)+'px,0)';
+    }
+    if(bleedImg){
+      var r=bleedImg.parentElement.getBoundingClientRect();
+      if(r.bottom>0 && r.top<window.innerHeight){
+        var p=(r.top+r.height/2-window.innerHeight/2)/window.innerHeight;
+        bleedImg.style.transform='translate3d(0,'+(p*-40)+'px,0) scale(1.12)';
+      }
+    }
+
+    lastY=y; ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(frame);}
+  },{passive:true});
+  frame();
 })();
 </script>
 </body>
