@@ -7,12 +7,22 @@
 
 /* ---------- Nav logo sizing (real JMEDIA lockup is wide) ---------- */
 .main-menu__logo img,
+.main-menu-two__logo img,
+.main-menu-three__logo img,
 .mobile-nav__wrapper .logo-box img,
 .footer-widget__logo img,
-.xs-sidebar-group .logo img {
+.footer-widget-two__logo img,
+.xs-sidebar-group .logo img,
+.contact-one__logo img {
   height: 34px;
   width: auto;
   max-width: none;
+}
+
+.stricky-header .main-menu-two__logo img,
+.stricky-header .main-menu__logo img,
+.stricky-header .main-menu-three__logo img {
+  height: 30px;
 }
 
 /* ---------- Placeholder flag (visible only on stock/placeholder assets) ---------- */
