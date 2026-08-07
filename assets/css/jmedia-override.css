@@ -375,3 +375,9 @@
    to move between. */
 .main-slider-two .owl-nav,
 .main-slider-two__nav { display: none !important; }
+
+/* Video CTA now carries a real still rather than the template's grey
+   placeholder. 275px of vertical padding made it consume most of a
+   screen for a single Play button. */
+.video-two { padding: 150px 0 !important; }
+.project-two__bottom-btn { margin-top: 8px; }
