@@ -688,10 +688,11 @@ a:hover { color: var(--jm-coral); }
 
 
 /* Fix: white band down the right edge of the hero.
-   .main-slider-two__contact-info was positioned past the right edge of the
-   viewport. The slider has overflow:visible, so that pushed the document
-   wider than the window and exposed the default white <html> background.
-   Pull the rail inside and stop the section overflowing. */
+   The section itself carries a white background from the template, and the
+   owl carousel inside settles ~100px narrower than the section at wide
+   viewports, so that white strip was showing through on the right.
+   Painting the section in the site ink makes the gap invisible.
+   The contact rail is also pulled inside the viewport. */
 html { background: #0E0E0F; }
-.main-slider-two { overflow-x: hidden; }
+.main-slider-two { background-color: #0E0E0F; overflow-x: hidden; }
 .main-slider-two__contact-info { right: 14px; left: auto; }
