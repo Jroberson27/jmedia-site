@@ -749,7 +749,7 @@ a:hover { color: var(--jm-coral); }
    which sits with the red-smoke photography. Pure CSS box-shadow
    layers, no library, three depths at different speeds. */
 .jm-stars {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
 }
 .jm-stars i {
   position: absolute; top: 0; left: 0; border-radius: 50%;
@@ -774,9 +774,10 @@ a:hover { color: var(--jm-coral); }
 @media (prefers-reduced-motion: reduce) {
   .jm-stars i { animation: none; }
 }
-/* content must sit above the field */
-body > * { position: relative; z-index: 1; }
-.jm-stars { z-index: 0 !important; }
+/* Sit the field behind everything instead of promoting every body child,
+   which broke the template's layout containers. */
+.jm-stars { z-index: -1; }
+body { position: relative; background-color: var(--jm-ink); }
 
 /* ── Colour-block cards, the "creative recipe" grid ──────────────── */
 .jm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 48px; }
