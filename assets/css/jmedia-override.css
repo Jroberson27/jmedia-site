@@ -655,3 +655,33 @@ a:hover { color: var(--jm-coral); }
   gap: 28px; flex-wrap: wrap;
 }
 .project-two__bottom-title { margin: 0; }
+
+/* Positioning pass: the challenge / approach block that explains the
+   model before any price appears. */
+.jmedia-why-model { padding: 90px 0; background: var(--jm-ink-2); }
+.jmedia-why-model__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.jmedia-why-model__h { font-size: 26px; line-height: 1.35; margin: 14px 0 22px; color: var(--jm-text); }
+.jmedia-why-model__list { list-style: none; padding: 0; margin: 0; }
+.jmedia-why-model__list li {
+  position: relative; padding-left: 22px; margin-bottom: 11px;
+  color: var(--jm-muted); font-size: 15px;
+}
+.jmedia-why-model__list li::before {
+  content: ""; position: absolute; left: 0; top: 10px;
+  width: 9px; height: 1px; background: #55555C;
+}
+.jmedia-why-model__list--on li::before { background: var(--jm-coral); height: 2px; }
+.jmedia-why-model__note { margin-top: 20px; color: var(--jm-text) !important; font-size: 15px; }
+
+.jmedia-trustbar__label {
+  text-align: center; color: var(--jm-muted); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase; margin: 30px 0 0;
+}
+.main-slider-two__text {
+  max-width: 640px; margin: 22px 0 34px; font-size: 17px;
+  line-height: 1.7; color: rgba(255,255,255,0.86);
+}
+@media (max-width: 991px) {
+  .jmedia-why-model__grid { grid-template-columns: 1fr; gap: 40px; }
+  .jmedia-why-model__h { font-size: 21px; }
+}
